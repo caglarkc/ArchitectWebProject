@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İç Mimari Tasarım - Modern Mimarlık & Tasarım</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .service-detail {
+            padding: 120px 5% 50px;
+        }
+
+        .service-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .service-header h1 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .service-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .service-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .service-text {
+            padding: 2rem;
+        }
+
+        .service-text h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .service-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .service-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            padding: 4rem 5%;
+            background: var(--bg-light);
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-item i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .service-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar ve Navbar aynı -->
+    <div class="top-bar">
+        <div class="contact-info">
+            <a href="tel:+902161234567"><i class="fas fa-phone"></i> 0216 123 45 67</a>
+            <a href="mailto:info@mimarlik.com"><i class="fas fa-envelope"></i> info@mimarlik.com</a>
+            <span><i class="fas fa-clock"></i> Pazartesi - Cumartesi: 09:00 - 18:00</span>
+        </div>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">LOGO</div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Ana Sayfa</a></li>
+            <li class="dropdown">
+                <a href="../projeler.html">Projeler</a>
+                <div class="dropdown-content">
+                    <a href="#">Konut Projeleri</a>
+                    <a href="#">Ofis Projeleri</a>
+                    <a href="#">Ticari Projeler</a>
+                    <a href="#">Villa Projeleri</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="active">Hizmetler</a>
+                <div class="dropdown-content">
+                    <a href="ic-mimari-tasarim.html">İç Mimari Tasarım</a>
+                    <a href="tadilat-dekorasyon.html">Tadilat & Dekorasyon</a>
+                    <a href="mobilya-tasarimi.html">Mobilya Tasarımı</a>
+                    <a href="proje-danismanligi.html">Proje Danışmanlığı</a>
+                </div>
+            </li>
+            <li><a href="../hakkimizda.html">Hakkımızda</a></li>
+            <li><a href="../iletisim.html">İletişim</a></li>
+        </ul>
+        <div class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <section class="service-detail">
+        <div class="service-header">
+            <h1>İç Mimari Tasarım</h1>
+            <p>Modern ve fonksiyonel yaşam alanları tasarlıyoruz</p>
+        </div>
+
+        <div class="service-content">
+            <div class="service-image">
+                <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6" alt="İç Mimari Tasarım">
+            </div>
+            <div class="service-text">
+                <h2>Profesyonel İç Mimari Çözümler</h2>
+                <p>Yaşam alanlarınızı en verimli şekilde değerlendirmek için profesyonel iç mimari çözümler sunuyoruz. Her projeye özel yaklaşımımız ve deneyimli ekibimizle, mekanlarınızı fonksiyonel ve estetik bir şekilde tasarlıyoruz.</p>
+                <p>Modern tasarım anlayışımız ve yenilikçi çözümlerimizle, yaşam alanlarınızı daha konforlu ve şık hale getiriyoruz. Size özel tasarım sürecimizde, ihtiyaç ve beklentilerinizi en ince ayrıntısına kadar değerlendiriyoruz.</p>
+                <a href="../iletisim.html" class="cta-button">Bizimle İletişime Geçin</a>
+            </div>
+        </div>
+
+        <div class="service-features">
+            <div class="feature-item">
+                <i class="fas fa-ruler-combined"></i>
+                <h3>Mekan Planlama</h3>
+                <p>Alanınızı en verimli şekilde değerlendiriyoruz</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-paint-roller"></i>
+                <h3>Renk ve Malzeme</h3>
+                <p>En uygun renk ve malzeme seçimleri</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-lightbulb"></i>
+                <h3>Aydınlatma Tasarımı</h3>
+                <p>Doğru aydınlatma çözümleri</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-couch"></i>
+                <h3>Mobilya Seçimi</h3>
+                <p>Mekanınıza uygun mobilya önerileri</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer aynı -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>İletişim</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Örnek Mah. Mimarlık Sok. No:123 Kadıköy/İstanbul</p>
+                <p><i class="fas fa-phone"></i> 0216 123 45 67</p>
+                <p><i class="fas fa-envelope"></i> info@mimarlik.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Hızlı Erişim</h3>
+                <ul>
+                    <li><a href="../index.html">Ana Sayfa</a></li>
+                    <li><a href="../projeler.html">Projeler</a></li>
+                    <li><a href="#">Hizmetler</a></li>
+                    <li><a href="../hakkimizda.html">Hakkımızda</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Sosyal Medya</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Modern Mimarlık & Tasarım. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <a href="#" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="../script.js"></script>
+</body>
+</html> 

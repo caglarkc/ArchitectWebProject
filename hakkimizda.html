@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hakkımızda - Mimarlık Şirketi</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .about {
+            padding: 100px 5% 50px;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        
+        .team {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .team-member {
+            text-align: center;
+        }
+        
+        .team-member img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+        
+        .values {
+            margin-top: 3rem;
+            padding: 3rem 0;
+            background-color: #f8f9fa;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .value-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">LOGO</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="projeler.html">Projeler</a></li>
+            <li><a href="hakkimizda.html" class="active">Hakkımızda</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+        </ul>
+    </nav>
+
+    <section class="about">
+        <div class="about-content">
+            <h2>Hakkımızda</h2>
+            <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2" alt="Ofis" class="about-image">
+            <p>20 yılı aşkın deneyimimizle, mimari mükemmelliği hedefleyen projeler üretiyoruz. Modern tasarım anlayışımız ve sürdürülebilir yaklaşımımızla, müşterilerimizin hayallerini gerçeğe dönüştürüyoruz.</p>
+            
+            <div class="values">
+                <h3>Değerlerimiz</h3>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <h4>Yenilikçilik</h4>
+                        <p>Modern çözümler ve yaratıcı fikirler</p>
+                    </div>
+                    <div class="value-item">
+                        <h4>Sürdürülebilirlik</h4>
+                        <p>Çevre dostu tasarımlar</p>
+                    </div>
+                    <div class="value-item">
+                        <h4>Kalite</h4>
+                        <p>En yüksek standartlarda hizmet</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Ekibimiz</h3>
+            <div class="team">
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80" alt="Takım Üyesi 1">
+                    <h4>Ayşe Yılmaz</h4>
+                    <p>Baş Mimar</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e" alt="Takım Üyesi 2">
+                    <h4>Mehmet Kaya</h4>
+                    <p>Tasarım Direktörü</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330" alt="Takım Üyesi 3">
+                    <h4>Zeynep Demir</h4>
+                    <p>İç Mimar</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Mimarlık Şirketi. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,33 @@
+Gerekli Görseller:
+
+1. mimari-tasarim.jpg
+- Modern bina dış cephe tasarımı
+- Çözünürlük: En az 1920x1080
+- Stil: Modern mimari, minimalist
+
+2. ic-mimari.jpg
+- Modern iç mekan tasarımı
+- Çözünürlük: En az 1920x1080
+- Stil: Lüks, ferah iç mekan
+
+3. tadilat.jpg
+- Renovasyon/tadilat görseli
+- Çözünürlük: En az 1920x1080
+- Stil: Before/After konsepti
+
+4. mobilya.jpg
+- Özel tasarım mobilya
+- Çözünürlük: En az 1920x1080
+- Stil: Modern, minimalist mobilya
+
+5. danismanlik.jpg
+- Mimari proje toplantısı
+- Çözünürlük: En az 1920x1080
+- Stil: Profesyonel iş ortamı
+
+6. 3d-modelleme.jpg
+- 3D render görsel
+- Çözünürlük: En az 1920x1080
+- Stil: Fotorealistik render
+
+Not: Tüm görseller için telif hakkı olmayan, yüksek kaliteli profesyonel fotoğraflar kullanılmalıdır. 
