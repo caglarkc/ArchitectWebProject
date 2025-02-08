@@ -1,0 +1,57 @@
+/* Intro Section Styles */
+.second-section {
+    background-color: #000000;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    padding: 60px 0;
+}
+
+.second-section .second-content {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.second-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    color: #ffffff;
+    padding: 0;
+}
+
+.second-content h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 50px;
+    letter-spacing: 1px;
+}
+
+.second-content h2 span {
+    color: #c5a47e;
+}
+
+.second-content p {
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+/* Responsive Intro Section */
+@media (max-width: 991px) {
+    .second-section {
+        height: auto;
+        padding: 40px 0;
+    }
+
+    .second-content h2 {
+        font-size: 28px;
+    }
+
+    .second-content p {
+        font-size: 14px;
+    }
+} 

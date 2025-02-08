@@ -1,0 +1,157 @@
+.blog-section {
+    padding: 50px 0;
+}
+
+.blog-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    font-weight: bold;
+}
+
+.blog-card {
+    margin-bottom: 30px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    background: #fff;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+}
+
+.blog-card img {
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.blog-card-content {
+    padding: 20px;
+}
+
+.blog-card-title {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: 800;
+}
+
+.blog-meta {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 15px;
+    color: #D4AF37;
+    font-size: 0.8rem;
+    padding: 10px 0;
+}
+
+.blog-meta i {
+    color: #D4AF37;
+}
+
+.blog-excerpt {
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.read-more {
+    display: inline-block;
+    padding: 8px 0;
+    color: #888;
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.read-more:hover {
+    color: #333;
+    border-bottom-color: #666;
+}
+
+.blog-category {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+/* Footer Styles */
+.footer {
+    background: #333;
+    color: white;
+    width: 100%;
+}
+
+.footer-content {
+    padding: 50px 0;
+}
+
+.footer h4 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.footer ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer ul li a:hover {
+    color: white;
+}
+
+.contact-info {
+    margin-bottom: 30px;
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+    color: #ccc;
+}
+
+.contact-info i {
+    margin-right: 10px;
+    color: #007bff;
+}
+
+.footer-bottom {
+    border-top: 1px solid #444;
+    margin-top: 0;
+    padding: 20px 0;
+    text-align: center;
+    color: #ccc;
+    background: #000;
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .blog-card img {
+        height: 200px;
+    }
+    
+    .blog-title {
+        font-size: 2rem;
+    }
+} 

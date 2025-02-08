@@ -1,0 +1,138 @@
+/* Hero Section Styles */
+.first-section {
+    height: 750px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 300px;
+    position: relative;
+}
+
+.first-content {
+    max-width: 700px;
+    color: #ffffff;
+}
+
+.first-content h1 {
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    opacity: 0;
+    animation: slideUp 1.2s ease forwards;
+    animation-delay: 0.5s;
+}
+
+.first-content h2 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    opacity: 0;
+    animation: slideUp 1.2s ease forwards;
+    animation-delay: 1s;
+}
+
+.first-content h2 span {
+    color: #c5a47e;
+}
+
+.first-content p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    max-width: 600px;
+    opacity: 0;
+    animation: slideUp 1.2s ease forwards;
+    animation-delay: 1.5s;
+}
+
+.first-buttons {
+    display: flex;
+    gap: 20px;
+    opacity: 0;
+    animation: slideUp 1.2s ease forwards;
+    animation-delay: 2s;
+}
+
+.first-btn {
+    padding: 15px 30px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 3px;
+    transition: all 1s ease;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.first-btn-primary {
+    background-color: #c5a47e;
+    color: #ffffff;
+    border: 2px solid #c5a47e;
+    transition: background-color 1s ease, color 1s ease, border-color 1s ease;
+}
+
+.first-btn-primary:hover {
+    background-color: transparent;
+    color: #c5a47e;
+    border: 2px solid #ffffff;
+}
+
+.first-btn-secondary {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    transition: background-color 1s ease, color 1s ease, border-color 1s ease;
+}
+
+.first-btn-secondary:hover {
+    background-color: #ffffff;
+    color: #c5a47e;
+    border: 2px solid #ffffff;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive Hero Section */
+@media (max-width: 991px) {
+    .first-section {
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .first-content {
+        padding: 0 20px;
+    }
+
+    .first-content h1 {
+        font-size: 20px;
+    }
+
+    .first-content h2 {
+        font-size: 36px;
+    }
+
+    .first-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+} 

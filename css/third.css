@@ -1,0 +1,60 @@
+/* Section 1 Styles */
+.third-section {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    padding: 60px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.third-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.third-section .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.third-section {
+    width: 100%;
+}
+
+.third-section p {
+    color: #ffffff;
+    font-size: 36px;
+    font-weight: 300;
+    text-align: center;
+    margin-top: 200px;
+    letter-spacing: 2px;
+    line-height: 1.4;
+    font-family: 'Times New Roman', serif;
+    white-space: nowrap;
+}
+
+/* Responsive Section 1 */
+@media (max-width: 991px) {
+    .third-section {
+        height: auto;
+        min-height: 250px;
+        padding: 40px 0;
+    }
+
+    .third-section p {
+        font-size: 36px;
+        white-space: normal;
+        padding: 0 15px;
+    }
+} 

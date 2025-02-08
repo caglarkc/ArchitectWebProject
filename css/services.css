@@ -1,0 +1,183 @@
+.first-section {
+    background-color: #f5f5f5;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 800px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+}
+
+.first-content {
+    max-width: 100%;
+    margin: 0 auto;
+    max-height: 100%;
+    padding: 0 20px;
+}
+
+.first-content h1 {
+    font-size: 56px;
+    color: #fff;
+    margin-bottom: 30px;
+    font-weight: 600;
+    padding-top: 20px;
+}
+
+.breadcrumb-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    padding: 10px 0;
+}
+
+.breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+    color: #666;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-item:hover {
+    color: #c5a47e;
+}
+
+.breadcrumb-separator {
+    margin: 0 10px;
+    color: #999;
+    font-size: 14px;
+}
+
+.breadcrumb-item.active {
+    color: #c5a47e;
+    pointer-events: none;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    .first-section {
+        padding: 40px 0;
+    }
+
+    .first-content h1 {
+        font-size: 28px;
+    }
+
+    .first-content p {
+        font-size: 14px;
+    }
+
+
+}
+
+
+.fourth-section {
+    padding: 50px 0 0 0 ;
+    background-color: #000;
+    text-align: center;
+}
+
+.fourth-content {
+    max-width: 800px;
+    margin: 0 auto 60px;
+    padding: 0 15px;
+}
+
+.fourth-content h6 {
+    color: #c5a47e;
+    font-size: 22px;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+
+.fourth-content p {
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.fifth-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fifth-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.fifth-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .fifth-container {
+        padding: 0 10px;
+    }
+    
+    .fifth-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+}
+
+/* Modal Stilleri */
+.image-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90vh;
+}
+
+.modal-content img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.close-modal {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: #c5a47e;
+}

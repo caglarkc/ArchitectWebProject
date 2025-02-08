@@ -3,277 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Modern Mimarlık & Tasarım</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Blog - ALICAGLAR</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .blog-section {
-            padding: 120px 5% 50px;
-        }
-
-        .blog-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .blog-header h1 {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-        }
-
-        .blog-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-
-        .blog-image {
-            width: 100%;
-            height: 250px;
-            overflow: hidden;
-        }
-
-        .blog-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .blog-card:hover .blog-image img {
-            transform: scale(1.1);
-        }
-
-        .blog-content {
-            padding: 2rem;
-        }
-
-        .blog-meta {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .blog-meta span {
-            display: flex;
-            align-items: center;
-        }
-
-        .blog-meta i {
-            margin-right: 5px;
-            color: var(--accent-color);
-        }
-
-        .blog-title {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            line-height: 1.4;
-        }
-
-        .blog-excerpt {
-            color: #666;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .blog-categories {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 1.5rem;
-        }
-
-        .category-tag {
-            background: var(--bg-light);
-            color: var(--primary-color);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-
-        .read-more {
-            display: inline-flex;
-            align-items: center;
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .read-more i {
-            margin-left: 5px;
-            transition: transform 0.3s ease;
-        }
-
-        .read-more:hover i {
-            transform: translateX(5px);
-        }
-
-        .blog-sidebar {
-            padding: 2rem;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-
-        .sidebar-section {
-            margin-bottom: 2rem;
-        }
-
-        .sidebar-section h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--accent-color);
-        }
-
-        .popular-posts {
-            list-style: none;
-        }
-
-        .popular-posts li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .popular-posts img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-right: 1rem;
-        }
-
-        .post-info h4 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .post-info span {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        @media (max-width: 768px) {
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/blog.css">
 </head>
+
 <body>
-    <!-- Top Bar ve Navbar aynı -->
-    <div class="top-bar">
-        <div class="contact-info">
-            <a href="tel:+902161234567"><i class="fas fa-phone"></i> 0216 123 45 67</a>
-            <a href="mailto:info@mimarlik.com"><i class="fas fa-envelope"></i> info@mimarlik.com</a>
-            <span><i class="fas fa-clock"></i> Pazartesi - Cumartesi: 09:00 - 18:00</span>
-        </div>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-        </div>
-    </div>
+    <!-- Header buraya yüklenecek -->
+    <div id="header-container"></div>
 
-    <nav class="navbar">
-        <!-- Navbar içeriği aynı -->
-    </nav>
-
+    <!-- Blog Section -->
     <section class="blog-section">
-        <div class="blog-header">
-            <h1>Blog</h1>
-            <p>Mimarlık ve tasarım dünyasından en son haberler ve trendler</p>
-        </div>
-
-        <div class="blog-grid">
-            <article class="blog-card">
-                <div class="blog-image">
-                    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6" alt="Modern Ev Tasarımı">
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span><i class="far fa-calendar"></i> 15 Mart 2024</span>
-                        <span><i class="far fa-user"></i> Admin</span>
-                    </div>
-                    <h2 class="blog-title">Modern Ev Tasarımında Son Trendler</h2>
-                    <div class="blog-categories">
-                        <span class="category-tag">İç Mimari</span>
-                        <span class="category-tag">Tasarım</span>
-                    </div>
-                    <p class="blog-excerpt">2024 yılında ev tasarımında öne çıkan trendler ve modern yaşam alanları oluşturmanın püf noktaları...</p>
-                    <a href="#" class="read-more">Devamını Oku <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
-
-            <article class="blog-card">
-                <div class="blog-image">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c" alt="Ofis Tasarımı">
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span><i class="far fa-calendar"></i> 10 Mart 2024</span>
-                        <span><i class="far fa-user"></i> Admin</span>
-                    </div>
-                    <h2 class="blog-title">Ofis Tasarımında Verimlilik ve Estetik</h2>
-                    <div class="blog-categories">
-                        <span class="category-tag">Ofis</span>
-                        <span class="category-tag">İş Yeri</span>
-                    </div>
-                    <p class="blog-excerpt">Modern ofis tasarımında çalışan verimliliğini artıran tasarım öğeleri ve ergonomik çözümler...</p>
-                    <a href="#" class="read-more">Devamını Oku <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
-
-            <article class="blog-card">
-                <div class="blog-image">
-                    <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae" alt="Sürdürülebilir Mimari">
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span><i class="far fa-calendar"></i> 5 Mart 2024</span>
-                        <span><i class="far fa-user"></i> Admin</span>
-                    </div>
-                    <h2 class="blog-title">Sürdürülebilir Mimari ve Çevre Dostu Tasarımlar</h2>
-                    <div class="blog-categories">
-                        <span class="category-tag">Sürdürülebilirlik</span>
-                        <span class="category-tag">Mimari</span>
-                    </div>
-                    <p class="blog-excerpt">Çevre dostu yapı malzemeleri ve sürdürülebilir mimari tasarım prensipleri...</p>
-                    <a href="#" class="read-more">Devamını Oku <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
+        <div class="container">
+            <h1 class="blog-title">Blog</h1>
+            <div class="row" id="blog-container">
+                <!-- Blog kartları JavaScript ile buraya eklenecek -->
+            </div>
         </div>
     </section>
 
-    <!-- Footer aynı -->
-    <footer>
-        <!-- Footer içeriği aynı -->
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4>Hakkımızda</h4>
+                        <p>ALICAGLAR olarak, modern ve fonksiyonel tasarım çözümleri sunuyoruz. Müşterilerimizin hayallerini gerçeğe dönüştürüyoruz.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>Hızlı Linkler</h4>
+                        <ul>
+                            <li><a href="index.html">Anasayfa</a></li>
+                            <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                            <li><a href="hizmetlerimiz.html">Hizmetlerimiz</a></li>
+                            <li><a href="projeler.html">Projeler</a></li>
+                            <li><a href="iletisim.html">İletişim</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>İletişim Bilgileri</h4>
+                        <div class="contact-info">
+                            <p><i class="fas fa-map-marker-alt"></i> Adres bilgisi</p>
+                            <p><i class="fas fa-phone"></i> 0532 447 89 85</p>
+                            <p><i class="fas fa-envelope"></i> info@alicaglar.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 ALICAGLAR. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
     </footer>
 
-    <a href="#" class="whatsapp-float">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <script src="script.js"></script>
+    <!-- Scriptler -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/blog-data.js"></script>
+    <script src="js/blog.js"></script>
 </body>
-</html> 
+</html>
