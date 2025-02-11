@@ -26,6 +26,9 @@ $(document).ready(function() {
 
     // İstatistikleri başlat
     initializeStats();
+
+    // Slider fonksiyonalitesi
+    initializeSlider();
 });
 
 // Aktif menü öğesini belirle
@@ -250,4 +253,115 @@ function playVideo(videoId) {
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
         </iframe>
     `;
+}
+
+// Slider fonksiyonları
+function initializeSlider() {
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.slider-dot');
+    const prevButton = document.querySelector('.slider-button.prev');
+    const nextButton = document.querySelector('.slider-button.next');
+    let currentSlide = 0;
+    let isTransitioning = false;
+
+    // İlk slide'ı aktif yap
+    slides[0].classList.add('active');
+
+    function updateSlider() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
+        // Slider'ı kaydır
+        slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+        // Aktif slide'ı güncelle
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active');
+            // Animasyonları sıfırla
+            const elements = slide.querySelectorAll('.first-content h1, .first-content h2, .first-content p, .first-buttons');
+            elements.forEach(element => {
+                element.style.animation = 'none';
+                element.offsetHeight; // Reflow
+                element.style.animation = '';
+            });
+        });
+
+        // Yeni slide'ı aktif yap ve animasyonları başlat
+        setTimeout(() => {
+            slides[currentSlide].classList.add('active');
+        }, 50);
+
+        // Dots'ları güncelle
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+        });
+
+        // Geçiş tamamlandığında isTransitioning'i false yap
+        setTimeout(() => {
+            isTransitioning = false;
+        }, 500);
+    }
+
+    function nextSlide() {
+        if (isTransitioning) return;
+        currentSlide = (currentSlide + 1) % slides.length;
+        updateSlider();
+    }
+
+    function prevSlide() {
+        if (isTransitioning) return;
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        updateSlider();
+    }
+
+    // Event listeners
+    nextButton.addEventListener('click', nextSlide);
+    prevButton.addEventListener('click', prevSlide);
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            if (isTransitioning || currentSlide === index) return;
+            currentSlide = index;
+            updateSlider();
+        });
+    });
+
+    // Otomatik geçiş
+    let autoSlideInterval = setInterval(nextSlide, 5000);
+
+    // Mouse hover olduğunda otomatik geçişi durdur
+    slider.addEventListener('mouseenter', () => {
+        clearInterval(autoSlideInterval);
+    });
+
+    // Mouse ayrıldığında otomatik geçişi tekrar başlat
+    slider.addEventListener('mouseleave', () => {
+        autoSlideInterval = setInterval(nextSlide, 5000);
+    });
+
+    // Touch events için swipe desteği
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    slider.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+    });
+
+    slider.addEventListener('touchmove', (e) => {
+        touchEndX = e.touches[0].clientX;
+    });
+
+    slider.addEventListener('touchend', () => {
+        const swipeDistance = touchStartX - touchEndX;
+        const minSwipeDistance = 50;
+
+        if (Math.abs(swipeDistance) > minSwipeDistance) {
+            if (swipeDistance > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+    });
 }

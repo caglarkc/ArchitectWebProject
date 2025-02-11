@@ -1,13 +1,13 @@
 
 /* Footer Styles */
 .footer {
-    background: #333;
-    color: white;
+    background: var(--dark-background-color);
+    color: var(--text-light);
     padding: 50px 0 20px;
 }
 
 .footer h4 {
-    color: white;
+    color: var(--text-light);
     margin-bottom: 20px;
     font-size: 1.2rem;
 }
@@ -22,13 +22,13 @@
 }
 
 .footer ul li a {
-    color: #ccc;
+    color: var(--text-muted);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .footer ul li a:hover {
-    color: white;
+    color: var(--text-light);
 }
 
 .contact-info2 {
@@ -37,20 +37,20 @@
 
 .contact-info2 p {
     margin-bottom: 10px;
-    color: #ccc;
+    color: var(--text-muted);
 }
 
 .contact-info2 i {
     margin-right: 10px;
-    color: #007bff;
+    color: var(--dark-background-color);
 }
 
 .footer-bottom {
-    border-top: 1px solid #444;
+    border-top: 1px solid var(--background-color);
     margin-top: 30px;
     padding-top: 20px;
     text-align: center;
-    color: #ccc;
+    color: var(--text-muted);
 }
 
 /* Responsive Design */

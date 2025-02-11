@@ -1,10 +1,11 @@
 /* Üst Header Stilleri */
 .top-header {
-    background-color: #1a1a1a;
+    background-color: var(--light-background-color);
     padding: 8px 0;
     font-size: 13px;
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
+
 
 .top-header-content {
     display: flex;
@@ -24,7 +25,7 @@
 }
 
 .top-contact-item {
-    color: #ffffff;
+    color: var(--text-light);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -34,22 +35,25 @@
 }
 
 .top-contact-item i {
-    color: #c5a47e;
+    color: var(--gold-color);
     font-size: 12px;
 }
 
+
 .top-contact-item:hover {
-    color: #ffffff;
+    color: var(--text-light);
     opacity: 1;
 }
 
+
 /* Ana Header Stilleri */
 .main-header {
-    background-color: #000000;
+    background-color: var(--background-color);
     height: 80px;
     position: relative;
     z-index: 1000;
 }
+
 
 .header-container {
     height: 100%;
@@ -87,12 +91,13 @@
 }
 
 .nav-list li a {
-    color: #ffffff;
+    color: var(--text-light);
     text-decoration: none;
     font-size: 13px;
     font-weight: 500;
     text-transform: uppercase;
     padding: 30px 0;
+
     position: relative;
     letter-spacing: 0.5px;
     opacity: 0.9;
@@ -100,9 +105,10 @@
 
 .nav-list li a:hover,
 .nav-list li a.active {
-    color: #c5a47e;
+    color: var(--gold-color);
     opacity: 1;
 }
+
 
 .nav-list li a::after {
     content: '';
@@ -112,8 +118,9 @@
     transform: translateX(-50%);
     width: 0;
     height: 1px;
-    background-color: #c5a47e;
+    background-color: var(--gold-color);
     transition: width 0.3s ease;
+
 }
 
 .nav-list li a:hover::after,
@@ -131,12 +138,13 @@
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #000000;
+    background-color: var(--background-color);
     min-width: 220px;
     padding: 15px 0;
     margin-top: 28px;
     border: none;
     border-top: 2px solid #c5a47e;
+
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
@@ -147,10 +155,11 @@
 .dropdown-menu li a {
     display: block;
     padding: 8px 25px !important;
-    color: #ffffff;
+    color: var(--text-light);
     font-size: 13px;
     opacity: 0.8;
     position: relative;
+
 }
 
 .dropdown-menu li a::after {
@@ -161,7 +170,7 @@
     transform: translateX(-50%);
     width: 0;
     height: 1px;
-    background-color: #c5a47e;
+    background-color: var(--gold-color);
     transition: width 0.3s ease;
 }
 
@@ -177,21 +186,24 @@
 }
 
 .phone-number {
-    color: #ffffff;
+    color: var(--text-light);
     text-decoration: none;
     font-weight: 500;
     font-size: 14px;
     padding: 10px 20px;
-    border: 1px solid #c5a47e;
+    border: 1px solid var(--gold-color);
+
     border-radius: 3px;
     transition: all 0.3s ease;
     letter-spacing: 0.5px;
+
 }
 
 .phone-number:hover {
-    background-color: #c5a47e;
-    color: #ffffff;
+    background-color: var(--gold-color);
+    color: var(--text-light);
 }
+
 
 .language-flags {
     position: fixed;

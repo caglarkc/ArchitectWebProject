@@ -2,8 +2,8 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #000;
-    color: #fff;
+    background-color: var(--background-color);
+    color: var(--text-light);
     font-family: Arial, sans-serif;
     position: relative;
     min-height: 100vh;
@@ -17,41 +17,6 @@ body {
     box-sizing: border-box;
 }
 
-/* Hexagon Arka Plan */
-.hexagon-pattern {
-    background-color: #000;
-    background-image: 
-        linear-gradient(to right, #1a1a1a 1px, transparent 1px),
-        linear-gradient(to bottom, #1a1a1a 1px, transparent 1px),
-        repeating-linear-gradient(60deg, transparent, transparent 35px, #1a1a1a 35px, #1a1a1a 70px),
-        repeating-linear-gradient(-60deg, transparent, transparent 35px, #1a1a1a 35px, #1a1a1a 70px);
-    background-size: 70px 40.4px;
-    background-position: center center;
-    opacity: 0.15;
-}
-
-/* Sabit Arka Plan */
-.hexagon-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-color: #000;
-}
-
-/* Bölüm Arka Planı */
-.fifth-hexagon-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    background-color: #000;
-}
-
 /* Başlık Stilleri */
 .fifth-header {
     text-align: center;
@@ -60,7 +25,7 @@ body {
 }
 
 .fifth-header h6 {
-    color: #c5a47e;
+    color: var(--gold-color);
     font-size: 18px;
     margin-bottom: 15px;
     font-weight: 400;
@@ -84,7 +49,7 @@ body {
 .fifth-btn {
     background: none;
     border: none;
-    color: #fff;
+    color: var(--text-light);
     font-size: 16px;
     cursor: pointer;
     padding: 10px 20px;
@@ -100,7 +65,7 @@ body {
     transform: translateX(-50%);
     width: 0;
     height: 2px;
-    background-color: #c5a47e;
+    background-color: var(--gold-color);
     transition: width 0.3s ease;
 }
 
@@ -111,7 +76,7 @@ body {
 
 .fifth-btn:hover,
 .fifth-btn.active {
-    color: #c5a47e;
+    color: var(--gold-color);
 }
 
 /* Proje Grid */
@@ -126,7 +91,7 @@ body {
     position: relative;
     aspect-ratio: 1;
     overflow: hidden;
-    background: #1a1a1a;
+    background: var(--background-color);
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -135,10 +100,22 @@ body {
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
+}   
 
 .fifth-item:hover img {
     transform: scale(1.1);
+}
+
+.fifth-section {
+    position: relative;
+    padding: 10px 0 30px;
+    background-color: var(--dark-background-color);
+    overflow: hidden;
+}
+
+.fifth-section .container {
+    position: relative;
+    z-index: 1;
 }
 
 /* Responsive */
@@ -169,35 +146,4 @@ body {
         grid-template-columns: 1fr;
         gap: 20px;
     }
-}
-
-.fifth-section {
-    position: relative;
-    padding-bottom: 30px;
-    padding-top: 10px;
-    background-color: #000;
-    overflow: hidden;
-}
-
-.fifth-section .hexagon-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    background-image: linear-gradient(30deg, #1a1a1a 12%, transparent 12.5%, transparent 87%, #1a1a1a 87.5%, #1a1a1a),
-    linear-gradient(150deg, #1a1a1a 12%, transparent 12.5%, transparent 87%, #1a1a1a 87.5%, #1a1a1a),
-    linear-gradient(30deg, #1a1a1a 12%, transparent 12.5%, transparent 87%, #1a1a1a 87.5%, #1a1a1a),
-    linear-gradient(150deg, #1a1a1a 12%, transparent 12.5%, transparent 87%, #1a1a1a 87.5%, #1a1a1a),
-    linear-gradient(60deg, #1a1a1a77 25%, transparent 25.5%, transparent 75%, #1a1a1a77 75%, #1a1a1a77),
-    linear-gradient(60deg, #1a1a1a77 25%, transparent 25.5%, transparent 75%, #1a1a1a77 75%, #1a1a1a77);
-    background-size: 40px 70px;
-    background-position: 0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px;
-    z-index: 0;
-}
-
-.fifth-section .container {
-    position: relative;
-    z-index: 1;
 }

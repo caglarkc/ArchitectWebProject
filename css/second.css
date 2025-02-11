@@ -1,11 +1,13 @@
 /* Intro Section Styles */
 .second-section {
-    background-color: #000000;
+    background-color: var(--dark-background-color);
     height: 450px;
     display: flex;
     align-items: center;
     padding: 60px 0;
 }
+
+
 
 .second-section .second-content {
     padding-left: 15px !important;
@@ -18,8 +20,9 @@
     max-width: 1000px;
     margin: 0 auto;
     text-align: center;
-    color: #ffffff;
+    color: var(--text-light);
     padding: 0;
+
 }
 
 .second-content h2 {
@@ -30,8 +33,9 @@
 }
 
 .second-content h2 span {
-    color: #c5a47e;
+    color: var(--gold-color);
 }
+
 
 .second-content p {
     font-size: 15px;

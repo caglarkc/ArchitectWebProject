@@ -10,15 +10,15 @@
 }
 
 .read-more:hover {
-    color: #333;
-    border-bottom-color: #666;
+    color: var(--text-light);
+    border-bottom-color: var(--text-muted);
 }
 
 /* Contact Section */
 /* background image a1 */
 .contact-section {
     padding: 40px 0;
-    background-color: #313131;
+    background-color: var(--background-color);
 }
 
 .contact-container {
@@ -32,9 +32,9 @@
 /* Sol Kısım - İletişim Bilgileri */
 .contact-info {
     width: 600px;
-    background-color: #333;
+    background-color: var(--dark-background-color);
     padding: 30px;
-    color: white;
+    color: var(--text-light);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -49,7 +49,7 @@
 
 .info-item i {
     font-size: 24px;
-    color: #D4AF37;
+    color: var(--gold-color);
     width: 24px;
     flex-shrink: 0;
 }
@@ -62,12 +62,12 @@
     font-size: 1.4rem;
     margin-bottom: 10px;
     font-weight: 600;
-    color: white;
+    color: var(--text-light);
 }
 
 .info-item p {
     font-size: 1rem;
-    color: #ccc;
+    color: var(--text-muted);
     line-height: 1.6;
     margin-bottom: 5px;
 }
@@ -79,7 +79,7 @@
 /* Sağ Kısım - Form */
 .contact-form {
     width: 500px;
-    background-color: white;
+    background-color: var(--dark-background-color);
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -98,9 +98,9 @@
 .form-group textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--text-muted); 
     font-size: 1rem;
-    color: #333;
+    color: var(--text-light);
 }
 
 .form-group input {
@@ -115,7 +115,7 @@
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #D4AF37;
+    border-color: var(--gold-color);
 }
 
 .submit-container {
@@ -126,8 +126,8 @@
 
 .submit-btn {
     background: transparent;
-    color: #D4AF37;
-    border: 1px solid #D4AF37;
+    color: var(--gold-color);
+    border: 1px solid var(--gold-color);
     padding: 6px 15px;
     font-size: 1rem;
     cursor: pointer;
@@ -135,8 +135,8 @@
 }
 
 .submit-btn:hover {
-    background: #D4AF37;
-    color: white;
+    background: var(--gold-color);
+    color: var(--text-light);
 }
 
 @media (max-width: 992px) {

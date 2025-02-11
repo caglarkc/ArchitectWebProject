@@ -1,6 +1,6 @@
 /* İstatistik Bölümü */
 .sixth-section {
-    background-color: #6a6a6a;
+    background-color: var(--light-background-color);
     padding: 40px 0;
     position: relative;
     z-index: 1;
@@ -18,8 +18,9 @@
 .sixth-item {
     text-align: center;
     padding: 20px;
-    color: #fff;
+    color: var(--text-light);
 }
+
 
 .sixth-icon {
     width: 80px;
@@ -41,18 +42,20 @@
 .sixth-number {
     font-size: 48px;
     font-weight: 600;
-    color: #fff;
+    color: var(--text-light);
     margin-bottom: 10px;
     line-height: 1;
+
 }
 
 .sixth-text {
-    color: #fff;
+    color: var(--text-light);
     font-size: 16px;
     font-weight: 500;
     margin: 0;
     opacity: 0.7;
 }
+
 
 @media (max-width: 991px) {
     .sixth-container {

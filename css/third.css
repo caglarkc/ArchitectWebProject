@@ -1,6 +1,6 @@
 /* Section 1 Styles */
 .third-section {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/1.jpg');
+    background-image: linear-gradient(var(--overlay-50), var(--overlay-50)), url('../images/1.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

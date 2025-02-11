@@ -1,8 +1,9 @@
 /* Latest Blogs Section */
 .latest-blogs-section {
     padding: 40px 0;
-    background-color: #1b1b1b;
+    background-color: var(--dark-background-color);
 }
+
 
 .blog-grid {
     display: flex;
@@ -13,9 +14,10 @@
 
 .blog-item {
     display: flex;
-    background: white;
+    background: var(--text-light);
     height: 350px;
     width: 100%;
+
 }
 
 .blog-item.image-right {
