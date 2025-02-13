@@ -16,11 +16,15 @@ $(document).ready(function() {
         });
     });
 
-    // Footer'ı yükle
-    $("#footer-container").load("footer.html");
+    // Footer'ı yükle ve yüklendikten sonra iletişim bilgilerini güncelle
+    $("#footer-container").load("footer.html", function() {
+        // Footer yüklendikten sonra iletişim bilgilerini güncelle
+        loadContactInfo();
+    });
 
-    // Ana sayfada son blogları göster
+    // Ana sayfa içeriğini yükle
     if (window.location.pathname.endsWith('mainPage.html') || window.location.pathname.endsWith('/')) {
+        loadMainContent();
         displayLatestBlogs();
     }
 
@@ -29,6 +33,7 @@ $(document).ready(function() {
 
     // Slider fonksiyonalitesi
     initializeSlider();
+
 });
 
 // Aktif menü öğesini belirle
@@ -132,14 +137,56 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // İletişim bilgilerini yükle
+    loadContactInfo();
+
+    initializeFirstSection();
+
+    // Neler Yapıyoruz bölümünü başlat
+    initializeWhatWeDo();
+
+    initializeServicesFirstSection();
 });
 
 // İstatistik Sayaçları
 function initializeStats() {
+    // İstatistik verilerini localStorage'dan al
+    const statisticsData = JSON.parse(localStorage.getItem('statisticsData')) || {
+        experienceYears: 30,
+        satisfaction: 100,
+        teamSize: 20,
+        completedProjects: 1000,
+        icons: {
+            experience: 'experience.svg',
+            satisfaction: 'satisfaction.svg',
+            team: 'team.svg',
+            projects: 'projects.svg'
+        }
+    };
+
+    // Ana sayfadaki ikonları güncelle (sixth-section)
+    const sixthIcons = document.querySelectorAll('.sixth-icon img');
+    if (sixthIcons.length === 4) {
+        sixthIcons[0].src = `images/icons/${statisticsData.icons.experience}`;
+        sixthIcons[1].src = `images/icons/${statisticsData.icons.satisfaction}`;
+        sixthIcons[2].src = `images/icons/${statisticsData.icons.team}`;
+        sixthIcons[3].src = `images/icons/${statisticsData.icons.projects}`;
+    }
+
+    // Hakkımızda sayfasındaki ikonları güncelle (stats-section)
+    const statsIcons = document.querySelectorAll('.stat-icon');
+    if (statsIcons.length === 4) {
+        statsIcons[0].innerHTML = `<img src="images/icons/${statisticsData.icons.experience}" alt="Tecrübe İkonu">`;
+        statsIcons[1].innerHTML = `<img src="images/icons/${statisticsData.icons.satisfaction}" alt="Memnuniyet İkonu">`;
+        statsIcons[2].innerHTML = `<img src="images/icons/${statisticsData.icons.team}" alt="Ekip İkonu">`;
+        statsIcons[3].innerHTML = `<img src="images/icons/${statisticsData.icons.projects}" alt="Proje İkonu">`;
+    }
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                animateNumbers();
+                animateNumbers(statisticsData);
                 observer.unobserve(entry.target);
             }
         });
@@ -153,12 +200,31 @@ function initializeStats() {
     if (sixthSection) observer.observe(sixthSection);
 }
 
-function animateNumbers() {
+function animateNumbers(statisticsData) {
     const stats = document.querySelectorAll('.sixth-number');
     
-    stats.forEach(stat => {
-        const target = parseFloat(stat.textContent);
-        const suffix = stat.textContent.replace(/[0-9.]/g, '');
+    stats.forEach((stat, index) => {
+        let target;
+        let suffix = '';
+
+        // İlgili istatistik değerini belirle
+        switch(index) {
+            case 0: // Yıllık Tecrübe
+                target = statisticsData.experienceYears;
+                suffix = '+';
+                break;
+            case 1: // Müşteri Memnuniyeti
+                target = statisticsData.satisfaction;
+                suffix = '%';
+                break;
+            case 2: // Profesyonel Ekip
+                target = statisticsData.teamSize;
+                break;
+            case 3: // Tamamlanmış Proje
+                target = statisticsData.completedProjects;
+                break;
+        }
+
         let current = 0;
         const increment = target / 50;
         const duration = 2000;
@@ -257,16 +323,52 @@ function playVideo(videoId) {
 
 // Slider fonksiyonları
 function initializeSlider() {
+    const section = document.querySelector('.first-section');
     const slider = document.querySelector('.slider');
+    
+    // LocalStorage'dan slider verilerini al
+    const sliderData = JSON.parse(localStorage.getItem('sliderData')) || [];
+    
+    if (sliderData.length === 0) {
+        section.style.display = 'none';
+        return;
+    }
+    
+    // Slider içeriğini oluştur
+    slider.innerHTML = sliderData.map((slide, index) => `
+        <div class="slide ${index === 0 ? 'active' : ''}" style="background-image: url('${slide.image}')">
+            <div class="first-content">
+                <h1>${slide.title}</h1>
+                <h2>${slide.subtitle} <span>${slide.span}</span></h2>
+                <p>${slide.description}</p>
+                <div class="first-buttons">
+                    <a href="${slide.firstButton.link}" class="first-btn first-btn-primary">${slide.firstButton.text}</a>
+                    <a href="${slide.secondButton.link}" class="first-btn first-btn-secondary">${slide.secondButton.text}</a>
+                </div>
+            </div>
+        </div>
+    `).join('');
+    
+    // Dots'ları güncelle
+    const dotsContainer = document.querySelector('.slider-dots');
+    dotsContainer.innerHTML = sliderData.map((_, index) => `
+        <button class="slider-dot ${index === 0 ? 'active' : ''}" data-slide="${index}"></button>
+    `).join('');
+    
+    // Slider değişkenlerini güncelle
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.slider-dot');
     const prevButton = document.querySelector('.slider-button.prev');
     const nextButton = document.querySelector('.slider-button.next');
     let currentSlide = 0;
     let isTransitioning = false;
-
-    // İlk slide'ı aktif yap
-    slides[0].classList.add('active');
+    let isDragging = false;
+    let startPos = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    
+    // İlk slide'ı aktif yap ve butonları ayarla
+    updateSlider();
 
     function updateSlider() {
         if (isTransitioning) return;
@@ -274,30 +376,28 @@ function initializeSlider() {
 
         // Slider'ı kaydır
         slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        slider.style.transition = 'transform 0.5s ease-out';
 
         // Aktif slide'ı güncelle
         slides.forEach((slide, index) => {
-            slide.classList.remove('active');
-            // Animasyonları sıfırla
-            const elements = slide.querySelectorAll('.first-content h1, .first-content h2, .first-content p, .first-buttons');
-            elements.forEach(element => {
-                element.style.animation = 'none';
-                element.offsetHeight; // Reflow
-                element.style.animation = '';
-            });
+            if (index === currentSlide) {
+                slide.classList.add('active');
+            } else {
+                slide.classList.remove('active');
+            }
         });
-
-        // Yeni slide'ı aktif yap ve animasyonları başlat
-        setTimeout(() => {
-            slides[currentSlide].classList.add('active');
-        }, 50);
 
         // Dots'ları güncelle
         dots.forEach((dot, index) => {
             dot.classList.toggle('active', index === currentSlide);
         });
 
-        // Geçiş tamamlandığında isTransitioning'i false yap
+        // İlk ve son slide'larda butonları gizle/göster
+        prevButton.style.opacity = currentSlide === 0 ? '0' : '1';
+        prevButton.style.visibility = currentSlide === 0 ? 'hidden' : 'visible';
+        nextButton.style.opacity = currentSlide === slides.length - 1 ? '0' : '1';
+        nextButton.style.visibility = currentSlide === slides.length - 1 ? 'hidden' : 'visible';
+
         setTimeout(() => {
             isTransitioning = false;
         }, 500);
@@ -315,9 +415,69 @@ function initializeSlider() {
         updateSlider();
     }
 
+    // Mouse Events
+    function dragStart(e) {
+        if (e.target.closest('.slider-button') || e.target.closest('.slider-dot')) {
+            return;
+        }
+
+        if (isTransitioning) return;
+        isDragging = true;
+        startPos = e.type === 'mousedown' ? e.pageX : e.touches[0].clientX;
+        slider.style.transition = 'none';
+        section.style.cursor = 'grabbing';
+    }
+
+    function drag(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+        const currentPosition = e.type === 'mousemove' ? e.pageX : e.touches[0].clientX;
+        const diff = currentPosition - startPos;
+        const move = (diff / slider.offsetWidth) * 100;
+        currentTranslate = prevTranslate + move;
+        
+        if (currentTranslate > 0) {
+            currentTranslate = 0;
+        } else if (currentTranslate < -((slides.length - 1) * 100)) {
+            currentTranslate = -((slides.length - 1) * 100);
+        }
+        
+        slider.style.transform = `translateX(${currentTranslate}%)`;
+    }
+
+    function dragEnd() {
+        if (!isDragging) return;
+        isDragging = false;
+        const movePercent = currentTranslate - prevTranslate;
+        
+        if (Math.abs(movePercent) > 20) {
+            if (movePercent > 0) {
+                prevSlide();
+            } else {
+                nextSlide();
+            }
+        } else {
+            updateSlider();
+        }
+        
+        section.style.cursor = 'grab';
+        prevTranslate = -(currentSlide * 100);
+    }
+
     // Event listeners
     nextButton.addEventListener('click', nextSlide);
     prevButton.addEventListener('click', prevSlide);
+
+    // Mouse events
+    section.addEventListener('mousedown', dragStart);
+    section.addEventListener('mousemove', drag);
+    section.addEventListener('mouseup', dragEnd);
+    section.addEventListener('mouseleave', dragEnd);
+
+    // Touch events
+    section.addEventListener('touchstart', dragStart);
+    section.addEventListener('touchmove', drag);
+    section.addEventListener('touchend', dragEnd);
 
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
@@ -327,41 +487,313 @@ function initializeSlider() {
         });
     });
 
-    // Otomatik geçiş
-    let autoSlideInterval = setInterval(nextSlide, 5000);
+    // Başlangıç durumu için cursor stilini ayarla
+    section.style.cursor = 'grab';
+}
 
-    // Mouse hover olduğunda otomatik geçişi durdur
-    slider.addEventListener('mouseenter', () => {
-        clearInterval(autoSlideInterval);
-    });
+// Proje kategorilerini ve resimleri yükle
+function loadProjects() {
+    const fifthButtons = document.querySelectorAll('.fifth-btn');
+    const fifthGrid = document.querySelector('.fifth-grid');
+    
+    // Örnek proje verileri
+    const projects = [
+        // Mimari Projeler
+        { image: 'images/projects/mimari_projeler/proje1.jpg', category: 'mimari' },
+        { image: 'images/projects/mimari_projeler/proje2.jpg', category: 'mimari' },
+        { image: 'images/projects/mimari_projeler/proje3.jpg', category: 'mimari' },
+        
+        // Ticari Projeler
+        { image: 'images/projects/ticari_projeler/proje1.jpg', category: 'ticari' },
+        { image: 'images/projects/ticari_projeler/proje2.jpg', category: 'ticari' },
+        
+        // Yaşam Alanı Projeleri
+        { image: 'images/projects/yasam_alani/proje1.jpg', category: 'yasam' },
+        { image: 'images/projects/yasam_alani/proje2.jpg', category: 'yasam' },
+        { image: 'images/projects/yasam_alani/proje3.jpg', category: 'yasam' },
+        { image: 'images/projects/yasam_alani/proje4.jpg', category: 'yasam' }
+    ];
+    
+    if (!projects || projects.length === 0) {
+        fifthGrid.innerHTML = '<p class="no-projects">Henüz proje bulunmamaktadır.</p>';
+        return;
+    }
+    
+    fifthGrid.innerHTML = '';
+    
+    // Projeleri göster
+    const renderProjects = (projectsToShow) => {
+        fifthGrid.innerHTML = ''; // Her render öncesi grid'i temizle
+        projectsToShow.forEach((project, index) => {
+            const element = createProjectElement(project, index);
+            fifthGrid.appendChild(element);
+            
+            // Her projeyi sırayla göster
+            setTimeout(() => {
+                element.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+    };
 
-    // Mouse ayrıldığında otomatik geçişi tekrar başlat
-    slider.addEventListener('mouseleave', () => {
-        autoSlideInterval = setInterval(nextSlide, 5000);
-    });
+    // Filtreleme işlemi
+    const filterProjects = (category) => {
+        const filteredProjects = category === 'all' ? 
+            projects : 
+            projects.filter(project => project.category === category);
+        
+        // Mevcut projeleri gizle
+        const currentItems = Array.from(fifthGrid.children);
+        currentItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+        });
 
-    // Touch events için swipe desteği
-    let touchStartX = 0;
-    let touchEndX = 0;
+        // Kısa bir gecikme sonra yeni projeleri göster
+        setTimeout(() => {
+            renderProjects(filteredProjects);
+        }, 300);
+    };
 
-    slider.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-    });
+    // Event listeners
+    if (fifthButtons) {
+        fifthButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                if (this.classList.contains('active')) return;
+                
+                fifthButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                filterProjects(this.dataset.filter);
+            });
+        });
+    }
 
-    slider.addEventListener('touchmove', (e) => {
-        touchEndX = e.touches[0].clientX;
-    });
+    // İlk yüklemede tüm projeleri göster
+    renderProjects(projects);
+}
 
-    slider.addEventListener('touchend', () => {
-        const swipeDistance = touchStartX - touchEndX;
-        const minSwipeDistance = 50;
+// Proje elementi oluştur
+function createProjectElement(project, index) {
+    const element = document.createElement('div');
+    element.className = 'fifth-item';
+    element.dataset.category = project.category;
+    element.innerHTML = `<img src="${project.image}" alt="Proje Görseli" onerror="this.parentElement.style.display='none'">`;
+    element.style.opacity = '0';
+    element.style.transform = 'translateY(30px)';
+    return element;
+}
 
-        if (Math.abs(swipeDistance) > minSwipeDistance) {
-            if (swipeDistance > 0) {
-                nextSlide();
-            } else {
-                prevSlide();
-            }
+// Ana sayfa içeriğini yükle
+function loadMainContent() {
+    // İkinci bölüm içeriği
+    const contentData = JSON.parse(localStorage.getItem('contentData')) || {
+        title: 'Siz Hayal Edin &',
+        span: 'Biz Üretelim',
+        description: 'ETAŞ DESİGN 1992 yılından beri 2000 m2\'lik alanda 20 kişilik profesyonel ekibi ile tasarım, üretim ve proje uygulama alanında hizmet vermektedir. Mimari proje uygulama, özel ölçüye göre mobilya üretimi ve sıfırdan ihtiyaçlarınız doğrultusunda kendi bünyesinde hem tasarım hem üretim hizmeti vermektedir. Koşulsuz müşteri memnuniyeti vizyonu ile bugüne kadar gerçekleştirmiş olduğumuz tüm projelerimiz en büyük motivasyon kaynağımızdır.'
+    };
+
+    // Üçüncü bölüm içeriği
+    const thirdSectionData = JSON.parse(localStorage.getItem('thirdSectionData')) || {
+        text: 'Mobilyayı Sanat Eserine Dönüştürüyoruz.',
+        backgroundImage: 'images/background/third-bg.jpg'
+    };
+
+    // Referanslar
+    const referencesData = JSON.parse(localStorage.getItem('referencesData')) || [];
+
+    // İkinci bölümü güncelle
+    const secondContent = document.querySelector('.second-content');
+    if (secondContent) {
+        secondContent.innerHTML = `
+            <h2>${contentData.title} <span>${contentData.span}</span></h2>
+            <p>${contentData.description}</p>
+        `;
+    }
+
+    // Üçüncü bölümü güncelle
+    const thirdContent = document.querySelector('.third-content');
+    if (thirdContent) {
+        thirdContent.innerHTML = `<p>${thirdSectionData.text}</p>`;
+        const thirdSection = document.querySelector('.third-section');
+        if (thirdSection) {
+            thirdSection.style.backgroundImage = `url('${thirdSectionData.backgroundImage}')`;
         }
-    });
+    }
+
+    // Referansları güncelle
+    const seventhContainer = document.querySelector('.seventh-container');
+    if (seventhContainer) {
+        seventhContainer.innerHTML = referencesData.map(ref => `
+            <div class="seventh-item">
+                <img src="${ref.image}" alt="${ref.name}">
+            </div>
+        `).join('');
+    }
+
+    // Projeleri yükle
+    loadProjects();
+}
+
+// İletişim bilgilerini yükle
+function loadContactInfo() {
+    const contactData = JSON.parse(localStorage.getItem('contactData')) || {
+        address: 'Zafer, Madalyon Sk no:4/B, 34197 Bahçelievler/İstanbul',
+        phone1: '0532 447 89 85',
+        phone2: '0 212 503 64 59',
+        email: 'bilgi@etasdesign.com',
+        workingDays: 'Pzt - Cts.',
+        workingHours: '09:00 - 19:00'
+    };
+
+    // Header telefon numarasını güncelle
+    const headerPhone = document.querySelector('.header-right .phone-number');
+    if (headerPhone) {
+        headerPhone.innerHTML = `<i class="fas fa-phone"></i> ${contactData.phone1}`;
+        headerPhone.href = `tel:${contactData.phone1}`;
+    }
+
+    // Top header iletişim bilgilerini güncelle
+    const topHeaderEmail = document.querySelector('.contact-group a[href^="mailto"]');
+    const topHeaderPhone = document.querySelector('.contact-group a[href^="tel"]');
+    const topHeaderWorkingHours = document.querySelector('.contact-group .top-contact-item:last-child');
+
+    if (topHeaderEmail) {
+        topHeaderEmail.innerHTML = `<i class="far fa-envelope"></i>${contactData.email}`;
+        topHeaderEmail.href = `mailto:${contactData.email}`;
+    }
+
+    if (topHeaderPhone) {
+        topHeaderPhone.innerHTML = `<i class="fas fa-phone"></i>${contactData.phone1}`;
+        topHeaderPhone.href = `tel:${contactData.phone1}`;
+    }
+
+    if (topHeaderWorkingHours) {
+        topHeaderWorkingHours.innerHTML = `<i class="far fa-clock"></i>${contactData.workingDays} / ${contactData.workingHours}`;
+    }
+
+    // Footer iletişim bilgilerini güncelle
+    const footerContactInfo = document.querySelector('.footer .contact-info');
+    if (footerContactInfo) {
+        footerContactInfo.innerHTML = `
+            <p><i class="fas fa-map-marker-alt"></i> ${contactData.address}</p>
+            <p><i class="fas fa-phone"></i> ${contactData.phone2}</p>
+            <p><i class="fas fa-envelope"></i> ${contactData.email}</p>
+        `;
+    }
+
+    // Ana sayfadaki iletişim bölümü bilgilerini güncelle
+    const contactInfo = document.querySelector('.contact-section .contact-info');
+    if (contactInfo) {
+        contactInfo.innerHTML = `
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="info-content">
+                    <h3>Adres</h3>
+                    <p>${contactData.address}</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <div class="info-content">
+                    <h3>Telefon</h3>
+                    <p>${contactData.phone1}</p>
+                    ${contactData.phone2 ? `<p>${contactData.phone2}</p>` : ''}
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-envelope"></i>
+                <div class="info-content">
+                    <h3>E-posta</h3>
+                    <p>${contactData.email}</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="far fa-clock"></i>
+                <div class="info-content">
+                    <h3>Çalışma Saatleri</h3>
+                    <p>${contactData.workingDays} / ${contactData.workingHours}</p>
+                </div>
+            </div>
+        `;
+    }
+}
+
+function convertToFolderName(name) {
+    return name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+}
+
+// Hakkımızda sayfası birinci bölüm yönetimi
+function initializeFirstSection() {
+    const firstSection = document.getElementById('info-first-section');
+    const firstSectionTitle = document.getElementById('firstSectionTitle');
+    
+    if (firstSection && firstSectionTitle) {
+        const firstSectionData = JSON.parse(localStorage.getItem('infoFirstSectionData')) || {
+            text: 'HAKKIMIZDA',
+            backgroundImage: 'a1.jpg'
+        };
+
+        // Başlığı güncelle
+        firstSectionTitle.textContent = firstSectionData.text;
+
+        // Arkaplan resmini güncelle
+        firstSection.style.backgroundImage = `url('images/info/first_section/${firstSectionData.backgroundImage}')`;
+        
+        // Overlay ekle
+        firstSection.style.position = 'relative';
+        firstSection.style.backgroundSize = 'cover';
+        firstSection.style.backgroundPosition = 'center';
+    }
+}
+
+
+// Neler Yapıyoruz bölümünü başlat
+function initializeWhatWeDo() {
+    const whatWeDoData = JSON.parse(localStorage.getItem('whatWeDoData'));
+
+    // Başlık güncelle
+    const title = document.querySelector('.what-we-do-title');
+    if (title) {
+        title.textContent = whatWeDoData.title;
+    }
+
+    // Açıklama güncelle
+    const description = document.querySelector('.what-we-do-description');
+    if (description) {
+        description.textContent = whatWeDoData.description;
+    }
+
+    // Hizmet listesini güncelle
+    const servicesList = document.querySelector('.what-we-do-services-list ul');
+    if (servicesList) {
+        servicesList.innerHTML = whatWeDoData.services.map(service => `
+            <li><i class="fas fa-check"></i> ${service}</li>
+        `).join('');
+    }
+}
+
+// Hizmetler sayfası birinci bölüm yönetimi
+function initializeServicesFirstSection() {
+    const firstSection = document.getElementById('services-first-section');
+    const firstSectionTitle = document.getElementById('services-first-section-title');
+
+    if (firstSection && firstSectionTitle) {
+        const firstSectionData = JSON.parse(localStorage.getItem('servicesFirstSectionData')) || {
+            text: 'HİZMETLERİMİZ',
+            backgroundImage: 'a1.jpg'
+        };
+
+        // Başlığı güncelle
+        firstSectionTitle.textContent = firstSectionData.text;
+
+        // Arkaplan resmini güncelle
+        firstSection.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/services/first_section/${firstSectionData.backgroundImage}')`;
+        
+        // Overlay ekle
+        firstSection.style.position = 'relative';
+        firstSection.style.backgroundSize = 'cover';
+        firstSection.style.backgroundPosition = 'center';
+    }
 }

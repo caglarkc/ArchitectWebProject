@@ -1,71 +1,28 @@
-.first-section {
-    background-color: #f5f5f5;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/hero-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 800px;
-    width: 100%;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 0;
-}
+/*Values.css dosyasını içe aktar */
+@import 'custom_styles/values.css';
 
-.first-content {
-    max-width: 100%;
-    margin: 0 auto;
-    max-height: 100%;
-    padding: 0 20px;
-}
+/*Header.css dosyasını içe aktar */
+@import 'custom_styles/header.css';
 
-.first-content h1 {
-    font-size: 56px;
-    color: #fff;
-    margin-bottom: 30px;
-    font-weight: 600;
-    padding-top: 20px;
-}
 
-.breadcrumb-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 30px;
-    padding: 10px 0;
-}
+/*Firstsection.css dosyasını içe aktar */
+@import 'custom_styles/first_section_common.css';
 
-.breadcrumb-item {
-    display: inline-flex;
-    align-items: center;
-    color: #666;
-    text-decoration: none;
-    font-size: 18px;
-    transition: color 0.3s ease;
-}
+/*Sixth.css dosyasını içe aktar */
+@import 'custom_styles/sixth.css';
 
-.breadcrumb-item:hover {
-    color: #c5a47e;
-}
 
-.breadcrumb-separator {
-    margin: 0 10px;
-    color: #999;
-    font-size: 14px;
-}
 
-.breadcrumb-item.active {
-    color: #c5a47e;
-    pointer-events: none;
-}
 
-/* İstatistik Bölümü Stilleri */
+
+
+
+
+/* Sadece info.css'e özgü olan ve farklılaşan stiller */
 .stats-section {
-    background-color: #2c2c2c;
-    padding: 40px 0;
-    position: relative;
-    z-index: 1;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    background-color: var(--dark-background-color);
 }
 
 .stats-container {
@@ -86,7 +43,7 @@
 .stat-item {
     text-align: center;
     padding: 20px;
-    color: #fff;
+    color: var(--text-light);
     background-color: transparent;
     border-radius: 0;
     box-shadow: none;
@@ -95,46 +52,49 @@
 .stat-icon {
     width: 80px;
     height: 80px;
-    margin: 0 auto 25px;
+    margin: 0 auto 2px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 40px;
-    color: #c5a47e;
+    color: var(--gold-color);
 }
 
 .sixth-number {
     font-size: 48px;
     font-weight: 600;
-    color: #c5a47e;
+    color: var(--gold-color);
     margin-bottom: 10px;
     line-height: 1;
+
 }
 
 .sixth-text {
-    color: #fff;
+    color: var(--text-light);
     font-size: 16px;
     font-weight: 500;
     margin: 0;
-    opacity: 0.9;
+    opacity: 0.7;
 }
 
+
+/* İçerik alanı stilleri - sixth.css'te olmayan kısım */
 .stats-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 20px;
+    padding: 40px 0;
 }
 
 .stats-content h2 {
     font-size: 36px;
-    color: #c5a47e;
+    color: var(--gold-color);
     margin-bottom: 30px;
     font-weight: 600;
 }
 
 .stats-content p {
-    color: #fff;
+    color: var(--text-light);
     font-size: 16px;
     line-height: 1.8;
     opacity: 0.9;
@@ -142,14 +102,31 @@
     text-align: justify;
 }
 
+/* Video bölümü stilleri */
+.what-we-do-section {
+    padding: 30px 0;
+    background-color: var(--background-color);
+}
+
+/* Video container ve ilgili tüm stiller */
+.what-we-do-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 15px;
+    align-items: center;
+}
+
+/* Video container ve diğer servis stilleri buraya */
+/* ... (video container ile ilgili tüm stiller aynı kalacak) ... */
+
+/* Responsive tasarım için özel media query'ler */
 @media (max-width: 991px) {
     .stats-container {
         grid-template-columns: 1fr;
         gap: 40px;
-    }
-
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
     }
 
     .stats-content {
@@ -162,21 +139,6 @@
 }
 
 @media (max-width: 576px) {
-    .stats-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    
-    .sixth-number {
-        font-size: 36px;
-    }
-    
-    .stat-icon {
-        width: 60px;
-        height: 60px;
-        margin-bottom: 20px;
-    }
-
     .stats-content h2 {
         font-size: 28px;
     }
@@ -186,49 +148,14 @@
     }
 }
 
-/* Responsive Tasarım */
-@media (max-width: 768px) {
-    .first-section {
-        padding: 40px 0;
-    }
-
-    .first-content h1 {
-        font-size: 28px;
-    }
-
-    .first-content p {
-        font-size: 14px;
-    }
-
-    .stats-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .stat-item {
-        padding: 30px 15px;
-    }
-
-    .stat-icon {
-        font-size: 32px;
-    }
-
-    .stat-number {
-        font-size: 28px;
-    }
-
-    .stat-title {
-        font-size: 14px;
-    }
-}
 
 /* Neler Yapıyoruz Bölümü */
-.services-section {
+.what-we-do-section {
     padding: 30px 0;
-    background-color: #fff;
+    background-color: var(--background-color);
 }
 
-.services-container {
+.what-we-do-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 50px;
@@ -238,17 +165,17 @@
     align-items: center;
 }
 
-.video-container {
+.what-we-do-video-container {
     position: relative;
     width: 100%;
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
     height: 0;
     overflow: hidden;
     border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px var(--overlay-10);
 }
 
-.video-container img {
+.what-we-do-video-container img {
     position: absolute;
     top: 0;
     left: 0;
@@ -259,18 +186,18 @@
     transition: all 0.3s ease;
 }
 
-.video-container:hover img {
+.what-we-do-video-container:hover img {
     transform: scale(1.05);
 }
 
-.video-container .play-button {
+.what-we-do-video-container .what-we-do-play-button {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80px;
     height: 80px;
-    background-color: #c5a47e;
+    background-color: var(--gold-color);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -280,69 +207,70 @@
     z-index: 2;
 }
 
-.video-container .play-button i {
-    color: #fff;
+.what-we-do-video-container .what-we-do-play-button i {
+    color: var(--text-light);
     font-size: 30px;
     margin-left: 5px;
 }
 
-.video-container:hover .play-button {
-    background-color: #333;
+.what-we-do-video-container:hover .what-we-do-play-button {
+    background-color: var(--dark-background-color);
 }
 
-.services-content {
+.what-we-do-content {
     display: flex;
     flex-direction: column;
 }
 
-.services-content .subtitle {
+.what-we-do-content .what-we-do-subtitle {
     font-size: 14px;
-    color: #c5a47e;
+    color: var(--gold-color);
     font-weight: 600;
     margin-bottom: 15px;
     display: block;
     letter-spacing: 2px;
 }
 
-.services-content h2 {
+.what-we-do-content h2 {
     font-size: 36px;
-    color: #333;
+    color: var(--text-light);
     margin-bottom: 30px;
     font-weight: 600;
     line-height: 1.3;
 }
 
-.services-content p {
-    color: #666;
+.what-we-do-content p {
+    color: var(--text-light);
     font-size: 16px;
     line-height: 1.8;
     margin-bottom: 30px;
 }
 
-.services-list ul {
+.what-we-do-services-list ul {
     list-style: none;
     padding: 0;
     margin: 0 0 30px 0;
 }
 
-.services-list li {
+.what-we-do-services-list li {
     font-size: 16px;
-    color: #333;
+    color: var(--text-light);
     margin-bottom: 20px;
     display: flex;
     align-items: center;
 }
 
-.services-list li i {
-    color: #c5a47e;
+.what-we-do-services-list li i {
+    color: var(--gold-color);
     margin-right: 15px;
     font-size: 18px;
 }
 
-.contact-btn {
+.what-we-do-contact-btn {
     display: inline-block;
-    background-color: #c5a47e;
-    color: #fff;
+    background-color: transparent;
+    border: 1px solid var(--gold-color);
+    color: var(--text-light);
     padding: 15px 30px;
     text-decoration: none;
     font-size: 14px;
@@ -352,56 +280,57 @@
     text-align: center;
 }
 
-.contact-btn:hover {
-    background-color: #333;
-    color: #fff;
+.what-we-do-contact-btn:hover {
+    background-color: var(--gold-color);
+    color: var(--text-light);
 }
 
 @media (max-width: 991px) {
-    .services-container {
+    .what-we-do-container {
         grid-template-columns: 1fr;
         gap: 40px;
         padding: 20px 15px;
     }
 
-    .video-container {
+    .what-we-do-video-container {
         top: 0;
         transform: none;
     }
 
-    .services-content {
+    .what-we-do-content {
         text-align: center;
     }
 
-    .services-list li {
+    .what-we-do-services-list li {
         justify-content: flex-start;
     }
 }
 
 @media (max-width: 576px) {
-    .services-section {
+    .what-we-do-section {
         padding: 60px 0;
     }
 
-    .services-content h2 {
+    .what-we-do-content h2 {
         font-size: 28px;
     }
 
-    .services-content p,
-    .services-list li {
+    .what-we-do-content p,
+    .what-we-do-services-list li {
         font-size: 14px;
     }
 
-    .contact-btn {
+    .what-we-do-contact-btn {
         width: 100%;
     }
 
-    .video-container .play-button {
+    .what-we-do-video-container .what-we-do-play-button {
         width: 60px;
         height: 60px;
     }
 
-    .video-container .play-button i {
+    .what-we-do-video-container .what-we-do-play-button i {
         font-size: 24px;
     }
 }
+

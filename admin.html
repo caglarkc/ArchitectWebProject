@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - ALICAGLAR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <nav class="admin-nav">
+            <a href="#" class="admin-logo">ALICAGLAR Admin</a>
+            <div class="admin-nav-links">
+                <!-- Ana Sayfa Yönetimi -->
+                <div class="dropdown">
+                    <a href="#mainpage-sections" class="admin-nav-link dropdown-toggle" data-bs-toggle="dropdown">Ana Sayfa</a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" href="#slider-section">Slider Yönetimi</a></li>
+                        <li><a class="dropdown-item" href="#second-section">İkinci Bölüm</a></li>
+                        <li><a class="dropdown-item" href="#third-section">Üçüncü Bölüm</a></li>
+                        <li><a class="dropdown-item" href="#references-section">Referanslar</a></li>
+                    </ul>
+                </div>
+
+                <!-- Hakkımızda Yönetimi -->
+                <div class="dropdown">
+                    <a href="#about-sections" class="admin-nav-link dropdown-toggle" data-bs-toggle="dropdown">Hakkımızda</a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" href="#info-first-section">First Section</a></li>
+                        <li><a class="dropdown-item" href="#info-second-section">Second Section</a></li>
+                        <li><a class="dropdown-item" href="#info-third-section">Third Section</a></li>
+                    </ul>
+                </div>
+
+                <!-- Hizmetler Yönetimi -->
+                <div class="dropdown">
+                    <a href="#services-sections" class="admin-nav-link dropdown-toggle" data-bs-toggle="dropdown">Hizmetler</a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" href="#services-first-section">First Section</a></li>
+                    </ul>
+                </div>
+
+                <!-- Blog Yönetimi -->
+                <div class="dropdown">
+                    <a href="#blog-sections" class="admin-nav-link dropdown-toggle" data-bs-toggle="dropdown">Blog</a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                    </ul>
+                </div>
+
+                <!-- İletişim Yönetimi -->
+                <div class="dropdown">
+                    <a href="#contact-sections" class="admin-nav-link dropdown-toggle" data-bs-toggle="dropdown">İletişim</a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                    </ul>
+                </div>
+
+                <!-- Ortak Bileşenler -->
+                <div class="dropdown">
+                    <a href="#common-sections" class="admin-nav-link dropdown-toggle" data-bs-toggle="dropdown">Ortak Bileşenler</a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" href="#statistics-section">İstatistikler</a></li>
+                        <li><a class="dropdown-item" href="#contact-section">İletişim Bilgileri</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Ana Sayfa Yönetimi -->
+    <div class="admin-section-group" id="mainpage-sections">
+        <h1 class="section-group-title">Ana Sayfa Yönetimi</h1>
+        
+        <!-- Slider Section -->
+        <section id="slider-section" class="admin-section">
+            <div class="admin-container">
+                <h2 class="mb-4">Slider Yönetimi</h2>
+                
+                <!-- Slider Ekleme Formu -->
+                <div class="card bg-dark text-light mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Yeni Slide Ekle</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="sliderForm">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Başlık (H1)</label>
+                                    <input type="text" class="form-control" id="slideTitle" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Alt Başlık (H2)</label>
+                                    <input type="text" class="form-control" id="slideSubtitle" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Alt Başlık Vurgu (SPAN)</label>
+                                <input type="text" class="form-control" id="slideSpan" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Açıklama</label>
+                                <textarea class="form-control" id="slideDescription" rows="3" required></textarea>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Birinci Buton Metni</label>
+                                    <input type="text" class="form-control" id="firstBtnText" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Birinci Buton Link</label>
+                                    <input type="text" class="form-control" id="firstBtnLink" required>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">İkinci Buton Metni</label>
+                                    <input type="text" class="form-control" id="secondBtnText" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">İkinci Buton Link</label>
+                                    <input type="text" class="form-control" id="secondBtnLink" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Arkaplan Resmi (images/slides/ klasöründen)</label>
+                                <input type="text" class="form-control" id="slideImage" placeholder="Örnek: image1.jpg" required>
+                                <div class="form-text text-light">Resim dosyasını images/slides/ klasörüne ekledikten sonra sadece dosya adını yazın.</div>
+                            </div>
+                            <button type="submit" class="btn btn-gold">Slide Ekle</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Mevcut Slidelar -->
+                <h2 class="mb-3">Mevcut Slidelar</h2>
+                <div id="sliderPreview" class="slider-preview">
+                    <!-- Slidelar JavaScript ile buraya eklenecek -->
+                </div>
+            </div>
+        </section>
+
+        <!-- İkinci Bölüm Section -->
+        <section id="second-section" class="admin-section">
+            <div class="admin-container">
+                <h2 class="mb-4">İkinci Bölüm Yönetimi</h2>
+                
+                <!-- Siz Hayal Edin & Biz Üretelim Bölümü -->
+                <div class="card bg-dark text-light mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">İkinci Bölüm İçerik Düzenleme</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="contentForm">
+                            <div class="mb-3">
+                                <label class="form-label">Başlık</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="contentTitle" placeholder="Ana başlık" required>
+                                    <input type="text" class="form-control" id="contentSpan" placeholder="Vurgulu kısım" required>
+                                </div>
+                                <div class="form-text text-light">Başlık ve vurgulu kısım & işareti ile ayrılacaktır.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">İçerik Metni</label>
+                                <textarea class="form-control" id="contentDescription" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-gold">İçeriği Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- İkinci Bölüm Önizleme -->
+                <h2 class="mb-3">Mevcut İçerik Önizleme</h2>
+                <div class="content-preview" id="contentPreview">
+                    <!-- JavaScript ile doldurulacak -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Üçüncü Bölüm Section -->
+        <section id="third-section" class="admin-section">
+            <div class="admin-container">
+                <h2 class="mb-4">Üçüncü Bölüm Yönetimi</h2>
+                
+                <!-- Mobilyayı Sanat Eserine Dönüştürüyoruz Bölümü -->
+                <div class="card bg-dark text-light mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Üçüncü Bölüm İçerik Düzenleme</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="thirdSectionForm">
+                            <div class="mb-3">
+                                <label class="form-label">Metin</label>
+                                <input type="text" class="form-control" id="thirdSectionText" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Arkaplan Resmi (images/background/ klasöründen)</label>
+                                <input type="text" class="form-control" id="thirdSectionImage" placeholder="Örnek: bg-image.jpg" required>
+                                <div class="form-text text-light">Resim dosyasını images/background/ klasörüne ekledikten sonra sadece dosya adını yazın.</div>
+                            </div>
+                            <button type="submit" class="btn btn-gold">İçeriği Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Üçüncü Bölüm Önizleme -->
+                <h2 class="mb-3">Mevcut İçerik Önizleme</h2>
+                <div class="content-preview" id="thirdSectionPreview">
+                    <!-- JavaScript ile doldurulacak -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Referanslar Section -->
+        <section id="references-section" class="admin-section">
+            <div class="admin-container">
+                <h2 class="mb-4">Referanslar Yönetimi</h2>
+                
+                <!-- Referans Ekleme Formu -->
+                <div class="card bg-dark text-light mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Yeni Referans Ekle</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="referenceForm">
+                            <div class="mb-3">
+                                <label class="form-label">Referans Resmi (images/references/ klasöründen)</label>
+                                <input type="text" class="form-control" id="referenceImage" placeholder="Örnek: referans1.jpg" required>
+                                <div class="form-text text-light">Resim dosyasını images/references/ klasörüne ekledikten sonra sadece dosya adını yazın.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Referans Adı</label>
+                                <input type="text" class="form-control" id="referenceName" placeholder="Referans için açıklayıcı isim" required>
+                            </div>
+                            <button type="submit" class="btn btn-gold">Referans Ekle</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Referanslar Önizleme -->
+                <h2 class="mb-3">Mevcut Referanslar</h2>
+                <div class="content-preview" id="referencesPreview">
+                    <!-- JavaScript ile doldurulacak -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <!-- Hakkımızda Yönetimi -->
+    <div class="admin-section-group" id="about-sections">
+        <h1 class="section-group-title">Hakkımızda Yönetimi</h1>
+
+        <!-- İnfo First Section -->
+        <section id="info-first-section" class="admin-section">
+            <div class="admin-container">
+                <h2 class="mb-4">İlk Bölüm Yönetimi</h2>
+                
+                <!-- İnfo First Section -->
+                <div class="card bg-dark text-light mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">İlk Bölüm İçerik Düzenleme</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="info-first-section-form">
+                            <div class="mb-3">
+                                <label class="form-label">Metin</label>
+                                <input type="text" class="form-control" id="info-first-section-text" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Arkaplan Resmi (images/info/first_section/ klasöründen)</label>
+                                <input type="text" class="form-control" id="info-first-section-image" 
+                                       placeholder="Örnek: a1.jpg" required>
+                                <div class="form-text text-light">Resim dosyasını images/info/first_section/ klasörüne ekledikten sonra sadece dosya adını yazın.</div>
+                            </div>
+                            <button type="submit" class="btn btn-gold">İçeriği Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- İnfo First Section Önizleme -->
+                <h2 class="mb-3">Mevcut İçerik Önizleme</h2>
+                <div class="content-preview" id="info-first-section-preview">
+                    <!-- JavaScript ile doldurulacak -->
+                </div>
+            </div>
+        </section>
+
+        <!-- İnfo Second Section -->
+        <section id="info-second-section" class="admin-section">
+            <div class="admin-container">
+                <h2 class="mb-4">İkinci Bölüm Yönetimi</h2>
+                
+                <!-- İnfo Second Section -->
+                <div class="card bg-dark text-light mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">İkinci Bölüm İçerik Düzenleme</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="info-second-section-form">
+                            <div class="mb-3">
+                                <label class="form-label">Başlık</label>
+                                <input type="text" class="form-control" id="info-second-section-capital" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Açıklama</label>
+                                <textarea class="form-control" id="info-second-section-description" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-gold">İçeriği Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- İnfo Second Section Önizleme -->
+                <h2 class="mb-3">Mevcut İçerik Önizleme</h2>
+                <div class="content-preview" id="info-second-section-preview">
+                    <!-- JavaScript ile doldurulacak -->
+                </div>
+            </div>
+        </section>
+
+        <!-- İnfo Third Section (What We Do) -->
+        <section id="info-third-section" class="admin-section">
+            <div class="admin-container">
+                <h2 class="mb-4">Neler Yapıyoruz Bölümü Yönetimi</h2>
+                
+                <div class="card bg-dark text-light mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Neler Yapıyoruz İçerik Düzenleme</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="info-third-section-form">
+                            <div class="mb-3">
+                                <label class="form-label">Başlık</label>
+                                <input type="text" class="form-control" id="info-third-section-title" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Açıklama</label>
+                                <textarea class="form-control" id="info-third-section-description" rows="4" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Hizmetler</label>
+                                <div id="services-container">
+                                    <!-- Hizmetler JavaScript ile buraya eklenecek -->
+                                </div>
+                                <button type="button" class="btn btn-success mt-2" id="add-service-btn">
+                                    <i class="fas fa-plus"></i> Yeni Hizmet Ekle
+                                </button>
+                            </div>
+                            <button type="submit" class="btn btn-gold">İçeriği Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- What We Do Önizleme -->
+                <h2 class="mb-3">Mevcut İçerik Önizleme</h2>
+                <div class="content-preview" id="info-third-section-preview">
+                    <!-- JavaScript ile doldurulacak -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Hizmetler Yönetimi -->
+    <div class="admin-section-group" id="services-sections">
+        <h1 class="section-group-title">Hizmetler Yönetimi</h1>
+
+        <!-- İnfo First Section -->
+        <section id="services-first-section" class="admin-section">
+            <div class="admin-container">
+                <h2 class="mb-4">İlk Bölüm Yönetimi</h2>
+                
+                <!-- İnfo First Section -->
+                <div class="card bg-dark text-light mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">İlk Bölüm İçerik Düzenleme</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="services-first-section-form">
+                            <div class="mb-3">
+                                <label class="form-label">Metin</label>
+                                <input type="text" class="form-control" id="services-first-section-text" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Arkaplan Resmi (images/services/first_section/ klasöründen)</label>
+                                <input type="text" class="form-control" id="services-first-section-image" 
+                                       placeholder="Örnek: a1.jpg" required>
+                                <div class="form-text text-light">Resim dosyasını images/services/first_section/ klasörüne ekledikten sonra sadece dosya adını yazın.</div>
+                            </div>
+                            <button type="submit" class="btn btn-gold">İçeriği Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- İnfo First Section Önizleme -->
+                <h2 class="mb-3">Mevcut İçerik Önizleme</h2>
+                <div class="content-preview" id="services-first-section-preview">
+                    <!-- JavaScript ile doldurulacak -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Ortak Bileşenler -->
+    <div class="admin-section-group" id="common-sections">
+        <h1 class="section-group-title">Ortak Bileşenler</h1>
+
+        <!-- İstatistikler Section -->
+        <section id="statistics-section" class="admin-section">
+            <div class="admin-container">
+                <h2 class="mb-4">İstatistikler Yönetimi</h2>
+                
+                <!-- İstatistik Düzenleme Formu -->
+                <div class="card bg-dark text-light mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">İstatistik Bilgilerini Düzenle</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="statisticsForm">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Yıllık Tecrübe</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="experienceYears" min="0" required>
+                                        <span class="input-group-text">+</span>
+                                    </div>
+                                    <div class="mt-2">
+                                        <label class="form-label">Tecrübe İkonu (SVG/PNG)</label>
+                                        <input type="text" class="form-control" id="experienceIcon" placeholder="Örnek: experience.svg" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Müşteri Memnuniyeti</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="satisfaction" min="0" max="100" required>
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                    <div class="mt-2">
+                                        <label class="form-label">Memnuniyet İkonu (SVG/PNG)</label>
+                                        <input type="text" class="form-control" id="satisfactionIcon" placeholder="Örnek: satisfaction.svg" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Profesyonel Ekip Sayısı</label>
+                                    <input type="number" class="form-control" id="teamSize" min="0" required>
+                                    <div class="mt-2">
+                                        <label class="form-label">Ekip İkonu (SVG/PNG)</label>
+                                        <input type="text" class="form-control" id="teamIcon" placeholder="Örnek: team.svg" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Tamamlanmış Proje Sayısı</label>
+                                    <input type="number" class="form-control" id="completedProjects" min="0" required>
+                                    <div class="mt-2">
+                                        <label class="form-label">Proje İkonu (SVG/PNG)</label>
+                                        <input type="text" class="form-control" id="projectsIcon" placeholder="Örnek: projects.svg" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-text text-light mb-3">Not: İkon dosyalarını images/icons/ klasörüne ekledikten sonra sadece dosya adını yazın.</div>
+                            <button type="submit" class="btn btn-gold">İstatistikleri Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- İstatistik Önizleme -->
+                <h2 class="mb-3">Mevcut İstatistikler Önizleme</h2>
+                <div class="content-preview" id="statisticsPreview">
+                    <!-- JavaScript ile doldurulacak -->
+                </div>
+            </div>
+        </section>
+
+        <!-- İletişim Bilgileri Section -->
+        <section id="contact-section" class="admin-section">
+            <div class="admin-container">
+                <h2 class="mb-4">İletişim Bilgileri Yönetimi</h2>
+                
+                <!-- İletişim Bilgileri Düzenleme Formu -->
+                <div class="card bg-dark text-light mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">İletişim Bilgilerini Düzenle</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="contactInfoForm">
+                            <div class="mb-3">
+                                <label class="form-label">Adres</label>
+                                <input type="text" class="form-control" id="contactAddress" required>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Telefon 1</label>
+                                    <input type="text" class="form-control" id="contactPhone1" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Telefon 2</label>
+                                    <input type="text" class="form-control" id="contactPhone2">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">E-posta</label>
+                                <input type="email" class="form-control" id="contactEmail" required>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Çalışma Günleri</label>
+                                    <input type="text" class="form-control" id="workingDays" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Çalışma Saatleri</label>
+                                    <input type="text" class="form-control" id="workingHours" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-gold">Bilgileri Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- İletişim Bilgileri Önizleme -->
+                <h2 class="mb-3">Mevcut İletişim Bilgileri Önizleme</h2>
+                <div class="content-preview" id="contactPreview">
+                    <!-- JavaScript ile doldurulacak -->
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+    
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/admin.js"></script>
+
+    <script>
+        // Header link'lerinin active class'ını yönet
+        document.querySelectorAll('.admin-nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('.admin-nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html> 

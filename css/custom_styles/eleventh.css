@@ -1,0 +1,77 @@
+.first-section {
+    background-color: var(--overlay-75);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 800px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+}
+
+.first-content {
+    max-width: 100%;
+    margin: 0 auto;
+    max-height: 100%;
+    padding: 0 20px;
+}
+
+.first-content h1 {
+    font-size: 56px;
+    color: var(--text-light);
+    margin-bottom: 30px;
+    font-weight: 600;
+    padding-top: 20px;
+}
+
+.breadcrumb-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    padding: 10px 0;
+}
+
+.breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-item:hover {
+    color: var(--gold-color);
+}
+
+.breadcrumb-separator {
+    margin: 0 10px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.breadcrumb-item.active {
+    color: var(--gold-color);
+    pointer-events: none;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    .first-section {
+        padding: 40px 0;
+    }
+
+    .first-content h1 {
+        font-size: 28px;
+    }
+
+    .first-content p {
+        font-size: 14px;
+    }
+
+
+}

@@ -1,0 +1,92 @@
+/*Values.css dosyasını içe aktar */
+@import 'custom_styles/values.css';
+
+/*Header.css dosyasını içe aktar */
+@import 'custom_styles/header.css';
+
+/*First.css dosyasını içe aktar */
+@import 'mainPageCss/first.css';
+
+/*Second.css dosyasını içe aktar */
+@import 'mainPageCss/second.css';
+
+/*Third.css dosyasını içe aktar */
+@import 'mainPageCss/third.css';
+
+/*Fourth.css dosyasını içe aktar */
+@import 'mainPageCss/fourth.css';
+
+/*Fifth.css dosyasını içe aktar */
+@import 'mainPageCss/fifth.css';
+
+/*Sixth.css dosyasını içe aktar */
+@import 'mainPageCss/sixth.css';
+
+/*Seventh.css dosyasını içe aktar */
+@import 'mainPageCss/seventh.css';
+
+/*Eight.css dosyasını içe aktar */
+@import 'mainPageCss/eight.css';
+
+/*Nineth.css dosyasını içe aktar */
+@import 'mainPageCss/nineth.css';
+
+
+
+
+
+
+
+
+
+
+
+/* Üst Header Stilleri */
+.top-header {
+    background-color: var(--light-background-color);
+    padding: 8px 0;
+    font-size: 13px;
+    padding-right: 280px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+
+.top-header-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.contact-group {
+    display: flex;
+    gap: 25px;
+}
+
+.container-fluid {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.top-contact-item {
+    color: var(--text-light);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.top-contact-item i {
+    color: var(--gold-color);
+    font-size: 12px;
+}
+
+
+.top-contact-item:hover {
+    color: var(--text-light);
+    opacity: 1;
+}
+
+

@@ -6,7 +6,6 @@
     <title>ALICAGLAR</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/info.css">
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -16,10 +15,9 @@
 <body>
     <div id="header-container"></div>
 
-
-    <section class="first-section">   
+    <section class="first-section" id="info-first-section">   
         <div class="first-content">
-            <h1>HAKKIMIZDA</h1>
+            <h1 id="firstSectionTitle" id="info-first-section-title">HAKKIMIZDA</h1>
             <div class="breadcrumb-container">
                 <a href="mainPage.html" class="breadcrumb-item">Ana Sayfa</a>
                 <span class="breadcrumb-separator">&gt;</span>
@@ -33,61 +31,55 @@
             <div class="stats-grid">
                 <div class="stat-item">
                     <div class="stat-icon">
-                        <i class="fas fa-building"></i>
+                        
                     </div>
-                    <div class="sixth-number">30+</div>
+                    <div class="sixth-number"></div>
                     <div class="sixth-text">Yıllık Tecrübe</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-icon">
-                        <i class="fas fa-users"></i>
+
                     </div>
-                    <div class="sixth-number">100%</div>
+                    <div class="sixth-number"></div>
                     <div class="sixth-text">Müşteri Memnuniyeti</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-icon">
-                        <i class="fas fa-award"></i>
+                        
                     </div>
-                    <div class="sixth-number">20</div>
+                    <div class="sixth-number"></div>
                     <div class="sixth-text">Profesyonel Ekip</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-icon">
-                        <i class="fas fa-home"></i>
+                        
                     </div>
-                    <div class="sixth-number">1000</div>
+                    <div class="sixth-number"></div>
                     <div class="sixth-text">Tamamlanmış Proje</div>
                 </div>
             </div>
             <div class="stats-content">
-                <h2>ETAŞ DESIGN</h2>
-                <p>ETAŞ Design olarak 1992 yılından beri 2000 m²'lik alanda 20 kişilik ekibimizle hem tasarım hem de üretim süreçlerinde rol almaktayız. Alanında profesyonel ustalarımızla birlikte %100 müşteri memnuniyetini hedefleyerek özel tasarım mobilya üretimi yapmaktayız. Mimari projeler, konsept tasarımlar, yaşam alanları, kişiye özel mobilya üretimler, işyerleri vb. mobilyanın yer aldığı her alanda ihtiyaçlara yönelik özel çözümler üretmekteyiz. Tasarım, üretim ve montaj sürecinin tek bir çatı altında gerçekleşmesiyle kaliteyi uygun fiyatlara sunmaktayız.</p>
+                <h2 id="info-second-section-title">ETAŞ DESIGN</h2>
+                <p id="info-second-section-content">ETAŞ Design olarak 1992 yılından beri 2000 m²'lik alanda 20 kişilik ekibimizle hem tasarım hem de üretim süreçlerinde rol almaktayız. Alanında profesyonel ustalarımızla birlikte %100 müşteri memnuniyetini hedefleyerek özel tasarım mobilya üretimi yapmaktayız. Mimari projeler, konsept tasarımlar, yaşam alanları, kişiye özel mobilya üretimler, işyerleri vb. mobilyanın yer aldığı her alanda ihtiyaçlara yönelik özel çözümler üretmekteyiz. Tasarım, üretim ve montaj sürecinin tek bir çatı altında gerçekleşmesiyle kaliteyi uygun fiyatlara sunmaktayız.</p>
             </div>
         </div>
     </section>
 
-    <section class="services-section">
-        <div class="services-container">
-            <div class="video-container">
+    <section class="what-we-do-section">
+        <div class="what-we-do-container">
+            <div class="what-we-do-video-container">
                 <img src="images/a1.jpg" alt="Video Thumbnail">
-                <div class="play-button" onclick="playVideo('gKFyuuXwxBU')">
+                <div class="what-we-do-play-button" onclick="playVideo('gKFyuuXwxBU')">
                     <i class="fas fa-play"></i>
                 </div>
             </div>
-            <div class="services-content">
-                <span class="subtitle">NELER YAPIYORUZ</span>
-                <h2>Mobilyayı Sanat Eserine Dönüştürüyoruz...</h2>
-                <p>Mimari projelerin ve konsept tasarımı tamamlanmış alanların mobilya uygulamacısı olarak çalışmaktayız. Otel, villa, rezidans, iş yeri, AVM, mağazalar, özel ofisler vb. projelerde anahtar teslim görev almaktayız. 30+ yıllık tecrübemizle sıfır hata payına sahip üretim ve uygulama hizmetleri gerçekleştirmekteyiz.</p>
-                <div class="services-list">
-                    <ul>
-                        <li><i class="fas fa-check"></i> Mimari projeler ve konsept tasarımlar</li>
-                        <li><i class="fas fa-check"></i> Otel, villa, rezidans, ofis ve yaşam alanları</li>
-                        <li><i class="fas fa-check"></i> Özel ölçüye göre tasarım mobilya çözümleri</li>
-                        <li><i class="fas fa-check"></i> Ev iç mimari tasarım mobilya uygulama hizmetleri</li>
-                        <li><i class="fas fa-check"></i> Tüm mobilya tasarım, üretim ve montaj işleri</li>
-                    </ul>
-                    <a href="iletisim.html" class="contact-btn">İLETİŞİME GEÇ</a>
+            <div class="what-we-do-content">
+                <span class="what-we-do-subtitle">NELER YAPIYORUZ</span>
+                <h2 class="what-we-do-title"></h2>
+                <p class="what-we-do-description"></p>
+                <div class="what-we-do-services-list">
+                    <ul></ul>
+                    <a href="iletisim.html" class="what-we-do-contact-btn">İLETİŞİME GEÇ</a>
                 </div>
             </div>
         </div>

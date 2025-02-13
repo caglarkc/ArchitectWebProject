@@ -1,109 +1,25 @@
-.first-section {
-    background-color: var(--overlay-75);
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/hero-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 800px;
-    width: 100%;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 0;
-}
+/*Values.css dosyasını içe aktar */
+@import 'custom_styles/values.css';
 
-.first-content {
-    max-width: 100%;
-    margin: 0 auto;
-    max-height: 100%;
-    padding: 0 20px;
-}
+/*Header.css dosyasını içe aktar */
+@import 'custom_styles/header.css';
 
-.first-content h1 {
-    font-size: 56px;
-    color: #fff;
-    margin-bottom: 30px;
-    font-weight: 600;
-    padding-top: 20px;
-}
+/*Eleventh.css dosyasını içe aktar */
+@import 'custom_styles/eleventh.css';
 
-.breadcrumb-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 30px;
-    padding: 10px 0;
-}
+/*Fourth.css dosyasını içe aktar */
+@import 'mainPageCss/fourth.css';
 
-.breadcrumb-item {
-    display: inline-flex;
-    align-items: center;
-    color: #666;
-    text-decoration: none;
-    font-size: 18px;
-    transition: color 0.3s ease;
-}
+/*Fifth.css dosyasını içe aktar */
+@import 'mainPageCss/fifth.css';
 
-.breadcrumb-item:hover {
-    color: #c5a47e;
-}
+/*Sixth.css dosyasını içe aktar */
+@import 'mainPageCss/sixth.css';
 
-.breadcrumb-separator {
-    margin: 0 10px;
-    color: #999;
-    font-size: 14px;
-}
-
-.breadcrumb-item.active {
-    color: #c5a47e;
-    pointer-events: none;
-}
-
-/* Responsive Tasarım */
-@media (max-width: 768px) {
-    .first-section {
-        padding: 40px 0;
-    }
-
-    .first-content h1 {
-        font-size: 28px;
-    }
-
-    .first-content p {
-        font-size: 14px;
-    }
-
-
-}
-
-
-.fourth-section {
+.fourth-section , .services-section{
     padding: 50px 0 0 0 ;
-    background-color: #000;
-    text-align: center;
 }
 
-.fourth-content {
-    max-width: 800px;
-    margin: 0 auto 60px;
-    padding: 0 15px;
-}
-
-.fourth-content h6 {
-    color: #c5a47e;
-    font-size: 22px;
-    margin-bottom: 15px;
-    font-weight: 400;
-}
-
-
-.fourth-content p {
-    color: #fff;
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 0;
-}
 
 .fifth-container {
     max-width: 1200px;
@@ -142,6 +58,8 @@
     }
 }
 
+
+
 /* Modal Stilleri */
 .image-modal {
     display: none;
@@ -150,7 +68,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: var(--overlay-75);
     z-index: 1000;
     justify-content: center;
     align-items: center;
@@ -172,12 +90,12 @@
     position: absolute;
     top: -40px;
     right: 0;
-    color: #fff;
+    color: var(--text-light);
     font-size: 30px;
     font-weight: bold;
     cursor: pointer;
 }
 
 .close-modal:hover {
-    color: #c5a47e;
+    color: var(--gold-color);
 }

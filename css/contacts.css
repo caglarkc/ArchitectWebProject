@@ -1,68 +1,22 @@
+/*Values.css dosyasını içe aktar */
+@import 'custom_styles/values.css';
+
+/*Header.css dosyasını içe aktar */
+@import 'custom_styles/header.css';
+
+/*Eleventh.css dosyasını içe aktar */
+@import 'custom_styles/eleventh.css';
+
+
 .first-section {
-    background-color: #f5f5f5;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/hero-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     height: 400px;
-    width: 100%;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 0;
-}
-
-.first-content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.first-content h1 {
-    font-size: 56px;
-    color: #fff;
-    margin-bottom: 30px;
-    font-weight: 600;
-}
-
-.breadcrumb-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 30px;
-    padding: 10px 0;
-}
-
-.breadcrumb-item {
-    display: inline-flex;
-    align-items: center;
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    transition: color 0.3s ease;
-}
-
-.breadcrumb-item:hover {
-    color: #c5a47e;
-}
-
-.breadcrumb-separator {
-    margin: 0 10px;
-    color: #fff;
-    font-size: 14px;
-}
-
-.breadcrumb-item.active {
-    color: #c5a47e;
-    pointer-events: none;
 }
 
 /* Contact Section */
 /* background image a1 */
 .contact-section {
     padding: 40px 0;
-    background-color: #313131;
+    background-color: var(--dark-background-color);
 }
 
 .contact-container {
@@ -76,9 +30,9 @@
 /* Sol Kısım - İletişim Bilgileri */
 .contact-info {
     width: 600px;
-    background-color: #333;
+    background-color: var(--dark-background-color);
     padding: 30px;
-    color: white;
+    color: var(--text-light);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -124,7 +78,7 @@
     width: 100%;
     height: 100%;
     min-height: 450px;
-    border-radius: 10px;
+    border-radius: 2px;
     overflow: hidden;
 }
 
@@ -194,7 +148,7 @@
 /* İletişim Form Section */
 .iletisim-section {
     padding: 60px 0;
-    background-color: #f8f8f8;
+    background-color: var(--background-color);
 }
 
 .iletisim-container {
@@ -208,10 +162,10 @@
 /* Sağ Kısım - Form */
 .iletisim-form {
     width: 900px;
-    background-color: white;
+    background-color: var(--dark-background-color);
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    box-shadow: 0 0 20px var(--overlay-10);
 }
 
 .form-group {
@@ -227,9 +181,9 @@
 .form-group textarea {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--text-muted);
     font-size: 1rem;
-    color: #333;
+    color: var(--text-light);
     border-radius: 5px;
     transition: all 0.3s ease;
 }
@@ -246,8 +200,8 @@
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #c5a47e;
-    box-shadow: 0 0 5px rgba(197, 164, 126, 0.2);
+    border-color: var(--gold-color);
+    box-shadow: 0 0 5px var(--gold-color);
 }
 
 .submit-container {
@@ -257,22 +211,18 @@
 }
 
 .submit-btn {
-    background: #c5a47e;
-    color: white;
-    border: none;
-    padding: 12px 30px;
+    background: transparent;
+    color: var(--gold-color);
+    border: 1px solid var(--gold-color);
+    padding: 6px 15px;
     font-size: 1rem;
-    font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
-    border-radius: 5px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
 .submit-btn:hover {
-    background: #b08d66;
-    transform: translateY(-2px);
+    background: var(--gold-color);
+    color: var(--text-light);
 }
 
 @media (max-width: 576px) {
