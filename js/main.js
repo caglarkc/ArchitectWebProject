@@ -147,6 +147,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeWhatWeDo();
 
     initializeServicesFirstSection();
+
+    initializeServicesSecondSection();
+
+    initializeContactsFirstSection();
 });
 
 // İstatistik Sayaçları
@@ -309,7 +313,7 @@ function convertTurkishDate(turkishDate) {
 
 // Video oynatma fonksiyonu
 function playVideo(videoId) {
-    const videoContainer = document.querySelector('.video-container');
+    const videoContainer = document.querySelector('.what-we-do-video-container');
     videoContainer.innerHTML = `
         <iframe
             src="https://www.youtube.com/embed/${videoId}?autoplay=1"
@@ -750,7 +754,7 @@ function initializeFirstSection() {
 
 
 // Neler Yapıyoruz bölümünü başlat
-function initializeWhatWeDo() {
+function initializeWhatWeDo() { 
     const whatWeDoData = JSON.parse(localStorage.getItem('whatWeDoData'));
 
     // Başlık güncelle
@@ -790,6 +794,51 @@ function initializeServicesFirstSection() {
 
         // Arkaplan resmini güncelle
         firstSection.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/services/first_section/${firstSectionData.backgroundImage}')`;
+        
+        // Overlay ekle
+        firstSection.style.position = 'relative';
+        firstSection.style.backgroundSize = 'cover';
+        firstSection.style.backgroundPosition = 'center';
+    }
+}
+
+// Hizmetler Bölümü SecondSection yönetimi
+function initializeServicesSecondSection() {
+    const secondSectionTitle = document.getElementById('services-fourth-section-title');
+    const secondSectionDescription = document.getElementById('services-fourth-section-content');
+
+    if (secondSectionTitle) {
+        const secondSectionData = JSON.parse(localStorage.getItem('servicesSecondSectionData')) || {
+            capital: 'NELER YAPIYORUZ?',
+            description: 'Ali Mobilyanın var olduğu her alanda özel ölçüye göre tasarımlar üretmekteyiz.<br>Mimari tasarımlarda ve konsept projelerde uygulamacı olarak çalışıyoruz.'
+        };
+
+        // Başlığı güncelle
+        secondSectionTitle.textContent = secondSectionData.capital;
+
+        // Açıklama güncelle
+        if (secondSectionDescription) {
+            secondSectionDescription.innerHTML = secondSectionData.description;
+        }
+    }
+}
+
+// İletişim Bölümü FirstSection yönetimi
+function initializeContactsFirstSection() {
+    const firstSection = document.getElementById('contacts-first-section');
+    const firstSectionTitle = document.getElementById('contacts-first-section-title');
+
+    if (firstSection && firstSectionTitle) {
+        const firstSectionData = JSON.parse(localStorage.getItem('contactsFirstSectionData')) || {
+            text: 'İLETİŞİM',
+            backgroundImage: 'a1.jpg'
+        };
+
+        // Başlığı güncelle
+        firstSectionTitle.textContent = firstSectionData.text;
+
+        // Arkaplan resmini güncelle
+        firstSection.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/contacts/first_section/${firstSectionData.backgroundImage}')`;
         
         // Overlay ekle
         firstSection.style.position = 'relative';

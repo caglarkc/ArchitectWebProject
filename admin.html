@@ -40,6 +40,7 @@
                     <a href="#services-sections" class="admin-nav-link dropdown-toggle" data-bs-toggle="dropdown">Hizmetler</a>
                     <ul class="dropdown-menu dropdown-menu-dark">
                         <li><a class="dropdown-item" href="#services-first-section">First Section</a></li>
+                        <li><a class="dropdown-item" href="#services-second-section">Second Section</a></li>
                     </ul>
                 </div>
 
@@ -54,6 +55,7 @@
                 <div class="dropdown">
                     <a href="#contact-sections" class="admin-nav-link dropdown-toggle" data-bs-toggle="dropdown">İletişim</a>
                     <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" href="#contacts-first-section">First Section</a></li>
                     </ul>
                 </div>
 
@@ -366,7 +368,7 @@
     <div class="admin-section-group" id="services-sections">
         <h1 class="section-group-title">Hizmetler Yönetimi</h1>
 
-        <!-- İnfo First Section -->
+        <!-- Services First Section -->
         <section id="services-first-section" class="admin-section">
             <div class="admin-container">
                 <h2 class="mb-4">İlk Bölüm Yönetimi</h2>
@@ -400,6 +402,133 @@
                 </div>
             </div>
         </section>
+
+        <!-- İkinci Bölüm -->   
+        <section id="services-second-section" class="admin-section">
+            <div class="admin-container">
+                <h2 class="mb-4">İkinci Bölüm Yönetimi</h2>
+                
+                <!-- Services Second Section -->
+                <div class="card bg-dark text-light mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">İkinci Bölüm İçerik Düzenleme</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="services-second-section-form">
+                            <div class="mb-3">
+                                <label class="form-label">Başlık</label>
+                                <input type="text" class="form-control" id="services-second-section-capital" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Açıklama</label>
+                                <textarea class="form-control" id="services-second-section-description" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-gold">İçeriği Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- İnfo First Section Önizleme -->
+                <h2 class="mb-3">Mevcut İçerik Önizleme</h2>
+                <div class="content-preview" id="services-second-section-preview">
+                    <!-- JavaScript ile doldurulacak -->
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Services Add Section -->
+        <section id="main-services-add-section" class="admin-section">
+            <div class="admin-container">
+                <h2 class="mb-4">Hizmet Ekleme</h2>
+                
+                <div class="card bg-dark text-light mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Hizmet Ekleme</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="main-services-add-section-form">
+                            <div class="mb-3">
+                                <label class="form-label">Hizmet Adı</label>
+                                <input type="text" class="form-control" id="main-services-add-section-name" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Hizmet Ana Başlığı</label>
+                                <input type="text" class="form-control" id="main-services-add-section-main-title" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Hizmet Alt Başlığı</label>
+                                <input type="text" class="form-control" id="main-services-add-section-sub-title" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Hizmet Açıklama</label>
+                                <textarea class="form-control" id="main-services-add-section-description" rows="2" required></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Hizmet Resmi (images/services/ klasöründen)</label>
+                                <input type="text" class="form-control" id="main-services-add-section-image" 
+                                       placeholder="Örnek: service1.jpg" required>
+                                <div class="form-text text-light">Resim dosyasını images/services/ klasörüne ekledikten sonra sadece dosya adını yazın.</div>
+                            </div>
+                            <button type="submit" class="btn btn-gold">Hizmet Ekle</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Hizmetler Önizleme -->
+                <h2 class="mb-3">Hizmetler Önizleme</h2>
+                <div class="main-services-preview" id="main-services-preview">
+                    <!-- JavaScript ile doldurulacak -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+    <!-- İletişim Yönetimi -->
+    <div class="admin-section-group" id="contacts-sections">
+        <h1 class="section-group-title">İletişim Yönetimi</h1>
+
+        <!-- İnfo First Section -->
+        <section id="contacts-first-section" class="admin-section">
+            <div class="admin-container">
+                <h2 class="mb-4">İlk Bölüm Yönetimi</h2>
+                
+                <!-- İnfo First Section -->
+                <div class="card bg-dark text-light mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">İlk Bölüm İçerik Düzenleme</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="contacts-first-section-form">
+                            <div class="mb-3">
+                                <label class="form-label">Metin</label>
+                                <input type="text" class="form-control" id="contacts-first-section-text" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Arkaplan Resmi (images/contacts/first_section/ klasöründen)</label>
+                                <input type="text" class="form-control" id="contacts-first-section-image" 
+                                       placeholder="Örnek: a1.jpg" required>
+                                <div class="form-text text-light">Resim dosyasını images/contacts/first_section/ klasörüne ekledikten sonra sadece dosya adını yazın.</div>
+                            </div>
+                            <button type="submit" class="btn btn-gold">İçeriği Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- İnfo First Section Önizleme -->
+                <h2 class="mb-3">Mevcut İçerik Önizleme</h2>
+                <div class="content-preview" id="contacts-first-section-preview">
+                    <!-- JavaScript ile doldurulacak -->
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <!-- Ortak Bileşenler -->

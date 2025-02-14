@@ -613,3 +613,194 @@ body {
 #services-container .input-group .btn i {
     font-size: 14px;
 }
+
+/* Hizmet Önizleme Stilleri */
+.main-services-preview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+.main-service-preview-item {
+    background: var(--dark-background-color);
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.main-service-preview-controls {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.main-service-preview-item:hover .main-service-preview-controls {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.main-service-preview-controls button {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: all 0.2s ease;
+}
+
+.main-service-preview-controls button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.main-service-preview-controls .btn-warning {
+    background: rgba(255, 193, 7, 0.2);
+}
+
+.main-service-preview-controls .btn-danger {
+    background: rgba(220, 53, 69, 0.2);
+}
+
+.main-service-preview-controls .btn-info {
+    background: rgba(13, 202, 240, 0.2);
+}
+
+.main-service-preview-controls .btn-warning:hover {
+    background: rgba(255, 193, 7, 0.3);
+}
+
+.main-service-preview-controls .btn-danger:hover {
+    background: rgba(220, 53, 69, 0.3);
+}
+
+.main-service-preview-controls .btn-info:hover {
+    background: rgba(13, 202, 240, 0.3);
+}
+
+.main-service-preview-content {
+    position: relative;
+    height: 400px;
+}
+
+.main-service-name {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: var(--gold-color);
+    font-size: 22px;
+    font-weight: 600;
+    z-index: 2;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.main-service-preview-item:hover .main-service-name {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.main-service-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.main-service-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.main-service-preview-item:hover .main-service-image-container img {
+    transform: scale(1.05);
+}
+
+.main-service-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.3) 0%,
+        rgba(0, 0, 0, 0.8) 100%
+    );
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.main-service-preview-item:hover .main-service-overlay {
+    opacity: 1;
+}
+
+.main-service-main-title {
+    color: var(--text-light);
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center;
+    transform: translateY(20px);
+    transition: transform 0.3s ease 0.1s;
+}
+
+.main-service-sub-title {
+    color: var(--gold-color);
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+    transform: translateY(20px);
+    transition: transform 0.3s ease 0.2s;
+}
+
+.main-service-description {
+    color: var(--text-light);
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 90%;
+    transform: translateY(20px);
+    transition: transform 0.3s ease 0.3s;
+    opacity: 0.9;
+}
+
+.main-service-preview-item:hover .main-service-main-title,
+.main-service-preview-item:hover .main-service-sub-title,
+.main-service-preview-item:hover .main-service-description {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .main-services-preview {
+        grid-template-columns: 1fr;
+    }
+    
+    .main-service-preview-content {
+        height: 350px;
+    }
+}

@@ -74,6 +74,18 @@ let servicesFirstSectionData = JSON.parse(localStorage.getItem('servicesFirstSec
     backgroundImage: 'a1.jpg'
 };
 
+let servicesSecondSectionData = JSON.parse(localStorage.getItem('servicesSecondSectionData')) || {
+    capital: 'NELER YAPIYORUZ?',
+    description: 'Ali Mobilyanın var olduğu her alanda özel ölçüye göre tasarımlar üretmekteyiz.<br>Mimari tasarımlarda ve konsept projelerde uygulamacı olarak çalışıyoruz.'
+};
+
+// İletişim Bölümü FirstSection verilerini localStorage'da saklayacağız
+let contactsFirstSectionData = JSON.parse(localStorage.getItem('contactsFirstSectionData')) || {
+    text: 'İLETİŞİM',
+    backgroundImage: 'a1.jpg'
+};
+
+
 
 // Sayfa yüklendiğinde form alanlarını doldur ve önizlemeleri göster
 document.addEventListener('DOMContentLoaded', function() {
@@ -152,6 +164,16 @@ document.addEventListener('DOMContentLoaded', function() {
     updateServicesFirstSectionPreview();
 
 
+    // Hizmetler Bölümü SecondSection form alanlarını doldur
+    document.getElementById('services-second-section-capital').value = servicesSecondSectionData.capital;
+    document.getElementById('services-second-section-description').value = servicesSecondSectionData.description;
+    updateServicesSecondSectionPreview();
+
+
+    // İletişim Bölümü FirstSection form alanlarını doldur
+    document.getElementById('contacts-first-section-text').value = contactsFirstSectionData.text;
+    document.getElementById('contacts-first-section-image').value = contactsFirstSectionData.backgroundImage;
+    updateContactsFirstSectionPreview();
 
 });
 
@@ -796,9 +818,6 @@ function updateWhatWeDoPreview() {
 
 
 
-
-
-
 // Hakkımızda Bölümü FirstSection Submit olduğunda
 document.getElementById('services-first-section-form').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -833,4 +852,205 @@ function updateServicesFirstSectionPreview() {
             </div>
         </div>
     `;
+}
+
+// Hizmetler Bölümü SecondSection Submit olduğunda
+document.getElementById('services-second-section-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Form verilerini al - parseInt kaldırıldı çünkü string değerler almalıyız
+    servicesSecondSectionData = {
+        capital: document.getElementById('services-second-section-capital').value,
+        description: document.getElementById('services-second-section-description').value
+    };
+    
+    // LocalStorage'ı güncelle
+    localStorage.setItem('servicesSecondSectionData', JSON.stringify(servicesSecondSectionData));
+    
+    // Önizlemeyi güncelle
+    updateServicesSecondSectionPreview();
+    
+    alert('Hizmetler Bölümü SecondSection başarıyla güncellendi!');
+});
+
+
+// Hizmetler Bölümü SecondSection Önizleme
+function updateServicesSecondSectionPreview() {
+    const previewContainer = document.getElementById('services-second-section-preview');
+    previewContainer.innerHTML = `
+        <div class="stats-content">
+            <h2>${servicesSecondSectionData.capital}</h2>
+            <p>${servicesSecondSectionData.description}</p>
+        </div>
+    `;
+}
+
+
+// İletişim Bölümü FirstSection Submit olduğunda
+document.getElementById('contacts-first-section-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Form verilerini al - parseInt kaldırıldı çünkü string değerler almalıyız
+    contactsFirstSectionData = {
+        text: document.getElementById('contacts-first-section-text').value,
+        backgroundImage: document.getElementById('contacts-first-section-image').value
+    };
+    
+    // LocalStorage'ı güncelle
+    localStorage.setItem('contactsFirstSectionData', JSON.stringify(contactsFirstSectionData));
+    
+    // Önizlemeyi güncelle
+    updateContactsFirstSectionPreview();
+    
+    alert('İletişim Bölümü FirstSection başarıyla güncellendi!');
+});
+
+
+// İletişim Bölümü FirstSection Önizleme
+function updateContactsFirstSectionPreview() {
+    const previewContainer = document.getElementById('contacts-first-section-preview');
+    previewContainer.innerHTML = `
+        <div class="first-section" style="background-image: url('images/contacts/first_section/${contactsFirstSectionData.backgroundImage}')">
+            <div class="first-section-content">
+                <h2>${contactsFirstSectionData.text}</h2>
+                <div class="breadcrumb-container">
+                    <a class="breadcrumb-item">Ana Sayfa</a>
+                    <span class="breadcrumb-separator">&gt;</span>
+                    <span class="breadcrumb-item active">İletişim</span>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Hizmet verilerini localStorage'da saklayacağız
+let mainServicesData = JSON.parse(localStorage.getItem('mainServicesData')) || [];
+
+// Hizmet Ekleme Submit olduğunda
+document.getElementById('main-services-add-section-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Yeni hizmet verilerini al
+    const newService = {
+        id: Date.now(),
+        name: document.getElementById('main-services-add-section-name').value,
+        mainTitle: document.getElementById('main-services-add-section-main-title').value,
+        subTitle: document.getElementById('main-services-add-section-sub-title').value,
+        description: document.getElementById('main-services-add-section-description').value,
+        image: document.getElementById('main-services-add-section-image').value,
+        order: mainServicesData.length
+    };
+    
+    mainServicesData.push(newService);
+    localStorage.setItem('mainServicesData', JSON.stringify(mainServicesData));
+    e.target.reset();
+    updateMainServicesPreview();
+    
+    alert('Hizmet başarıyla eklendi!');
+});
+
+// Hizmet Önizleme
+function updateMainServicesPreview() {
+    const previewContainer = document.getElementById('main-services-preview');
+    previewContainer.innerHTML = mainServicesData.map((service, index) => `
+        <div class="main-service-preview-item" data-id="${service.id}">
+            <div class="main-service-preview-controls">
+                <button class="btn btn-sm btn-warning" onclick="editMainService(${service.id})">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-danger" onclick="deleteMainService(${service.id})">
+                    <i class="fas fa-trash"></i>
+                </button>
+                ${index > 0 ? `
+                    <button class="btn btn-sm btn-info" onclick="moveMainService(${service.id}, 'up')">
+                        <i class="fas fa-arrow-up"></i>
+                    </button>
+                ` : ''}
+                ${index < mainServicesData.length - 1 ? `
+                    <button class="btn btn-sm btn-info" onclick="moveMainService(${service.id}, 'down')">
+                        <i class="fas fa-arrow-down"></i>
+                    </button>
+                ` : ''}
+            </div>
+            <div class="main-service-preview-content">
+                <h3 class="main-service-name">${service.name}</h3>
+                <div class="main-service-image-container">
+                    <img src="images/services/${service.image}" alt="${service.name}">
+                    <div class="main-service-overlay">
+                        <h4 class="main-service-main-title">${service.mainTitle}</h4>
+                        <h5 class="main-service-sub-title">${service.subTitle}</h5>
+                        <p class="main-service-description">${service.description}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Hizmet Silme
+function deleteMainService(id) {
+    if (confirm('Bu hizmeti silmek istediğinizden emin misiniz?')) {
+        mainServicesData = mainServicesData.filter(service => service.id !== id);
+        localStorage.setItem('mainServicesData', JSON.stringify(mainServicesData));
+        updateMainServicesPreview();
+    }
+}
+
+// Hizmet Sırasını Değiştirme
+function moveMainService(id, direction) {
+    const index = mainServicesData.findIndex(service => service.id === id);
+    if (direction === 'up' && index > 0) {
+        [mainServicesData[index], mainServicesData[index - 1]] = [mainServicesData[index - 1], mainServicesData[index]];
+    } else if (direction === 'down' && index < mainServicesData.length - 1) {
+        [mainServicesData[index], mainServicesData[index + 1]] = [mainServicesData[index + 1], mainServicesData[index]];
+    }
+    localStorage.setItem('mainServicesData', JSON.stringify(mainServicesData));
+    updateMainServicesPreview();
+}
+
+// Hizmet Düzenleme
+function editMainService(id) {
+    const service = mainServicesData.find(service => service.id === id);
+    if (service) {
+        // Form alanlarını doldur
+        document.getElementById('main-services-add-section-name').value = service.name;
+        document.getElementById('main-services-add-section-main-title').value = service.mainTitle;
+        document.getElementById('main-services-add-section-sub-title').value = service.subTitle;
+        document.getElementById('main-services-add-section-description').value = service.description;
+        document.getElementById('main-services-add-section-image').value = service.image;
+        
+        // Submit butonunun metnini değiştir
+        document.querySelector('button[type="submit"]').textContent = 'Değişiklikleri Kaydet';
+    }
 }
