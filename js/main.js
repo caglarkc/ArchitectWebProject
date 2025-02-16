@@ -4,6 +4,9 @@ $(document).ready(function() {
         // Header yüklendikten sonra aktif sayfayı belirle
         setActiveMenuItem();
 
+        // Header yüklendikten sonra dropdown menüyü doldur
+        populateServicesDropdown();
+
         // Header yüklendikten sonra dropdown menü işlevselliğini ekle
         $('.dropdown-toggle').on('click', function(e) {
             e.preventDefault();
@@ -44,113 +47,18 @@ function setActiveMenuItem() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const cards = document.querySelectorAll('.fourth-card');
-    const dots = document.querySelectorAll('.fourth-dot');
-    const cardsPerPage = 3;
-    let currentPage = 1;
-    let isAnimating = false;
-
-    // İlk yüklemede ilk 3 kartı göster
-    updateCards();
-
-    // Noktalara tıklama olayını dinle
-    dots.forEach(dot => {
-        dot.addEventListener('click', function() {
-            if (isAnimating) return;
-            const newPage = parseInt(this.dataset.slide);
-            if (newPage === currentPage) return;
-            
-            isAnimating = true;
-            animateCardTransition(newPage);
-        });
-    });
-
-    function animateCardTransition(newPage) {
-        const currentCards = document.querySelectorAll('.fourth-card:not(.hidden)');
-        const direction = newPage > currentPage ? 1 : -1;
-        
-        // Mevcut kartları animasyonla çıkar
-        currentCards.forEach((card, index) => {
-            card.style.transition = `all 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s`;
-            card.style.transform = `translateX(${-100 * direction}%) perspective(1000px) rotateY(${20 * direction}deg)`;
-            card.style.opacity = '0';
-        });
-
-        setTimeout(() => {
-            // Mevcut kartları gizle
-            currentCards.forEach(card => {
-                card.classList.add('hidden');
-                card.classList.remove('active');
-                card.style.transform = '';
-                card.style.opacity = '';
-            });
-
-            // Yeni kartları göster
-            currentPage = newPage;
-            updateDots();
-            
-            const newCards = Array.from(cards).filter((card, index) => 
-                index >= (currentPage - 1) * cardsPerPage && index < currentPage * cardsPerPage
-            );
-
-            // Yeni kartları animasyonla getir
-            newCards.forEach((card, index) => {
-                card.classList.remove('hidden');
-                card.style.transform = `translateX(${100 * direction}%) perspective(1000px) rotateY(${-20 * direction}deg)`;
-                card.style.opacity = '0';
-                card.style.transition = `all 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s`;
-                
-                requestAnimationFrame(() => {
-                    setTimeout(() => {
-                        card.style.transform = 'translateX(0) perspective(1000px) rotateY(0deg)';
-                        card.style.opacity = '1';
-                        card.classList.add('active');
-                    }, 50);
-                });
-            });
-
-            setTimeout(() => {
-                isAnimating = false;
-                // Animasyon tamamlandıktan sonra inline stilleri temizle
-                newCards.forEach(card => {
-                    card.style.transition = '';
-                    card.style.transform = '';
-                    card.style.opacity = '';
-                });
-            }, 800);
-        }, 600);
-    }
-
-    function updateDots() {
-        dots.forEach(dot => dot.classList.remove('active'));
-        dots[currentPage - 1].classList.add('active');
-    }
-
-    function updateCards() {
-        cards.forEach((card, index) => {
-            if (index >= (currentPage - 1) * cardsPerPage && index < currentPage * cardsPerPage) {
-                card.classList.remove('hidden');
-                card.classList.add('active');
-            } else {
-                card.classList.add('hidden');
-                card.classList.remove('active');
-            }
-        });
-    }
 
     // İletişim bilgilerini yükle
     loadContactInfo();
 
     initializeFirstSection();
-
-    // Neler Yapıyoruz bölümünü başlat
+    initializeSecondSection();
     initializeWhatWeDo();
-
     initializeServicesFirstSection();
-
     initializeServicesSecondSection();
-
     initializeContactsFirstSection();
+    populateServicesDropdown();
+    initializeFourthSection();
 });
 
 // İstatistik Sayaçları
@@ -513,9 +421,7 @@ function loadProjects() {
         
         // Yaşam Alanı Projeleri
         { image: 'images/projects/yasam_alani/proje1.jpg', category: 'yasam' },
-        { image: 'images/projects/yasam_alani/proje2.jpg', category: 'yasam' },
-        { image: 'images/projects/yasam_alani/proje3.jpg', category: 'yasam' },
-        { image: 'images/projects/yasam_alani/proje4.jpg', category: 'yasam' }
+        { image: 'images/projects/yasam_alani/proje2.jpg', category: 'yasam' }
     ];
     
     if (!projects || projects.length === 0) {
@@ -752,6 +658,29 @@ function initializeFirstSection() {
     }
 }
 
+// Hakkımızda sayfası ikinci bölüm yönetimi
+function initializeSecondSection() {
+    const secondSectionTitle = document.getElementById('info-second-section-title');
+    const secondSectionContent = document.getElementById('info-second-section-content');
+
+    if (secondSectionTitle && secondSectionTitle) {
+        const secondSectionData = JSON.parse(localStorage.getItem('infoSecondSectionData')) || {
+            capital: 'ETAŞ DESIGN',
+            description: 'ETAŞ DESIGN, 1992 yılından beri 2000 m2\'lik alanda 20 kişilik profesyonel ekibi ile tasarım, üretim ve proje uygulama alanında hizmet vermektedir.<br>Mimari proje uygulama, özel ölçüye göre mobilya üretimi ve sıfırdan ihtiyaçlarınız doğrultusunda kendi bünyesinde hem tasarım hem üretim hizmeti vermektedir.<br>Koşulsuz müşteri memnuniyeti vizyonu ile bugüne kadar gerçekleştirmiş olduğumuz tüm projelerimiz en büyük motivasyon kaynağımızdır.'
+        };
+
+        // Başlığı güncelle
+        secondSectionTitle.textContent = secondSectionData.capital;
+
+        secondSectionContent.textContent = secondSectionData.description;
+        
+    }
+
+}
+        
+        
+
+
 
 // Neler Yapıyoruz bölümünü başlat
 function initializeWhatWeDo() { 
@@ -846,3 +775,122 @@ function initializeContactsFirstSection() {
         firstSection.style.backgroundPosition = 'center';
     }
 }
+
+
+// Dropdown menüyü doldur
+function populateServicesDropdown() {
+    
+    const services = [];
+    const mainServicesData = JSON.parse(localStorage.getItem('mainServicesData')) || [];
+    mainServicesData.forEach(service => {
+        services.push({ title: service.name, link: `/custom_service.html` });
+    });
+    
+    const dropdown = document.getElementById('services-dropdown');
+    if (dropdown) {
+        dropdown.innerHTML = ''; // Önceki içeriği temizle
+        services.forEach(service => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = service.link;
+            a.textContent = service.title;
+            li.appendChild(a);
+            dropdown.appendChild(li);
+        });
+    }
+}
+
+
+function initializeFourthSection() {
+    const fourthCards = document.querySelector('.fourth-cards');
+    const fourthNavigation = document.querySelector('.fourth-navigation');
+    if (!fourthCards || !fourthNavigation) return;
+
+    // Key ismini mainPageServicesData olarak değiştirdik
+    const mainPageServicesData = JSON.parse(localStorage.getItem('mainPageServicesData')) || [];
+    console.log(mainPageServicesData);
+    const mainServicesData = JSON.parse(localStorage.getItem('mainServicesData')) || [];
+
+    if (mainPageServicesData.length === 0) return;
+
+    const dotVal = Math.ceil(mainPageServicesData.length / 3);
+    let currentPage = 1;
+
+    // Dot'ları oluştur
+    fourthNavigation.innerHTML = Array.from({ length: dotVal }, (_, i) => `
+        <button class="fourth-dot ${i + 1 === currentPage ? 'active' : ''}" data-slide="${i + 1}"></button>
+    `).join('');
+
+    let currentPageIndex = 0;
+
+    function updateCards() {
+        const startIndex = currentPageIndex * 3;
+        const firstService = mainPageServicesData[startIndex];
+        const secondService = mainPageServicesData[startIndex + 1];
+        const thirdService = mainPageServicesData[startIndex + 2];
+        const willShowServices = [firstService, secondService, thirdService];
+
+        // Önce mevcut kartları gizle
+        const currentCards = fourthCards.querySelectorAll('.fourth-card');
+        currentCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+        });
+
+        // Kısa bir gecikme sonra yeni kartları göster
+        setTimeout(() => {
+            const cardsHTML = willShowServices.map(serviceData => {
+                if (!serviceData) return '';
+                const selectedService = mainServicesData[serviceData.index];
+                return `
+                    <div class="fourth-card">
+                        <div class="card-image">
+                            <img src="images/services/mainPage/${serviceData.image}" alt="${serviceData.name}">
+                            <div class="plus-icon"></div>
+                            <div class="card-content">
+                                <h3>${serviceData.name}</h3>
+                                <p>${serviceData.description}</p>
+                                <a href="/services.html" class="fourth-btn">Daha Fazlası</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            fourthCards.innerHTML = cardsHTML;
+
+        }, 300); // Kartların silinmesi ve yenilerinin eklenmesi arasındaki gecikme
+    }    
+
+    // İlk kartları göster
+    updateCards();
+
+    // İlk yüklemede kartları animasyonla göster
+    const initialCards = fourthCards.querySelectorAll('.fourth-card');
+    initialCards.forEach((card, index) => {
+        setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, index * 100);
+    });
+
+    // Dot'lara tıklama olayını ekle
+    const dots = document.querySelectorAll('.fourth-dot');
+    dots.forEach(dot => {
+        dot.addEventListener('click', function() {
+            const newPage = parseInt(this.dataset.slide);
+            if (newPage === currentPageIndex + 1) return;
+
+            currentPageIndex = newPage - 1;
+            
+            // Dot'ları güncelle
+            dots.forEach(d => d.classList.remove('active'));
+            this.classList.add('active');
+
+            // Kartları güncelle
+            updateCards();
+        });
+    });
+}
+
+

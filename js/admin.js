@@ -175,6 +175,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('contacts-first-section-image').value = contactsFirstSectionData.backgroundImage;
     updateContactsFirstSectionPreview();
 
+    // Hakkımızda SecondSection form alanlarını doldur
+    updateMainServicesPreview();
+
+    populateMainPageServiceSelect();
+
+    updateMainPageServices();
 });
 
 // Form submit olduğunda içeriği güncelle
@@ -961,6 +967,13 @@ let mainServicesData = JSON.parse(localStorage.getItem('mainServicesData')) || [
 document.getElementById('main-services-add-section-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
+    const name = document.getElementById('main-services-add-section-name').value;
+
+    const services = JSON.parse(localStorage.getItem('mainServicesData')) || [];
+    if (services.some(service => service.name === name)) {
+        alert('Bu hizmet zaten mevcut!');
+        return;
+    }
     // Yeni hizmet verilerini al
     const newService = {
         id: Date.now(),
@@ -1054,3 +1067,117 @@ function editMainService(id) {
         document.querySelector('button[type="submit"]').textContent = 'Değişiklikleri Kaydet';
     }
 }
+
+// Ana sayfa hizmet spinner'ını doldur
+function populateMainPageServiceSelect() {
+    const mainPageServiceSelect = document.getElementById('mainPageServiceSelect');
+    const mainServicesData = JSON.parse(localStorage.getItem('mainServicesData')) || [];
+    
+    // Mevcut seçenekleri temizle
+    mainPageServiceSelect.innerHTML = '<option value="">Hizmet Seçin</option>';
+    
+    // Her hizmet için bir seçenek ekle
+    mainServicesData.forEach((service, index) => {
+        const option = document.createElement('option');
+        option.value = index;
+        option.textContent = service.name;
+        mainPageServiceSelect.appendChild(option);
+    });
+}
+
+
+
+
+// Hizmet Ekleme Submit olduğunda
+document.getElementById('main-services-main-page-section-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const mainPageServiceSelect = document.getElementById('mainPageServiceSelect');
+    const mainServicesData = JSON.parse(localStorage.getItem('mainServicesData')) || [];
+
+    if (!mainPageServiceSelect.value) {
+        alert('Lütfen bir hizmet seçin!');
+        return;
+    }
+
+    const selectedServiceIndex = mainPageServiceSelect.value;
+    const selectedService = mainServicesData[selectedServiceIndex];
+
+    const description = document.getElementById('main-services-main-page-section-description').value;
+    const image = document.getElementById('main-services-main-page-section-image').value;
+
+    const newService = {
+        name: selectedService.name,
+        description: description,
+        image: image,
+        index: selectedServiceIndex
+    };
+
+    // Mevcut servisleri al
+    let mainPageServicesData = JSON.parse(localStorage.getItem('mainPageServicesData')) || [];
+    
+    // Seçilen hizmetin index'ini kontrol et
+    const existingServiceIndex = mainPageServicesData.findIndex(service => service.index === selectedServiceIndex);
+    
+    if (existingServiceIndex !== -1) {
+        // Hizmet zaten varsa, güncelle
+        mainPageServicesData[existingServiceIndex] = newService;
+        alert('Hizmet görünümü başarıyla güncellendi!');
+    } else {
+        // Hizmet yoksa, yeni ekle
+        mainPageServicesData.push(newService);
+        alert('Hizmet görünümü başarıyla eklendi!');
+    }
+    
+    // LocalStorage'a kaydet
+    localStorage.setItem('mainPageServicesData', JSON.stringify(mainPageServicesData));
+    updateMainPageServices();
+    
+    // Formu temizle
+    this.reset();
+});
+
+function updateMainPageServices() {
+    const mainPageServicePreview = document.getElementById('main-services-main-page-section-preview');
+    const mainPageServicesData = JSON.parse(localStorage.getItem('mainPageServicesData')) || [];
+    const mainServicesData = JSON.parse(localStorage.getItem('mainServicesData')) || [];
+
+    if (mainPageServicesData.length === 0) {
+        mainPageServicePreview.innerHTML = '<p class="text-muted">Henüz bir hizmet eklenmedi.</p>';
+        return;
+    }
+
+    // Tüm hizmetleri göster
+    const cardsHTML = mainPageServicesData.map(service => {
+        return `
+            <div class="main-page-service-preview">
+                <div class="card-image">
+                    <img src="images/services/mainPage/${service.image}" alt="${service.name}">
+                    <div class="plus-icon"></div>
+                    <div class="card-content">
+                        <h3>${service.name}</h3>
+                        <p>${service.description}</p>
+                        <a href="#" class="fourth-btn">Daha Fazlası</a>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    mainPageServicePreview.innerHTML = cardsHTML;
+}
+
+// Hizmet seçildiğinde mevcut verileri forma doldur
+document.getElementById('mainPageServiceSelect').addEventListener('change', function() {
+    const mainPageServicesData = JSON.parse(localStorage.getItem('mainPageServicesData')) || [];
+    
+    // Seçilen hizmetin daha önce eklenip eklenmediğini kontrol et
+    const existingService = mainPageServicesData.find(service => service.index === this.value);
+    
+    if (existingService) {
+        document.getElementById('main-services-main-page-section-description').value = existingService.description;
+        document.getElementById('main-services-main-page-section-image').value = existingService.image;
+    } else {
+        document.getElementById('main-services-main-page-section-description').value = '';
+        document.getElementById('main-services-main-page-section-image').value = '';
+    }
+});

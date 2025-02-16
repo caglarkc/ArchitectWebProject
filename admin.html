@@ -29,9 +29,9 @@
                 <div class="dropdown">
                     <a href="#about-sections" class="admin-nav-link dropdown-toggle" data-bs-toggle="dropdown">Hakkımızda</a>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" href="#info-first-section">First Section</a></li>
-                        <li><a class="dropdown-item" href="#info-second-section">Second Section</a></li>
-                        <li><a class="dropdown-item" href="#info-third-section">Third Section</a></li>
+                        <li><a class="dropdown-item" href="#info-first-section">İlk Bölüm</a></li>
+                        <li><a class="dropdown-item" href="#info-second-section">İkinci Bölüm</a></li>
+                        <li><a class="dropdown-item" href="#info-third-section">Üçüncü Bölüm</a></li>
                     </ul>
                 </div>
 
@@ -39,8 +39,10 @@
                 <div class="dropdown">
                     <a href="#services-sections" class="admin-nav-link dropdown-toggle" data-bs-toggle="dropdown">Hizmetler</a>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" href="#services-first-section">First Section</a></li>
-                        <li><a class="dropdown-item" href="#services-second-section">Second Section</a></li>
+                        <li><a class="dropdown-item" href="#services-first-section">İlk Bölüm</a></li>
+                        <li><a class="dropdown-item" href="#services-second-section">İkinci Bölüm</a></li>
+                        <li><a class="dropdown-item" href="#main-services-add-section">Ana Hizmetler</a></li>
+                        <li><a class="dropdown-item" href="#main-services-main-page-section">Ana Sayfa Hizmetleri</a></li>
                     </ul>
                 </div>
 
@@ -486,6 +488,53 @@
                 </div>
             </div>
         </section>
+
+         <!-- main page services section -->
+         <section id="main-services-main-page-section" class="admin-section">
+            <div class="admin-container">
+                <h2 class="mb-4">Ana Sayfa Hizmet Görünümü</h2>
+                
+                <div class="card bg-dark text-light mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Ana Sayfa Hizmet Görünümü</h5>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Hizmet Seçin</label>
+                            <select class="form-control" id="mainPageServiceSelect">
+                                <!-- JavaScript ile doldurulacak -->
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="card-body">
+                        <form id="main-services-main-page-section-form">
+                            <div class="mb-3">
+                                <label class="form-label">Açıklama</label>
+                                <textarea class="form-control" id="main-services-main-page-section-description" rows="2" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Resim (images/services/mainPage klasöründen)</label>
+                                <input type="text" class="form-control" id="main-services-main-page-section-image" 
+                                       placeholder="Örnek: service1.jpg" required>
+                                <div class="form-text text-light">Resim dosyasını images/services/mainPage klasörüne ekledikten sonra sadece dosya adını yazın.</div>
+                            </div>
+                            <button type="submit" class="btn btn-gold">Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Hizmetler Önizleme -->
+                <h2 class="mb-3">Hizmetler Önizleme</h2>
+                <div class="main-services-preview" id="main-services-main-page-section-preview">
+                    <!-- JavaScript ile doldurulacak -->
+                </div>
+            </div>
+        </section>
+
+        
     </div>
 
 

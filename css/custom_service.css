@@ -1,0 +1,28 @@
+.custom-service-section {
+    background-color: var(--overlay-75);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 800px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+}
+
+.custom-service-content {
+    max-width: 100%;
+    margin: 0 auto;
+    max-height: 100%;
+    padding: 0 20px;
+}
+
+.custom-service-content h1 {
+    font-size: 56px;
+    color: var(--text-light);
+    margin-bottom: 30px;
+    font-weight: 600;
+    padding-top: 20px;
+}
