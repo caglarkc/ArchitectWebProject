@@ -1,0 +1,141 @@
+@import 'css/custom_styles/values.css'; /* Renk ve değişkenler için import */
+
+/* Ana hizmet adımları bölümü */
+.service-steps {
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  padding: 60px 20px;
+  margin: 0 auto;
+}
+
+/* Her bir adımı kapsayan kart */
+.step-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 300px;
+}
+
+/* Dairesel ikon alanı */
+.step-circle {
+  position: relative;
+  width: 250px; /* Değiştirilebilir boyut */
+  height: 250px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* En dıştaki ince siyah border */
+.step-circle::before {
+  content: "";
+  position: absolute;
+  width: 110%;
+  height: 110%;
+  border-radius: 50%;
+  border: 4px solid black;
+  box-sizing: border-box;
+}
+
+/* Ortadaki kalın beyaz border */
+.step-circle::after {
+  content: "";
+  position: absolute;
+  width: 105%;
+  height: 105%;
+  border-radius: 50%;
+  border: 8px solid white;
+  box-sizing: border-box;
+}
+
+/* En içteki ince siyah border */
+.step-circle .inner-border {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4px solid black;
+  box-sizing: border-box;
+}
+
+/* İçindeki resim */
+.step-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Adım numarası */
+.step-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  font-weight: bold;
+  color: var(--text-light);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+/* Adım başlığı */
+.step-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 15px 0;
+  color: var(--text-light);
+}
+
+/* Açıklama */
+.step-description {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-light);
+}
+
+/* Responsive Tasarım */
+@media (max-width: 1024px) {
+  .service-steps {
+      flex-wrap: wrap;
+      gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-steps {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .step-circle {
+      width: 200px;
+      height: 200px;
+  }
+
+  .step-circle::before {
+      width: 108%;
+      height: 108%;
+      border-width: 3px;
+  }
+
+  .step-circle::after {
+      width: 104%;
+      height: 104%;
+      border-width: 6px;
+  }
+
+  .step-circle .inner-border {
+      border-width: 3px;
+  }
+
+  .step-number {
+      font-size: 36px;
+  }
+}

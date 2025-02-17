@@ -43,6 +43,8 @@
                         <li><a class="dropdown-item" href="#services-second-section">İkinci Bölüm</a></li>
                         <li><a class="dropdown-item" href="#main-services-add-section">Ana Hizmetler</a></li>
                         <li><a class="dropdown-item" href="#main-services-main-page-section">Ana Sayfa Hizmetleri</a></li>
+                        <li><a class="dropdown-item" href="#custom-services-section">Özel Hizmetler İlk Bölüm</a></li>
+                        <li><a class="dropdown-item" href="#custom-services-images-section">Özel Hizmet Resimleri</a></li>
                     </ul>
                 </div>
 
@@ -67,6 +69,7 @@
                     <ul class="dropdown-menu dropdown-menu-dark">
                         <li><a class="dropdown-item" href="#statistics-section">İstatistikler</a></li>
                         <li><a class="dropdown-item" href="#contact-section">İletişim Bilgileri</a></li>
+                        <li><a class="dropdown-item" href="#steps-section">Sercise Stepleri</a></li>
                     </ul>
                 </div>
             </div>
@@ -499,18 +502,18 @@
                         <h5 class="mb-0">Ana Sayfa Hizmet Görünümü</h5>
                     </div>
 
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label class="form-label">Hizmet Seçin</label>
-                            <select class="form-control" id="mainPageServiceSelect">
-                                <!-- JavaScript ile doldurulacak -->
-                            </select>
-                        </div>
-                    </div>
-
 
                     <div class="card-body">
                         <form id="main-services-main-page-section-form">
+
+                            <div class="mb-3">
+                                <label class="form-label">Hizmet Seçin</label>
+                                <select class="form-control" id="mainPageServiceSelect">
+                                    <!-- JavaScript ile doldurulacak -->
+                                </select>
+                            </div>
+
+
                             <div class="mb-3">
                                 <label class="form-label">Açıklama</label>
                                 <textarea class="form-control" id="main-services-main-page-section-description" rows="2" required></textarea>
@@ -534,7 +537,88 @@
             </div>
         </section>
 
-        
+
+        <!-- Custom Service Section -->
+        <section id="custom-services-section" class="admin-section">
+            <div class="admin-container">
+                <h2 class="mb-4">Özel Hizmet İlk BölümYönetimi</h2>
+                
+                <!-- Custom Service Section -->
+                <div class="card bg-dark text-light mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Özel Hizmet İlk Bölüm Yönetimi</h5>
+                    </div>
+
+                    <div class="card-body">
+                        <form id="custom-services-section-form">
+
+                            <div class="mb-3">
+                                <label class="form-label">Hizmet Seçin</label>
+                                <select class="form-control" id="custom-services-section-select">
+                                    <!-- JavaScript ile doldurulacak -->
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Açıklama</label>
+                                <textarea class="form-control" id="custom-services-section-description" rows="2" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Resim (images/services/custom klasöründen)</label>
+                                <input type="text" class="form-control" id="custom-services-section-image" 
+                                       placeholder="Örnek: service1.jpg" required>
+                                <div class="form-text text-light">Resim dosyasını images/services/custom klasörüne ekledikten sonra sadece dosya adını yazın.</div>
+                            </div>
+                            <button type="submit" class="btn btn-gold">Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Hizmetler Önizleme -->
+                <h2 class="mb-3">Özel Hizmet Önizleme</h2>
+                <div class="main-services-preview" id="custom-services-section-preview">
+                    <!-- JavaScript ile doldurulacak -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Custom Services Images Section -->
+        <section id="custom-services-images-section" class="admin-section">
+            <div class="admin-container">
+                <h2 class="mb-4">Özel Hizmet Resimleri Yönetimi</h2>
+                
+                <!-- Custom Services Images Section -->
+                <div class="card bg-dark text-light mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Özel Hizmet Resimleri Yönetimi</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="custom-services-images-section-form">
+                            <div class="mb-3">
+                                <label class="form-label">Hizmet Seçin</label>
+                                <select class="form-control" id="custom-services-images-section-select">
+                                    <!-- JavaScript ile doldurulacak -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Resim (images/services/custom klasöründen)</label>
+                                <input type="text" class="form-control" id="custom-services-images-section-image" 
+                                       placeholder="Örnek: a1.jpg" required>
+                                <div class="form-text text-light">Resim dosyasını images/services/custom klasörüne ekledikten sonra sadece dosya adını yazın.</div>
+                            </div>
+                            <button type="submit" class="btn btn-gold">Resim Ekle</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- İnfo First Section Önizleme -->
+                <h2 class="mb-3">Mevcut Resimler Önizleme</h2>
+                <div class="content-preview" id="custom-services-images-section-preview">
+                    <!-- JavaScript ile doldurulacak -->
+                </div>
+            </div>
+        </section>
     </div>
 
 
@@ -705,6 +789,52 @@
             </div>
         </section>
 
+
+        <!-- Steps Section -->
+    <section id="steps-section" class="admin-section">
+        <div class="admin-container">
+            <h2 class="mb-4">Adımlar Yönetimi</h2>
+            
+            <div class="card bg-dark text-light mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Adım İçerik Düzenleme</h5>
+                </div>
+                <div class="card-body">
+                    <form id="stepsForm">
+                        <div class="mb-3">
+                            <label class="form-label">Düzenlenecek Adım</label>
+                            <select class="form-control" id="stepSelect" required>
+                                <option value="1">Adım 1 - Tasarım</option>
+                                <option value="2">Adım 2 - Üretim</option>
+                                <option value="3">Adım 3 - Proje Uygulama</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Başlık</label>
+                            <input type="text" class="form-control" id="stepTitle" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Açıklama</label>
+                            <textarea class="form-control" id="stepDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Resim (images/steps/ klasöründen)</label>
+                            <input type="text" class="form-control" id="stepImage" 
+                                   placeholder="Örnek: step1.jpg" required>
+                            <div class="form-text text-light">Resim dosyasını images/steps/ klasörüne ekledikten sonra sadece dosya adını yazın.</div>
+                        </div>
+                        <button type="submit" class="btn btn-gold">Adımı Güncelle</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Steps Preview -->
+            <h2 class="mb-3">Adımlar Önizleme</h2>
+            <div class="content-preview" id="stepsPreview">
+                <!-- JavaScript ile doldurulacak -->
+            </div>
+        </div>
+    </section>
 
     </div>
 

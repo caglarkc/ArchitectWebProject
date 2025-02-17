@@ -87,6 +87,33 @@ let contactsFirstSectionData = JSON.parse(localStorage.getItem('contactsFirstSec
 
 
 
+// Steps verilerini tutan değişken
+let stepsData = JSON.parse(localStorage.getItem('stepsData')) || {
+    steps: [
+        {
+            number: "01",
+            title: "Tasarım",
+            description: "Hayalinizdeki tasarımı bize anlatın\nya da ölçüleri bizimle paylaşın.\nSizin için üretelim.",
+            image: "deneme (1).jpg"
+        },
+        {
+            number: "02",
+            title: "Üretim",
+            description: "2000 m²'lik üretim merkezimizde\nsıfır hata payı ile\nmobilyalarınızı üretiyoruz.",
+            image: "deneme (2).jpg"
+        },
+        {
+            number: "03",
+            title: "Proje Uygulama",
+            description: "Söz verilen tarihte mobilyalarınızın\nuygulamasını ve montajını\ngerçekleştiriyoruz.",
+            image: "deneme (3).jpg"
+        }
+    ]
+};
+
+// Custom Services Images verilerini tutan değişken
+let customServicesImagesData = JSON.parse(localStorage.getItem('customServicesImagesData')) || {};
+
 // Sayfa yüklendiğinde form alanlarını doldur ve önizlemeleri göster
 document.addEventListener('DOMContentLoaded', function() {
     // Slider önizlemesini göster
@@ -181,6 +208,32 @@ document.addEventListener('DOMContentLoaded', function() {
     populateMainPageServiceSelect();
 
     updateMainPageServices();
+
+    // Custom services select'i doldur
+    populateCustomServicesSelect();
+
+    // Steps verilerini forma doldur
+    document.getElementById('stepSelect').addEventListener('change', function() {
+        const selectedStep = stepsData.steps[this.value - 1];
+        document.getElementById('stepTitle').value = selectedStep.title;
+        document.getElementById('stepDescription').value = selectedStep.description;
+        document.getElementById('stepImage').value = selectedStep.image;
+    });
+
+    // İlk adımın verilerini yükle
+    document.getElementById('stepSelect').dispatchEvent(new Event('change'));
+
+    // Steps önizlemesini göster
+    updateStepsPreview();
+
+    // Custom services images select'i doldur
+    populateCustomServicesImagesSelect();
+    
+    // Select değiştiğinde önizlemeyi güncelle
+    document.getElementById('custom-services-images-section-select').addEventListener('change', function() {
+        const selectedService = this.options[this.selectedIndex].text;
+        updateCustomServicesImagesPreview(selectedService);
+    });
 });
 
 // Form submit olduğunda içeriği güncelle
@@ -1088,7 +1141,7 @@ function populateMainPageServiceSelect() {
 
 
 
-// Hizmet Ekleme Submit olduğunda
+// Ana Sayfa Hizmet Ekleme Submit olduğunda
 document.getElementById('main-services-main-page-section-form').addEventListener('submit', function(e) {
     e.preventDefault();
     const mainPageServiceSelect = document.getElementById('mainPageServiceSelect');
@@ -1139,7 +1192,6 @@ document.getElementById('main-services-main-page-section-form').addEventListener
 function updateMainPageServices() {
     const mainPageServicePreview = document.getElementById('main-services-main-page-section-preview');
     const mainPageServicesData = JSON.parse(localStorage.getItem('mainPageServicesData')) || [];
-    const mainServicesData = JSON.parse(localStorage.getItem('mainServicesData')) || [];
 
     if (mainPageServicesData.length === 0) {
         mainPageServicePreview.innerHTML = '<p class="text-muted">Henüz bir hizmet eklenmedi.</p>';
@@ -1166,7 +1218,7 @@ function updateMainPageServices() {
     mainPageServicePreview.innerHTML = cardsHTML;
 }
 
-// Hizmet seçildiğinde mevcut verileri forma doldur
+// Ana Sayfa Hizmet seçildiğinde mevcut verileri forma doldur
 document.getElementById('mainPageServiceSelect').addEventListener('change', function() {
     const mainPageServicesData = JSON.parse(localStorage.getItem('mainPageServicesData')) || [];
     
@@ -1181,3 +1233,316 @@ document.getElementById('mainPageServiceSelect').addEventListener('change', func
         document.getElementById('main-services-main-page-section-image').value = '';
     }
 });
+
+
+
+
+// Custom Hizmete Yeni Section Ekleme Submit olduğunda
+document.getElementById('custom-services-section-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const customServicesSelect = document.getElementById('custom-services-section-select');
+    const mainServicesData = JSON.parse(localStorage.getItem('mainServicesData'));
+
+    if (!customServicesSelect.value) {
+        alert('Lütfen bir hizmet seçin!');
+        return;
+    }
+
+    const selectedServiceIndex = parseInt(customServicesSelect.value);
+    const selectedService = mainServicesData[selectedServiceIndex];
+
+    // Mevcut custom sections'ları al
+    let customServicesData = JSON.parse(localStorage.getItem('customServicesData')) || {};
+    
+    // Seçili hizmet için sections array'ini oluştur (yoksa)
+    if (!customServicesData[selectedService.name]) {
+        customServicesData[selectedService.name] = [];
+    }
+
+    const newSection = {
+        id: Date.now(),
+        description: document.getElementById('custom-services-section-description').value,
+        image: document.getElementById('custom-services-section-image').value,
+        order: customServicesData[selectedService.name].length
+    };
+
+    customServicesData[selectedService.name].push(newSection);
+    
+    // LocalStorage'a kaydet
+    localStorage.setItem('customServicesData', JSON.stringify(customServicesData));
+    updateCustomServicesPreview(selectedService.name);
+    
+    // Formu temizle
+    this.reset();
+    alert('Section başarıyla eklendi!');
+});
+
+// Custom services preview güncelleme
+function updateCustomServicesPreview(serviceName) {
+    const previewContainer = document.getElementById('custom-services-section-preview');
+    const customServicesData = JSON.parse(localStorage.getItem('customServicesData')) || {};
+    
+    if (!serviceName || !customServicesData[serviceName]) {
+        previewContainer.innerHTML = '<p class="text-muted">Lütfen bir hizmet seçin veya section ekleyin.</p>';
+        return;
+    }
+
+    const sections = customServicesData[serviceName];
+    
+    // Sections'ları order'a göre sırala
+    sections.sort((a, b) => a.order - b.order);
+
+    const sectionsHTML = sections.map((section, index) => `
+        <div class="custom-service-section-preview" data-id="${section.id}">
+            <div class="section-preview-controls">
+                <button class="btn btn-sm btn-warning" onclick="editCustomSection('${serviceName}', ${section.id})">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-danger" onclick="deleteCustomSection('${serviceName}', ${section.id})">
+                    <i class="fas fa-trash"></i>
+                </button>
+                ${index > 0 ? `
+                    <button class="btn btn-sm btn-info" onclick="moveCustomSection('${serviceName}', ${section.id}, 'up')">
+                        <i class="fas fa-arrow-up"></i>
+                    </button>
+                ` : ''}
+                ${index < sections.length - 1 ? `
+                    <button class="btn btn-sm btn-info" onclick="moveCustomSection('${serviceName}', ${section.id}, 'down')">
+                        <i class="fas fa-arrow-down"></i>
+                    </button>
+                ` : ''}
+            </div>
+            <div class="section-preview-content">
+                <img src="images/services/custom/${section.image}" alt="${serviceName} section ${index + 1}">
+                <p>${section.description}</p>
+            </div>
+        </div>
+    `).join('');
+
+    previewContainer.innerHTML = sectionsHTML;
+}
+
+// Custom service select change event
+document.getElementById('custom-services-section-select').addEventListener('change', function() {
+    const selectedService = this.options[this.selectedIndex].text;
+    updateCustomServicesPreview(selectedService);
+});
+
+// Section düzenleme
+function editCustomSection(serviceName, sectionId) {
+    const customServicesData = JSON.parse(localStorage.getItem('customServicesData'));
+    const section = customServicesData[serviceName].find(s => s.id === sectionId);
+    
+    if (section) {
+        document.getElementById('custom-services-section-description').value = section.description;
+        document.getElementById('custom-services-section-image').value = section.image;
+        
+        // Form submit event'ini güncelleme moduna al
+        const form = document.getElementById('custom-services-section-form');
+        form.dataset.editMode = 'true';
+        form.dataset.editServiceName = serviceName;
+        form.dataset.editSectionId = sectionId;
+        
+        // Submit butonunu güncelle
+        form.querySelector('button[type="submit"]').textContent = 'Değişiklikleri Kaydet';
+    }
+}
+
+// Section silme
+function deleteCustomSection(serviceName, sectionId) {
+    if (confirm('Bu section\'ı silmek istediğinizden emin misiniz?')) {
+        const customServicesData = JSON.parse(localStorage.getItem('customServicesData'));
+        customServicesData[serviceName] = customServicesData[serviceName].filter(s => s.id !== sectionId);
+        
+        // Order'ları güncelle
+        customServicesData[serviceName].forEach((section, index) => {
+            section.order = index;
+        });
+        
+        localStorage.setItem('customServicesData', JSON.stringify(customServicesData));
+        updateCustomServicesPreview(serviceName);
+    }
+}
+
+// Section sırasını değiştirme
+function moveCustomSection(serviceName, sectionId, direction) {
+    const customServicesData = JSON.parse(localStorage.getItem('customServicesData'));
+    const sections = customServicesData[serviceName];
+    const currentIndex = sections.findIndex(s => s.id === sectionId);
+    
+    if (direction === 'up' && currentIndex > 0) {
+        [sections[currentIndex].order, sections[currentIndex - 1].order] = 
+        [sections[currentIndex - 1].order, sections[currentIndex].order];
+    } else if (direction === 'down' && currentIndex < sections.length - 1) {
+        [sections[currentIndex].order, sections[currentIndex + 1].order] = 
+        [sections[currentIndex + 1].order, sections[currentIndex].order];
+    }
+    
+    localStorage.setItem('customServicesData', JSON.stringify(customServicesData));
+    updateCustomServicesPreview(serviceName);
+}
+
+// Custom services select'i doldur
+function populateCustomServicesSelect() {
+    const customServicesSelect = document.getElementById('custom-services-section-select');
+    const mainServicesData = JSON.parse(localStorage.getItem('mainServicesData')) || [];
+    
+    // Mevcut seçenekleri temizle
+    customServicesSelect.innerHTML = '<option value="">Hizmet Seçin</option>';
+    
+    // Her hizmet için bir seçenek ekle
+    mainServicesData.forEach((service, index) => {
+        const option = document.createElement('option');
+        option.value = index;
+        option.textContent = service.name;
+        customServicesSelect.appendChild(option);
+    });
+}
+
+// Steps form submit
+document.getElementById('stepsForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const stepIndex = document.getElementById('stepSelect').value - 1;
+    
+    // Form verilerini al
+    stepsData.steps[stepIndex] = {
+        number: String(stepIndex + 1).padStart(2, '0'),
+        title: document.getElementById('stepTitle').value,
+        description: document.getElementById('stepDescription').value,
+        image: document.getElementById('stepImage').value
+    };
+    
+    // LocalStorage'ı güncelle
+    localStorage.setItem('stepsData', JSON.stringify(stepsData));
+    
+    // Önizlemeyi güncelle
+    updateStepsPreview();
+    
+    alert('Adım başarıyla güncellendi!');
+});
+
+// Steps önizlemesini güncelle
+function updateStepsPreview() {
+    const previewContainer = document.getElementById('stepsPreview');
+    
+    previewContainer.innerHTML = `
+        <div class="service-steps">
+            ${stepsData.steps.map(step => `
+                <div class="step-item">
+                    <div class="step-circle">
+                        <span class="step-number">${step.number}</span>
+                        <img src="images/steps/${step.image}" alt="${step.title}" class="step-image">
+                    </div>
+                    <h3 class="step-title">${step.title}</h3>
+                    <p class="step-description">${step.description}</p>
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
+
+// Custom services images select'i doldur
+function populateCustomServicesImagesSelect() {
+    const customServicesImagesSelect = document.getElementById('custom-services-images-section-select');
+    const mainServicesData = JSON.parse(localStorage.getItem('mainServicesData')) || [];
+    
+    // Mevcut seçenekleri temizle
+    customServicesImagesSelect.innerHTML = '';
+    
+    // Her hizmet için bir seçenek ekle
+    mainServicesData.forEach((service, index) => {
+        const option = document.createElement('option');
+        option.value = index;
+        option.textContent = service.name;
+        customServicesImagesSelect.appendChild(option);
+    });
+
+    updateCustomServicesImagesPreview(mainServicesData[0].name);
+}
+
+// Custom Services Images form submit
+document.getElementById('custom-services-images-section-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const select = document.getElementById('custom-services-images-section-select');
+    const serviceName = select.options[select.selectedIndex].text;
+    
+    if (!serviceName || serviceName == 'Hizmet Seçin') {
+        alert('Lütfen bir hizmet seçin!');
+        return;
+    }
+
+    // Yeni resim verisi
+    const newImage = {
+        id: Date.now(),
+        image: document.getElementById('custom-services-images-section-image').value
+    };
+
+    // Seçili hizmet için images array'ini oluştur (yoksa)
+    if (!customServicesImagesData[serviceName]) {
+        customServicesImagesData[serviceName] = [];
+    }
+
+    // Yeni resmi ekle
+    customServicesImagesData[serviceName].push(newImage);
+    
+    // LocalStorage'ı güncelle
+    localStorage.setItem('customServicesImagesData', JSON.stringify(customServicesImagesData));
+    
+    // Önizlemeyi güncelle
+    updateCustomServicesImagesPreview(serviceName);
+    
+    // Formu temizle
+    this.reset();
+    alert('Resim başarıyla eklendi!');
+});
+
+// Resim sil
+function deleteCustomServiceImage(serviceName, imageId) {
+    if (confirm('Bu resmi silmek istediğinizden emin misiniz?')) {
+        customServicesImagesData[serviceName] = customServicesImagesData[serviceName].filter(img => img.id !== imageId);
+        localStorage.setItem('customServicesImagesData', JSON.stringify(customServicesImagesData));
+        updateCustomServicesImagesPreview(serviceName);
+    }
+}
+
+// Custom services images preview güncelleme
+function updateCustomServicesImagesPreview(serviceName) {
+    const previewContainer = document.getElementById('custom-services-images-section-preview');
+    
+    if (!serviceName || !customServicesImagesData[serviceName]) {
+        previewContainer.innerHTML = '<p class="text-muted">Lütfen bir hizmet seçin veya resim ekleyin.</p>';
+        return;
+    }
+
+    const images = customServicesImagesData[serviceName];
+
+    previewContainer.innerHTML = `
+        <div class="fifth-header">
+            <h6>ÖRNEK RESİMLER</h6>
+            <h2>${serviceName}</h2>
+        </div>
+        <div class="fifth-grid">
+            ${images.map(img => `
+                <div class="fifth-item">
+                    <img src="images/services/custom/${img.image}" alt="${serviceName}">
+                    <div class="image-controls">
+                        <button class="btn btn-sm btn-danger" onclick="deleteCustomServiceImage('${serviceName}', ${img.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
+
+
+
+
+
+
+
+
+

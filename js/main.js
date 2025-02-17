@@ -29,19 +29,27 @@ $(document).ready(function() {
     if (window.location.pathname.endsWith('mainPage.html') || window.location.pathname.endsWith('/')) {
         loadMainContent();
         displayLatestBlogs();
+        // Slider fonksiyonalitesi
+        initializeSlider();
     }
 
     // İstatistikleri başlat
     initializeStats();
 
-    // Slider fonksiyonalitesi
-    initializeSlider();
+    
 
+    // Özel hizmet sayfasını başlat
+    const currentPath = window.location.pathname;
+    const searchParams = window.location.search;
+    
+    if (currentPath.includes('custom_service.html') && searchParams.includes('?service=')) {
+        initializeCustomService();
+    }
 });
 
 // Aktif menü öğesini belirle
 function setActiveMenuItem() {
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const currentPage = window.location.pathname.split('/').pop() || 'mainPage.html';
     $('.nav-list a').removeClass('active');
     $(`.nav-list a[href="${currentPage}"]`).addClass('active');
 }
@@ -59,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeContactsFirstSection();
     populateServicesDropdown();
     initializeFourthSection();
+
 });
 
 // İstatistik Sayaçları
@@ -779,21 +788,37 @@ function initializeContactsFirstSection() {
 
 // Dropdown menüyü doldur
 function populateServicesDropdown() {
-    
     const services = [];
     const mainServicesData = JSON.parse(localStorage.getItem('mainServicesData')) || [];
     mainServicesData.forEach(service => {
-        services.push({ title: service.name, link: `/custom_service.html` });
+        const urlFriendlyName = service.name
+            .toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[ğ]/g, 'g')
+            .replace(/[ü]/g, 'u')
+            .replace(/[ş]/g, 's')
+            .replace(/[ı]/g, 'i')
+            .replace(/[ö]/g, 'o')
+            .replace(/[ç]/g, 'c')
+            .replace(/[^a-z0-9-]/g, '');
+
+        services.push({ 
+            title: service.name, 
+            link: `/custom_service.html?service=${urlFriendlyName}`,
+            id: service.id
+        });
     });
     
     const dropdown = document.getElementById('services-dropdown');
     if (dropdown) {
-        dropdown.innerHTML = ''; // Önceki içeriği temizle
+        dropdown.innerHTML = '';
         services.forEach(service => {
             const li = document.createElement('li');
             const a = document.createElement('a');
             a.href = service.link;
             a.textContent = service.title;
+            // ID'yi data attribute olarak ekle
+            a.dataset.serviceId = service.id;
             li.appendChild(a);
             dropdown.appendChild(li);
         });
@@ -893,4 +918,69 @@ function initializeFourthSection() {
     });
 }
 
+// Özel hizmet sayfasını başlat
+function initializeCustomService() {
+    // URL'den hizmet adını al
+    const urlParams = new URLSearchParams(window.location.search);
+    const serviceName = urlParams.get('service');
+    
+    if (!serviceName) {
+        console.error('Hizmet adı bulunamadı');
+        return;
+    }
 
+    // LocalStorage'dan hizmet verilerini al
+    const mainServicesData = JSON.parse(localStorage.getItem('mainServicesData')) || [];
+    
+    // URL-friendly ismi orijinal isme çevir ve hizmeti bul
+    const service = mainServicesData.find(s => {
+        const urlFriendlyName = s.name
+            .toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[ğ]/g, 'g')
+            .replace(/[ü]/g, 'u')
+            .replace(/[ş]/g, 's')
+            .replace(/[ı]/g, 'i')
+            .replace(/[ö]/g, 'o')
+            .replace(/[ç]/g, 'c')
+            .replace(/[^a-z0-9-]/g, '');
+        return urlFriendlyName === serviceName;
+    });
+
+    if (!service) {
+        console.error('Hizmet bulunamadı');
+        return;
+    }
+
+
+    const customServiceSection = document.getElementById('custom-service-section');
+    const customServiceName = document.getElementById('custom-service-name');
+    const customServiceMainTitle = document.getElementById('custom-service-main-title');
+    const customServiceSubTitle = document.getElementById('custom-service-sub-title');
+    const customServiceDescription = document.getElementById('custom-service-description');
+
+    if (customServiceSection && customServiceName && customServiceMainTitle && 
+        customServiceSubTitle && customServiceDescription) {
+        
+        // Başlığı güncelle
+        customServiceName.textContent = service.name;
+        customServiceMainTitle.textContent = service.mainTitle;
+        customServiceSubTitle.textContent = service.subTitle;
+        customServiceDescription.textContent = service.description;
+
+        // Arkaplan resmini güncelle
+        if (service.image) {
+            const backgroundImageUrl = `images/services/first_section/${service.image}`;
+            console.log('Background image URL:', backgroundImageUrl);
+            customServiceSection.style.backgroundImage = 
+                `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('${backgroundImageUrl}')`;
+        } else {
+            console.error('Service image is undefined');
+        }
+        
+        // Overlay ekle
+        customServiceSection.style.position = 'relative';
+        customServiceSection.style.backgroundSize = 'cover';
+        customServiceSection.style.backgroundPosition = 'center';
+    }
+}

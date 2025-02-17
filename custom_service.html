@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="css/custom_service.css">
     <link rel="stylesheet" href="css/custom_styles/values.css">
     <link rel="stylesheet" href="css/custom_styles/header.css">
+    <link rel="stylesheet" href="css/steps.css">
+    <link rel="stylesheet" href="css/mainPageCss/fifth.css">
 </head>
 
 <body>
@@ -16,9 +18,77 @@
     <div id="header-container"></div>
 
     <!-- Özel Hizmet Section -->
-    <section class="custom-service-section">
+    <section class="custom-service-section" id="custom-service-section">
         <div class="custom-service-content">
-            <h1 class="custom-service-title"></h1>
+            <h1 class="custom-service-name" id="custom-service-name"></h1>
+            <h2 class="custom-service-main-title" id="custom-service-main-title"></h2>
+            <h3 class="custom-service-sub-title" id="custom-service-sub-title"></h3>
+            <h4 class="custom-service-description" id="custom-service-description"></h4>
+        </div>
+    </section>
+
+
+    <section id="service-steps-container" class="service-steps">
+        <div class="service-steps">
+            <div class="step-item">
+              <div class="step-circle">
+                <span class="step-number">01</span>
+                <img src="images/all_images/deneme (1).jpg" alt="Tasarım" class="step-image">
+              </div>
+              <h3 class="step-title">Tasarım</h3>
+              <p class="step-description">
+                Hayalinizdeki tasarımı bize anlatın<br>
+                ya da ölçüleri bizimle paylaşın.<br>
+                Sizin için üretelim.
+              </p>
+            </div>
+          
+            <div class="step-item">
+              <div class="step-circle">
+                <span class="step-number">02</span>
+                <img src="images/all_images/deneme (2).jpg" alt="Üretim" class="step-image">
+              </div>
+              <h3 class="step-title">Üretim</h3>
+              <p class="step-description">
+                2000 m²'lik üretim merkezimizde<br>
+                sıfır hata payı ile<br>
+                mobilyalarınızı üretiyoruz.
+              </p>
+            </div>
+          
+            <div class="step-item">
+              <div class="step-circle">
+                <span class="step-number">03</span>
+                <img src="images/all_images/deneme (3).jpg" alt="Proje Uygulama" class="step-image">
+              </div>
+              <h3 class="step-title">Proje Uygulama</h3>
+              <p class="step-description">
+                Söz verilen tarihte mobilyalarınızın<br>
+                uygulamasını ve montajını<br>
+                gerçekleştiriyoruz.
+              </p>
+            </div>
+          </div> 
+
+    </section>
+
+
+    <section id="special-sections-container" class="special-sections">
+        <!-- Custom sections buraya yüklenecek -->
+    </section>
+
+
+    <!-- Projeler Bölümü -->
+    <section class="fifth-section" id="sample-images-section">
+        <div class="container">
+            <div class="fifth-header">
+                <h6>ÖRNEK RESİMLER</h6>
+                <h2><span id="sample-images-title"></span> Resimleri</h2>
+            </div>
+
+            <div class="fifth-grid" id="sample-images-grid">
+                <!-- Örnek resimler JavaScript ile dinamik olarak buraya eklenecek -->
+            </div>
         </div>
     </section>
 
@@ -28,5 +98,6 @@
     <!-- Scriptler -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/custom_services.js"></script>
 </body>
 </html>
