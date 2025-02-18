@@ -5,18 +5,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Hizmet verileri
     const services = [
         // Mimari Hizmetler
-        { image: 'service_images/mimari/service1.jpg', category: 'mimari' },
-        { image: 'service_images/mimari/service2.jpg', category: 'mimari' },
-        { image: 'service_images/mimari/service3.jpg', category: 'mimari' },
+        { image: 'images/1.jpg', category: 'mimari' },
+        { image: 'images/2.jpg', category: 'mimari' },
+        { image: 'images/3.jpg', category: 'mimari' },
         
         // Ticari Hizmetler
-        { image: 'service_images/ticari/service1.jpg', category: 'ticari' },
-        { image: 'service_images/ticari/service2.jpg', category: 'ticari' },
+        { image: 'images/4.jpg', category: 'ticari' },
+        { image: 'images/5.jpg', category: 'ticari' },
         
         // Yaşam Alanı Hizmetleri
-        { image: 'service_images/yasam/service1.jpg', category: 'yasam' },
-        { image: 'service_images/yasam/service2.jpg', category: 'yasam' },
-        { image: 'service_images/yasam/service3.jpg', category: 'yasam' }
+        { image: 'images/6.jpg', category: 'yasam' },
+        { image: 'images/7.jpg', category: 'yasam' },
+        { image: 'images/8.jpg', category: 'yasam' }
     ];
 
     // Modal oluştur

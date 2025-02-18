@@ -1,35 +1,35 @@
-/*Values.css dosyasını içe aktar */
-@import 'custom_styles/values.css';
+/* Values.css dosyasını içe aktar */
+@import './custom_styles/values.css';
 
-/*Header.css dosyasını içe aktar */
-@import 'custom_styles/header.css';
+/* Header.css dosyasını içe aktar */
+@import './custom_styles/header.css';
 
-/*First.css dosyasını içe aktar */
-@import 'mainPageCss/first.css';
+/* First.css dosyasını içe aktar */
+@import './mainPageCss/first.css';
 
-/*Second.css dosyasını içe aktar */
-@import 'mainPageCss/second.css';
+/* Second.css dosyasını içe aktar */
+@import './mainPageCss/second.css';
 
-/*Third.css dosyasını içe aktar */
-@import 'mainPageCss/third.css';
+/* Third.css dosyasını içe aktar */
+@import './mainPageCss/third.css';
 
-/*Fourth.css dosyasını içe aktar */
-@import 'mainPageCss/fourth.css';
+/* Fourth.css dosyasını içe aktar */
+@import './mainPageCss/fourth.css';
 
-/*Fifth.css dosyasını içe aktar */
-@import 'mainPageCss/fifth.css';
+/* Fifth.css dosyasını içe aktar */
+@import './mainPageCss/fifth.css';
 
-/*Sixth.css dosyasını içe aktar */
-@import 'mainPageCss/sixth.css';
+/* Sixth.css dosyasını içe aktar */
+@import './mainPageCss/sixth.css';
 
-/*Seventh.css dosyasını içe aktar */
-@import 'mainPageCss/seventh.css';
+/* Seventh.css dosyasını içe aktar */
+@import './mainPageCss/seventh.css';
 
-/*Eight.css dosyasını içe aktar */
-@import 'mainPageCss/eight.css';
+/* Eight.css dosyasını içe aktar */
+@import './mainPageCss/eight.css';
 
-/*Nineth.css dosyasını içe aktar */
-@import 'mainPageCss/nineth.css';
+/* Nineth.css dosyasını içe aktar */
+@import './mainPageCss/nineth.css';
 
 
 

@@ -1,119 +1,3 @@
-// Slider verilerini localStorage'da saklayacağız
-let sliderData = JSON.parse(localStorage.getItem('sliderData')) || [];
-let editingSlideId = null; // Düzenlenen slide'ın ID'sini tutacak değişken
-
-
-// İçerik verilerini localStorage'da saklayacağız
-let contentData = JSON.parse(localStorage.getItem('contentData')) || {
-    title: 'Siz Hayal Edin &',
-    span: 'Biz Üretelim',
-    description: 'ETAŞ DESİGN 1992 yılından beri 2000 m2\'lik alanda 20 kişilik profesyonel ekibi ile tasarım, üretim ve proje uygulama alanında hizmet vermektedir. Mimari proje uygulama, özel ölçüye göre mobilya üretimi ve sıfırdan ihtiyaçlarınız doğrultusunda kendi bünyesinde hem tasarım hem üretim hizmeti vermektedir. Koşulsuz müşteri memnuniyeti vizyonu ile bugüne kadar gerçekleştirmiş olduğumuz tüm projelerimiz en büyük motivasyon kaynağımızdır.'
-};
-
-// Third section verilerini localStorage'da saklayacağız
-let thirdSectionData = JSON.parse(localStorage.getItem('thirdSectionData')) || {
-    text: 'Mobilyayı Sanat Eserine Dönüştürüyoruz.',
-    backgroundImage: 'images/background/third-bg.jpg'
-};
-
-// Referans verilerini localStorage'da saklayacağız
-let referencesData = JSON.parse(localStorage.getItem('referencesData')) || [];
-
-// İletişim bilgilerini localStorage'da saklayacağız
-let contactData = JSON.parse(localStorage.getItem('contactData')) || {
-    address: 'Zafer, Madalyon Sk no:4/B, 34197 Bahçelievler/İstanbul',
-    phone1: '0532 447 89 85',
-    phone2: '0 212 503 64 59',
-    email: 'bilgi@etasdesign.com',
-    workingDays: 'Pzt - Cts.',
-    workingHours: '09:00 - 19:00'
-};
-
-// İstatistik verilerini localStorage'da saklayacağız
-let statisticsData = JSON.parse(localStorage.getItem('statisticsData')) || {
-    experienceYears: 30,
-    satisfaction: 100,
-    teamSize: 20,
-    completedProjects: 1000,
-    icons: {
-        experience: 'experience.svg',
-        satisfaction: 'satisfaction.svg',
-        team: 'team.svg',
-        projects: 'projects.svg'
-    }
-};
-
-// Hakkımızda Bölümü FirstSection verilerini localStorage'da saklayacağız
-let infoFirstSectionData = JSON.parse(localStorage.getItem('infoFirstSectionData')) || {
-    text: 'HAKKIMIZDA',
-    backgroundImage: 'a1.jpg'
-};
-
-// Hakkımızda Bölümü SecondSection verilerini localStorage'da saklayacağız
-let infoSecondSectionData = JSON.parse(localStorage.getItem('infoSecondSectionData')) || {
-    capital: 'ETAŞ DESIGN',
-    description: "ETAŞ Design olarak 1992 yılından beri 2000 m²'lik alanda 20 kişilik ekibimizle hem tasarım hem de üretim süreçlerinde rol almaktayız. Alanında profesyonel ustalarımızla birlikte %100 müşteri memnuniyetini hedefleyerek özel tasarım mobilya üretimi yapmaktayız. Mimari projeler, konsept tasarımlar, yaşam alanları, kişiye özel mobilya üretimler, işyerleri vb. mobilyanın yer aldığı her alanda ihtiyaçlara yönelik özel çözümler üretmekteyiz. Tasarım, üretim ve montaj sürecinin tek bir çatı altında gerçekleşmesiyle kaliteyi uygun fiyatlara sunmaktayız."
-};
-
-// What We Do verilerini localStorage'da saklayacağız
-let whatWeDoData = JSON.parse(localStorage.getItem('whatWeDoData')) || {
-    title: 'Neler Yapıyoruz?',
-    description: 'Mobilya tasarım ve üretiminde profesyonel çözümler sunuyoruz.',
-    services: [
-        'Özel Tasarım Mobilya',
-        'Mimari Proje Uygulamaları',
-        'İç Mekan Tasarımı',
-        'Otel Mobilyaları'
-    ]
-};
-
-
-// Hizmetler Bölümü FirstSection verilerini localStorage'da saklayacağız
-let servicesFirstSectionData = JSON.parse(localStorage.getItem('servicesFirstSectionData')) || {
-    text: 'HİZMETLERİMİZ',
-    backgroundImage: 'a1.jpg'
-};
-
-let servicesSecondSectionData = JSON.parse(localStorage.getItem('servicesSecondSectionData')) || {
-    capital: 'NELER YAPIYORUZ?',
-    description: 'Ali Mobilyanın var olduğu her alanda özel ölçüye göre tasarımlar üretmekteyiz.<br>Mimari tasarımlarda ve konsept projelerde uygulamacı olarak çalışıyoruz.'
-};
-
-// İletişim Bölümü FirstSection verilerini localStorage'da saklayacağız
-let contactsFirstSectionData = JSON.parse(localStorage.getItem('contactsFirstSectionData')) || {
-    text: 'İLETİŞİM',
-    backgroundImage: 'a1.jpg'
-};
-
-
-
-// Steps verilerini tutan değişken
-let stepsData = JSON.parse(localStorage.getItem('stepsData')) || {
-    steps: [
-        {
-            number: "01",
-            title: "Tasarım",
-            description: "Hayalinizdeki tasarımı bize anlatın\nya da ölçüleri bizimle paylaşın.\nSizin için üretelim.",
-            image: "deneme (1).jpg"
-        },
-        {
-            number: "02",
-            title: "Üretim",
-            description: "2000 m²'lik üretim merkezimizde\nsıfır hata payı ile\nmobilyalarınızı üretiyoruz.",
-            image: "deneme (2).jpg"
-        },
-        {
-            number: "03",
-            title: "Proje Uygulama",
-            description: "Söz verilen tarihte mobilyalarınızın\nuygulamasını ve montajını\ngerçekleştiriyoruz.",
-            image: "deneme (3).jpg"
-        }
-    ]
-};
-
-// Custom Services Images verilerini tutan değişken
-let customServicesImagesData = JSON.parse(localStorage.getItem('customServicesImagesData')) || {};
-
 // Sayfa yüklendiğinde form alanlarını doldur ve önizlemeleri göster
 document.addEventListener('DOMContentLoaded', function() {
     // Slider önizlemesini göster
@@ -236,325 +120,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Form submit olduğunda içeriği güncelle
-document.getElementById('contentForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Form verilerini al
-    contentData = {
-        title: document.getElementById('contentTitle').value,
-        span: document.getElementById('contentSpan').value,
-        description: document.getElementById('contentDescription').value
-    };
-    
-    // LocalStorage'ı güncelle
-    localStorage.setItem('contentData', JSON.stringify(contentData));
-    
-    // İçerik önizlemesini güncelle
-    updateContentPreview();
-    
-    alert('İçerik başarıyla güncellendi!');
-});
 
-// İçerik önizlemesini güncelle
-function updateContentPreview() {
-    const previewContainer = document.getElementById('contentPreview');
-    previewContainer.innerHTML = `
-        <div class="second-section">
-            <div class="second-content">
-                <h2>${contentData.title} <span>${contentData.span}</span></h2>
-                <p>${contentData.description}</p>
-            </div>
-        </div>
-    `;
-}
+/* *************************** Ana Sayfa ****************************** */
 
-// Third section form submit
-document.getElementById('thirdSectionForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Form verilerini al
-    thirdSectionData = {
-        text: document.getElementById('thirdSectionText').value,
-        backgroundImage: 'images/background/' + document.getElementById('thirdSectionImage').value
-    };
-    
-    // LocalStorage'ı güncelle
-    localStorage.setItem('thirdSectionData', JSON.stringify(thirdSectionData));
-    
-    // İçerik önizlemesini güncelle
-    updateThirdSectionPreview();
-    
-    alert('Üçüncü bölüm içeriği başarıyla güncellendi!');
-});
-
-// Third section önizlemesini güncelle
-function updateThirdSectionPreview() {
-    const previewContainer = document.getElementById('thirdSectionPreview');
-    previewContainer.innerHTML = `
-        <div class="third-section" style="background-image: url('${thirdSectionData.backgroundImage}')">
-            <div class="third-content">
-                <p>${thirdSectionData.text}</p>
-            </div>
-        </div>
-    `;
-}
-
-// Referans form submit
-document.getElementById('referenceForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const imageName = document.getElementById('referenceImage').value;
-    // Resim adından gereksiz yolu temizle
-    const cleanImageName = imageName.split('/').pop().split('\\').pop();
-    
-    const referenceData = {
-        id: Date.now(),
-        image: 'images/references/' + cleanImageName,
-        name: document.getElementById('referenceName').value
-    };
-    
-    // Yeni referans ekle
-    referencesData.push(referenceData);
-    
-    // LocalStorage'ı güncelle
-    localStorage.setItem('referencesData', JSON.stringify(referencesData));
-    
-    // Formu temizle
-    this.reset();
-    
-    // Referanslar önizlemesini güncelle
-    updateReferencesPreview();
-    
-    alert('Referans başarıyla eklendi!');
-});
-
-// Referans sil
-function deleteReference(id) {
-    if (confirm('Bu referansı silmek istediğinizden emin misiniz?')) {
-        referencesData = referencesData.filter(ref => ref.id !== id);
-        localStorage.setItem('referencesData', JSON.stringify(referencesData));
-        updateReferencesPreview();
-    }
-}
-
-// Referans sırasını değiştir
-function moveReference(index, direction) {
-    if (direction === 'up' && index > 0) {
-        [referencesData[index], referencesData[index - 1]] = [referencesData[index - 1], referencesData[index]];
-    } else if (direction === 'down' && index < referencesData.length - 1) {
-        [referencesData[index], referencesData[index + 1]] = [referencesData[index + 1], referencesData[index]];
-    }
-    
-    localStorage.setItem('referencesData', JSON.stringify(referencesData));
-    updateReferencesPreview();
-}
-
-// Referanslar önizlemesini güncelle
-function updateReferencesPreview() {
-    const previewContainer = document.getElementById('referencesPreview');
-    
-    const referencesHTML = `
-        <div class="seventh-section">
-            <div class="seventh-container">
-                ${referencesData.map((ref, index) => `
-                    <div class="seventh-item">
-                        <img src="${ref.image}" alt="${ref.name}" onerror="this.src='images/placeholder.jpg'; this.onerror=null;">
-                        <div class="slide-actions mt-2">
-                            <button class="btn btn-danger btn-sm" onclick="deleteReference(${ref.id})">Sil</button>
-                            <button class="btn btn-secondary btn-sm" onclick="moveReference(${index}, 'up')" ${index === 0 ? 'disabled' : ''}>↑</button>
-                            <button class="btn btn-secondary btn-sm" onclick="moveReference(${index}, 'down')" ${index === referencesData.length - 1 ? 'disabled' : ''}>↓</button>
-                        </div>
-                        <div class="image-path mt-1 text-muted small">${ref.image}</div>
-                    </div>
-                `).join('')}
-            </div>
-        </div>
-    `;
-    
-    previewContainer.innerHTML = referencesHTML;
-}
-
-// Form submit olduğunda iletişim bilgilerini güncelle
-document.getElementById('contactInfoForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Form verilerini al
-    contactData = {
-        address: document.getElementById('contactAddress').value,
-        phone1: document.getElementById('contactPhone1').value,
-        phone2: document.getElementById('contactPhone2').value,
-        email: document.getElementById('contactEmail').value,
-        workingDays: document.getElementById('workingDays').value,
-        workingHours: document.getElementById('workingHours').value
-    };
-    
-    // LocalStorage'ı güncelle
-    localStorage.setItem('contactData', JSON.stringify(contactData));
-    
-    // İletişim bilgileri önizlemesini güncelle
-    updateContactPreview();
-    
-    alert('İletişim bilgileri başarıyla güncellendi!');
-});
-
-// İletişim bilgileri önizlemesini güncelle
-function updateContactPreview() {
-    const previewContainer = document.getElementById('contactPreview');
-    previewContainer.innerHTML = `
-        <div class="contact-container">
-            <div class="contact-info">
-                <div class="info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div class="info-content">
-                        <h3>Adres</h3>
-                        <p>${contactData.address}</p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-phone"></i>
-                    <div class="info-content">
-                        <h3>Telefon</h3>
-                        <p>${contactData.phone1}</p>
-                        ${contactData.phone2 ? `<p>${contactData.phone2}</p>` : ''}
-                    </div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-envelope"></i>
-                    <div class="info-content">
-                        <h3>E-posta</h3>
-                        <p>${contactData.email}</p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <i class="far fa-clock"></i>
-                    <div class="info-content">
-                        <h3>Çalışma Saatleri</h3>
-                        <p>${contactData.workingDays} / ${contactData.workingHours}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-// Form submit olduğunda istatistikleri güncelle
-document.getElementById('statisticsForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Form verilerini al
-    statisticsData = {
-        experienceYears: parseInt(document.getElementById('experienceYears').value),
-        satisfaction: parseInt(document.getElementById('satisfaction').value),
-        teamSize: parseInt(document.getElementById('teamSize').value),
-        completedProjects: parseInt(document.getElementById('completedProjects').value),
-        icons: {
-            experience: document.getElementById('experienceIcon').value,
-            satisfaction: document.getElementById('satisfactionIcon').value,
-            team: document.getElementById('teamIcon').value,
-            projects: document.getElementById('projectsIcon').value
-        }
-    };
-    
-    // LocalStorage'ı güncelle
-    localStorage.setItem('statisticsData', JSON.stringify(statisticsData));
-    
-    // İstatistik önizlemesini güncelle
-    updateStatisticsPreview();
-    
-    alert('İstatistikler başarıyla güncellendi!');
-});
-
-// İstatistik önizlemesini güncelle
-function updateStatisticsPreview() {
-    const previewContainer = document.getElementById('statisticsPreview');
-    previewContainer.innerHTML = `
-        <div class="sixth-section">
-            <div class="sixth-container">
-                <div class="sixth-item">
-                    <div class="sixth-icon">
-                        <img src="images/icons/${statisticsData.icons.experience}" alt="Tecrübe İkonu">
-                    </div>
-                    <div class="sixth-number">${statisticsData.experienceYears}+</div>
-                    <div class="sixth-text">Yıllık Tecrübe</div>
-                </div>
-
-                <div class="sixth-item">
-                    <div class="sixth-icon">
-                        <img src="images/icons/${statisticsData.icons.satisfaction}" alt="Memnuniyet İkonu">
-                    </div>
-                    <div class="sixth-number">${statisticsData.satisfaction}%</div>
-                    <div class="sixth-text">Müşteri Memnuniyeti</div>
-                </div>
-
-                <div class="sixth-item">
-                    <div class="sixth-icon">
-                        <img src="images/icons/${statisticsData.icons.team}" alt="Ekip İkonu">
-                    </div>
-                    <div class="sixth-number">${statisticsData.teamSize}</div>
-                    <div class="sixth-text">Profesyonel Ekip</div>
-                </div>
-
-                <div class="sixth-item">
-                    <div class="sixth-icon">
-                        <img src="images/icons/${statisticsData.icons.projects}" alt="Proje İkonu">
-                    </div>
-                    <div class="sixth-number">${statisticsData.completedProjects}</div>
-                    <div class="sixth-text">Tamamlanmış Proje</div>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-// Hizmet ekleme formu submit
-document.getElementById('serviceItemForm')?.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const newService = document.getElementById('serviceItemText').value;
-    
-    // Yeni hizmeti listeye ekle
-    whatWeDoData.services.push(newService);
-    
-    // LocalStorage'ı güncelle
-    localStorage.setItem('whatWeDoData', JSON.stringify(whatWeDoData));
-    
-    // Formu temizle
-    this.reset();
-    
-    // İçerik önizlemesini güncelle
-    updateWhatWeDoPreview();
-    
-    alert('Hizmet başarıyla eklendi!');
-});
-
-// Hizmet sil
-function deleteService(index) {
-    if (confirm('Bu hizmeti silmek istediğinizden emin misiniz?')) {
-        whatWeDoData.services.splice(index, 1);
-        localStorage.setItem('whatWeDoData', JSON.stringify(whatWeDoData));
-        updateWhatWeDoPreview();
-    }
-}
-
-// Hizmet sırasını değiştir
-function moveService(index, direction) {
-    if (direction === 'up' && index > 0) {
-        [whatWeDoData.services[index], whatWeDoData.services[index - 1]] = 
-        [whatWeDoData.services[index - 1], whatWeDoData.services[index]];
-    } else if (direction === 'down' && index < whatWeDoData.services.length - 1) {
-        [whatWeDoData.services[index], whatWeDoData.services[index + 1]] = 
-        [whatWeDoData.services[index + 1], whatWeDoData.services[index]];
-    }
-    
-    localStorage.setItem('whatWeDoData', JSON.stringify(whatWeDoData));
-    updateWhatWeDoPreview();
-}
-
-
-
-
-// Form submit olduğunda yeni slide ekle veya mevcut slide'ı güncelle
+/* ********************** Ana Sayfa - Slider ********************** */
+// Ana Sayfa - Slider
+let sliderData = JSON.parse(localStorage.getItem('sliderData')) || [];
+let editingSlideId = null; // Düzenlenen slide'ın ID'sini tutacak değişken
+// Ana Sayfa - Slider
 document.getElementById('sliderForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -572,7 +145,7 @@ document.getElementById('sliderForm').addEventListener('submit', function(e) {
             text: document.getElementById('secondBtnText').value,
             link: document.getElementById('secondBtnLink').value
         },
-        image: 'images/slides/' + document.getElementById('slideImage').value
+        image: 'images/' + document.getElementById('slideImage').value
     };
 
     if (editingSlideId) {
@@ -599,7 +172,7 @@ document.getElementById('sliderForm').addEventListener('submit', function(e) {
     
     alert(editingSlideId ? 'Slide başarıyla güncellendi!' : 'Slide başarıyla eklendi!');
 });
-// Slider önizlemesini güncelle
+// Ana Sayfa - Slider
 function updateSliderPreview() {
     const previewContainer = document.getElementById('sliderPreview');
     previewContainer.innerHTML = '';
@@ -633,7 +206,7 @@ function updateSliderPreview() {
         previewContainer.appendChild(slideElement);
     });
 }
-// Slide'ı sil
+// Ana Sayfa - Slider
 function deleteSlide(id) {
     if (confirm('Bu slide\'ı silmek istediğinizden emin misiniz?')) {
         sliderData = sliderData.filter(slide => slide.id !== id);
@@ -648,7 +221,7 @@ function deleteSlide(id) {
         }
     }
 }
-// Slide'ı düzenle
+// Ana Sayfa - Slider
 function editSlide(id) {
     const slide = sliderData.find(slide => slide.id === id);
     if (slide) {
@@ -672,7 +245,7 @@ function editSlide(id) {
         document.querySelector('button[type="submit"]').textContent = 'Değişiklikleri Kaydet';
     }
 }
-// Slide'ın sırasını değiştir
+// Ana Sayfa - Slider
 function moveSlide(index, direction) {
     if (direction === 'up' && index > 0) {
         [sliderData[index], sliderData[index - 1]] = [sliderData[index - 1], sliderData[index]];
@@ -684,8 +257,171 @@ function moveSlide(index, direction) {
     updateSliderPreview();
 }
 
+// Ana Sayfa - İkinci Bölüm
+let contentData = JSON.parse(localStorage.getItem('contentData')) || {
+    title: 'Siz Hayal Edin &',
+    span: 'Biz Üretelim',
+    description: 'ETAŞ DESİGN 1992 yılından beri 2000 m2\'lik alanda 20 kişilik profesyonel ekibi ile tasarım, üretim ve proje uygulama alanında hizmet vermektedir. Mimari proje uygulama, özel ölçüye göre mobilya üretimi ve sıfırdan ihtiyaçlarınız doğrultusunda kendi bünyesinde hem tasarım hem üretim hizmeti vermektedir. Koşulsuz müşteri memnuniyeti vizyonu ile bugüne kadar gerçekleştirmiş olduğumuz tüm projelerimiz en büyük motivasyon kaynağımızdır.'
+};
+// Ana Sayfa - İkinci Bölüm
+document.getElementById('contentForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Form verilerini al
+    contentData = {
+        title: document.getElementById('contentTitle').value,
+        span: document.getElementById('contentSpan').value,
+        description: document.getElementById('contentDescription').value
+    };
+    
+    // LocalStorage'ı güncelle
+    localStorage.setItem('contentData', JSON.stringify(contentData));
+    
+    // İçerik önizlemesini güncelle
+    updateContentPreview();
+    
+    alert('İçerik başarıyla güncellendi!');
+});
+// Ana Sayfa - İkinci Bölüm
+function updateContentPreview() {
+    const previewContainer = document.getElementById('contentPreview');
+    previewContainer.innerHTML = `
+        <div class="second-section">
+            <div class="second-content">
+                <h2>${contentData.title} <span>${contentData.span}</span></h2>
+                <p>${contentData.description}</p>
+            </div>
+        </div>
+    `;
+}
 
-// Hakkımızda Bölümü FirstSection Submit olduğunda
+/* ********************** Ana Sayfa - Üçüncü Bölüm ********************** */
+// Ana Sayfa - Üçüncü Bölüm
+let thirdSectionData = JSON.parse(localStorage.getItem('thirdSectionData')) || {
+    text: 'Mobilyayı Sanat Eserine Dönüştürüyoruz.',
+    backgroundImage: 'images/a1.jpg'
+};
+// Ana Sayfa - Üçüncü Bölüm
+document.getElementById('thirdSectionForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Form verilerini al
+    thirdSectionData = {
+        text: document.getElementById('thirdSectionText').value,
+        backgroundImage: 'images/' + document.getElementById('thirdSectionImage').value
+    };
+    
+    // LocalStorage'ı güncelle
+    localStorage.setItem('thirdSectionData', JSON.stringify(thirdSectionData));
+    
+    // İçerik önizlemesini güncelle
+    updateThirdSectionPreview();
+    
+    alert('Üçüncü bölüm içeriği başarıyla güncellendi!');
+});
+// Ana Sayfa - Üçüncü Bölüm
+function updateThirdSectionPreview() {
+    const previewContainer = document.getElementById('thirdSectionPreview');
+    previewContainer.innerHTML = `
+        <div class="third-section" style="background-image: url('${thirdSectionData.backgroundImage}')">
+            <div class="third-content">
+                <p>${thirdSectionData.text}</p>
+            </div>
+        </div>
+    `;
+}
+
+
+/* ********************** Ana Sayfa - Referanslar ********************** */
+// Ana Sayfa - Referanslar
+let referencesData = JSON.parse(localStorage.getItem('referencesData')) || [];
+// Ana Sayfa - Referanslar
+document.getElementById('referenceForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const imageName = document.getElementById('referenceImage').value;
+    // Resim adından gereksiz yolu temizle
+    const cleanImageName = imageName.split('/').pop().split('\\').pop();
+    
+    const referenceData = {
+        id: Date.now(),
+        image: 'images/' + cleanImageName,
+        name: document.getElementById('referenceName').value
+    };
+    
+    // Yeni referans ekle
+    referencesData.push(referenceData);
+    
+    // LocalStorage'ı güncelle
+    localStorage.setItem('referencesData', JSON.stringify(referencesData));
+    
+    // Formu temizle
+    this.reset();
+    
+    // Referanslar önizlemesini güncelle
+    updateReferencesPreview();
+    
+    alert('Referans başarıyla eklendi!');
+});
+// Ana Sayfa - Referanslar
+function deleteReference(id) {
+    if (confirm('Bu referansı silmek istediğinizden emin misiniz?')) {
+        referencesData = referencesData.filter(ref => ref.id !== id);
+        localStorage.setItem('referencesData', JSON.stringify(referencesData));
+        updateReferencesPreview();
+    }
+}
+// Ana Sayfa - Referanslar
+function moveReference(index, direction) {
+    if (direction === 'up' && index > 0) {
+        [referencesData[index], referencesData[index - 1]] = [referencesData[index - 1], referencesData[index]];
+    } else if (direction === 'down' && index < referencesData.length - 1) {
+        [referencesData[index], referencesData[index + 1]] = [referencesData[index + 1], referencesData[index]];
+    }
+    
+    localStorage.setItem('referencesData', JSON.stringify(referencesData));
+    updateReferencesPreview();
+}
+// Ana Sayfa - Referanslar
+function updateReferencesPreview() {
+    const previewContainer = document.getElementById('referencesPreview');
+    
+    const referencesHTML = `
+        <div class="seventh-section">
+            <div class="seventh-container">
+                ${referencesData.map((ref, index) => `
+                    <div class="seventh-item">
+                        <img src="${ref.image}" alt="${ref.name}" onerror="this.src='images/placeholder.jpg'; this.onerror=null;">
+                        <div class="slide-actions mt-2">
+                            <button class="btn btn-danger btn-sm" onclick="deleteReference(${ref.id})">Sil</button>
+                            <button class="btn btn-secondary btn-sm" onclick="moveReference(${index}, 'up')" ${index === 0 ? 'disabled' : ''}>↑</button>
+                            <button class="btn btn-secondary btn-sm" onclick="moveReference(${index}, 'down')" ${index === referencesData.length - 1 ? 'disabled' : ''}>↓</button>
+                        </div>
+                        <div class="image-path mt-1 text-muted small">${ref.image}</div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+    
+    previewContainer.innerHTML = referencesHTML;
+}
+
+
+
+/* ********************** Hakkımızda ********************** */
+
+
+
+
+
+
+// Hakkımızda - İlk Bölüm
+let infoFirstSectionData = JSON.parse(localStorage.getItem('infoFirstSectionData')) || {
+    text: 'HAKKIMIZDA',
+    backgroundImage: 'a1.jpg'
+};
+// Hakkımızda - İlk Bölüm
 document.getElementById('info-first-section-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -703,12 +439,11 @@ document.getElementById('info-first-section-form').addEventListener('submit', fu
     
     alert('Hakkımızda Bölümü FirstSection başarıyla güncellendi!');
 });
-
-// Hakkımızda Bölümü FirstSection Önizleme
+// Hakkımızda - İlk Bölüm
 function updateInfoFirstSectionPreview() {
     const previewContainer = document.getElementById('info-first-section-preview');
     previewContainer.innerHTML = `
-        <div class="first-section" style="background-image: url('images/info/first_section/${infoFirstSectionData.backgroundImage}')">
+        <div class="first-section" style="background-image: url('images/${infoFirstSectionData.backgroundImage}')">
             <div class="first-section-content">
                 <h2>${infoFirstSectionData.text}</h2>
                 <div class="breadcrumb-container">
@@ -721,7 +456,12 @@ function updateInfoFirstSectionPreview() {
     `;
 }
 
-// Hakkımızda Bölümü SecondSection Submit olduğunda
+// Hakkımızda - İkinci Bölüm
+let infoSecondSectionData = JSON.parse(localStorage.getItem('infoSecondSectionData')) || {
+    capital: 'ETAŞ DESIGN',
+    description: "ETAŞ Design olarak 1992 yılından beri 2000 m²'lik alanda 20 kişilik ekibimizle hem tasarım hem de üretim süreçlerinde rol almaktayız. Alanında profesyonel ustalarımızla birlikte %100 müşteri memnuniyetini hedefleyerek özel tasarım mobilya üretimi yapmaktayız. Mimari projeler, konsept tasarımlar, yaşam alanları, kişiye özel mobilya üretimler, işyerleri vb. mobilyanın yer aldığı her alanda ihtiyaçlara yönelik özel çözümler üretmekteyiz. Tasarım, üretim ve montaj sürecinin tek bir çatı altında gerçekleşmesiyle kaliteyi uygun fiyatlara sunmaktayız."
+};
+// Hakkımızda - İkinci Bölüm
 document.getElementById('info-second-section-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -739,8 +479,7 @@ document.getElementById('info-second-section-form').addEventListener('submit', f
     
     alert('Hakkımızda Bölümü İkinci Kısım başarıyla güncellendi!');
 });
-
-// Hakkımızda Bölümü SecondSection Önizleme
+// Hakkımızda - İkinci Bölüm
 function updateInfoSecondSectionPreview() {
     const previewContainer = document.getElementById('info-second-section-preview');
     previewContainer.innerHTML = `
@@ -751,7 +490,18 @@ function updateInfoSecondSectionPreview() {
     `;
 }
 
-// What We Do Submit olduğunda
+/// Hakkımızda - Üçüncü Bölüm
+let whatWeDoData = JSON.parse(localStorage.getItem('whatWeDoData')) || {
+    title: 'Neler Yapıyoruz?',
+    description: 'Mobilya tasarım ve üretiminde profesyonel çözümler sunuyoruz.',
+    services: [
+        'Özel Tasarım Mobilya',
+        'Mimari Proje Uygulamaları',
+        'İç Mekan Tasarımı',
+        'Otel Mobilyaları'
+    ]
+};
+// Hakkımızda - Üçüncü Bölüm
 document.getElementById('info-third-section-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -770,8 +520,7 @@ document.getElementById('info-third-section-form').addEventListener('submit', fu
     
     alert('Neler Yapıyoruz bölümü başarıyla güncellendi!');
 });
-
-// Hizmet input alanlarını güncelle
+// Hakkımızda - Üçüncü Bölüm
 function updateServicesInputs() {
     const container = document.getElementById('services-container');
     container.innerHTML = '';
@@ -780,8 +529,7 @@ function updateServicesInputs() {
         container.appendChild(createServiceInput(service, index));
     });
 }
-
-// Yeni hizmet input alanı oluştur
+// Hakkımızda - Üçüncü Bölüm
 function createServiceInput(value = '', index) {
     const div = document.createElement('div');
     div.className = 'input-group mb-2';
@@ -799,22 +547,19 @@ function createServiceInput(value = '', index) {
     `;
     return div;
 }
-
-// Yeni hizmet ekle butonu
+// Hakkımızda - Üçüncü Bölüm
 document.getElementById('add-service-btn').addEventListener('click', function() {
     whatWeDoData.services.push('');
     updateServicesInputs();
 });
-
-// Hizmet sil
+// Hakkımızda - Üçüncü Bölüm
 function removeService(index) {
     if (confirm('Bu hizmeti silmek istediğinizden emin misiniz?')) {
         whatWeDoData.services.splice(index, 1);
         updateServicesInputs();
     }
 }
-
-// Hizmet sırasını değiştir
+// Hakkımızda - Üçüncü Bölüm
 function moveService(index, direction) {
     if (direction === 'up' && index > 0) {
         [whatWeDoData.services[index], whatWeDoData.services[index - 1]] = 
@@ -825,15 +570,13 @@ function moveService(index, direction) {
     }
     updateServicesInputs();
 }
-
-// Input alanlarından hizmetleri al
+// Hakkımızda - Üçüncü Bölüm
 function getServicesFromInputs() {
     return Array.from(document.getElementsByClassName('service-input'))
         .map(input => input.value.trim())
         .filter(value => value !== '');
 }
-
-// What We Do Önizleme
+// Hakkımızda - Üçüncü Bölüm
 function updateWhatWeDoPreview() {
     const previewContainer = document.getElementById('info-third-section-preview');
     previewContainer.innerHTML = `
@@ -865,19 +608,13 @@ function updateWhatWeDoPreview() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-// Hakkımızda Bölümü FirstSection Submit olduğunda
+/* ********************** Hizmetler ********************** */
+// Hizmetler Bölümü FirstSection verilerini localStorage'da saklayacağız
+let servicesFirstSectionData = JSON.parse(localStorage.getItem('servicesFirstSectionData')) || {
+    text: 'HİZMETLERİMİZ',
+    backgroundImage: 'a1.jpg'
+};
+// Hizmetler - İlk Bölüm
 document.getElementById('services-first-section-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -895,12 +632,11 @@ document.getElementById('services-first-section-form').addEventListener('submit'
     
     alert('Hizmetler Bölümü FirstSection başarıyla güncellendi!');
 });
-
-// Hizmetler Bölümü FirstSection Önizleme
+// Hizmetler - İlk Bölüm
 function updateServicesFirstSectionPreview() {
     const previewContainer = document.getElementById('services-first-section-preview');
     previewContainer.innerHTML = `
-        <div class="first-section" style="background-image: url('images/services/first_section/${servicesFirstSectionData.backgroundImage}')">
+        <div class="first-section" style="background-image: url('images/${servicesFirstSectionData.backgroundImage}')">
             <div class="first-section-content">
                 <h2>${servicesFirstSectionData.text}</h2>
                 <div class="breadcrumb-container">
@@ -913,7 +649,11 @@ function updateServicesFirstSectionPreview() {
     `;
 }
 
-// Hizmetler Bölümü SecondSection Submit olduğunda
+let servicesSecondSectionData = JSON.parse(localStorage.getItem('servicesSecondSectionData')) || {
+    capital: 'NELER YAPIYORUZ?',
+    description: 'Ali Mobilyanın var olduğu her alanda özel ölçüye göre tasarımlar üretmekteyiz.<br>Mimari tasarımlarda ve konsept projelerde uygulamacı olarak çalışıyoruz.'
+};
+// Hizmetler - İkinci Bölüm
 document.getElementById('services-second-section-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -931,9 +671,7 @@ document.getElementById('services-second-section-form').addEventListener('submit
     
     alert('Hizmetler Bölümü SecondSection başarıyla güncellendi!');
 });
-
-
-// Hizmetler Bölümü SecondSection Önizleme
+// Hizmetler - İkinci Bölüm
 function updateServicesSecondSectionPreview() {
     const previewContainer = document.getElementById('services-second-section-preview');
     previewContainer.innerHTML = `
@@ -945,78 +683,9 @@ function updateServicesSecondSectionPreview() {
 }
 
 
-// İletişim Bölümü FirstSection Submit olduğunda
-document.getElementById('contacts-first-section-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Form verilerini al - parseInt kaldırıldı çünkü string değerler almalıyız
-    contactsFirstSectionData = {
-        text: document.getElementById('contacts-first-section-text').value,
-        backgroundImage: document.getElementById('contacts-first-section-image').value
-    };
-    
-    // LocalStorage'ı güncelle
-    localStorage.setItem('contactsFirstSectionData', JSON.stringify(contactsFirstSectionData));
-    
-    // Önizlemeyi güncelle
-    updateContactsFirstSectionPreview();
-    
-    alert('İletişim Bölümü FirstSection başarıyla güncellendi!');
-});
-
-
-// İletişim Bölümü FirstSection Önizleme
-function updateContactsFirstSectionPreview() {
-    const previewContainer = document.getElementById('contacts-first-section-preview');
-    previewContainer.innerHTML = `
-        <div class="first-section" style="background-image: url('images/contacts/first_section/${contactsFirstSectionData.backgroundImage}')">
-            <div class="first-section-content">
-                <h2>${contactsFirstSectionData.text}</h2>
-                <div class="breadcrumb-container">
-                    <a class="breadcrumb-item">Ana Sayfa</a>
-                    <span class="breadcrumb-separator">&gt;</span>
-                    <span class="breadcrumb-item active">İletişim</span>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Hizmet verilerini localStorage'da saklayacağız
+// Hizmetler - Ana Hizmetler
 let mainServicesData = JSON.parse(localStorage.getItem('mainServicesData')) || [];
-
-// Hizmet Ekleme Submit olduğunda
+// Hizmetler - Ana Hizmetler
 document.getElementById('main-services-add-section-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -1045,8 +714,7 @@ document.getElementById('main-services-add-section-form').addEventListener('subm
     
     alert('Hizmet başarıyla eklendi!');
 });
-
-// Hizmet Önizleme
+// Hizmetler - Ana Hizmetler
 function updateMainServicesPreview() {
     const previewContainer = document.getElementById('main-services-preview');
     previewContainer.innerHTML = mainServicesData.map((service, index) => `
@@ -1072,7 +740,7 @@ function updateMainServicesPreview() {
             <div class="main-service-preview-content">
                 <h3 class="main-service-name">${service.name}</h3>
                 <div class="main-service-image-container">
-                    <img src="images/services/${service.image}" alt="${service.name}">
+                    <img src="images/${service.image}" alt="${service.name}">
                     <div class="main-service-overlay">
                         <h4 class="main-service-main-title">${service.mainTitle}</h4>
                         <h5 class="main-service-sub-title">${service.subTitle}</h5>
@@ -1083,8 +751,7 @@ function updateMainServicesPreview() {
         </div>
     `).join('');
 }
-
-// Hizmet Silme
+// Hizmetler - Ana Hizmetler
 function deleteMainService(id) {
     if (confirm('Bu hizmeti silmek istediğinizden emin misiniz?')) {
         mainServicesData = mainServicesData.filter(service => service.id !== id);
@@ -1092,8 +759,7 @@ function deleteMainService(id) {
         updateMainServicesPreview();
     }
 }
-
-// Hizmet Sırasını Değiştirme
+// Hizmetler - Ana Hizmetler
 function moveMainService(id, direction) {
     const index = mainServicesData.findIndex(service => service.id === id);
     if (direction === 'up' && index > 0) {
@@ -1104,8 +770,7 @@ function moveMainService(id, direction) {
     localStorage.setItem('mainServicesData', JSON.stringify(mainServicesData));
     updateMainServicesPreview();
 }
-
-// Hizmet Düzenleme
+// Hizmetler - Ana Hizmetler
 function editMainService(id) {
     const service = mainServicesData.find(service => service.id === id);
     if (service) {
@@ -1121,7 +786,8 @@ function editMainService(id) {
     }
 }
 
-// Ana sayfa hizmet spinner'ını doldur
+
+// Hizmetler - Ana Sayfa Hizmetleri
 function populateMainPageServiceSelect() {
     const mainPageServiceSelect = document.getElementById('mainPageServiceSelect');
     const mainServicesData = JSON.parse(localStorage.getItem('mainServicesData')) || [];
@@ -1137,11 +803,7 @@ function populateMainPageServiceSelect() {
         mainPageServiceSelect.appendChild(option);
     });
 }
-
-
-
-
-// Ana Sayfa Hizmet Ekleme Submit olduğunda
+// Hizmetler - Ana Sayfa Hizmetleri
 document.getElementById('main-services-main-page-section-form').addEventListener('submit', function(e) {
     e.preventDefault();
     const mainPageServiceSelect = document.getElementById('mainPageServiceSelect');
@@ -1188,7 +850,7 @@ document.getElementById('main-services-main-page-section-form').addEventListener
     // Formu temizle
     this.reset();
 });
-
+// Hizmetler - Ana Sayfa Hizmetleri
 function updateMainPageServices() {
     const mainPageServicePreview = document.getElementById('main-services-main-page-section-preview');
     const mainPageServicesData = JSON.parse(localStorage.getItem('mainPageServicesData')) || [];
@@ -1203,7 +865,7 @@ function updateMainPageServices() {
         return `
             <div class="main-page-service-preview">
                 <div class="card-image">
-                    <img src="images/services/mainPage/${service.image}" alt="${service.name}">
+                    <img src="images/${service.image}" alt="${service.name}">
                     <div class="plus-icon"></div>
                     <div class="card-content">
                         <h3>${service.name}</h3>
@@ -1217,8 +879,7 @@ function updateMainPageServices() {
 
     mainPageServicePreview.innerHTML = cardsHTML;
 }
-
-// Ana Sayfa Hizmet seçildiğinde mevcut verileri forma doldur
+// Hizmetler - Ana Sayfa Hizmetleri
 document.getElementById('mainPageServiceSelect').addEventListener('change', function() {
     const mainPageServicesData = JSON.parse(localStorage.getItem('mainPageServicesData')) || [];
     
@@ -1235,9 +896,7 @@ document.getElementById('mainPageServiceSelect').addEventListener('change', func
 });
 
 
-
-
-// Custom Hizmete Yeni Section Ekleme Submit olduğunda
+// Hizmetler - Özel Hizmetler Extra Section Ekleme
 document.getElementById('custom-services-section-form').addEventListener('submit', function(e) {
     e.preventDefault();
     const customServicesSelect = document.getElementById('custom-services-section-select');
@@ -1276,8 +935,7 @@ document.getElementById('custom-services-section-form').addEventListener('submit
     this.reset();
     alert('Section başarıyla eklendi!');
 });
-
-// Custom services preview güncelleme
+// Hizmetler - Özel Hizmetler Extra Section Ekleme
 function updateCustomServicesPreview(serviceName) {
     const previewContainer = document.getElementById('custom-services-section-preview');
     const customServicesData = JSON.parse(localStorage.getItem('customServicesData')) || {};
@@ -1313,7 +971,7 @@ function updateCustomServicesPreview(serviceName) {
                 ` : ''}
             </div>
             <div class="section-preview-content">
-                <img src="images/services/custom/${section.image}" alt="${serviceName} section ${index + 1}">
+                <img src="images/${section.image}" alt="${serviceName} section ${index + 1}">
                 <p>${section.description}</p>
             </div>
         </div>
@@ -1321,14 +979,12 @@ function updateCustomServicesPreview(serviceName) {
 
     previewContainer.innerHTML = sectionsHTML;
 }
-
-// Custom service select change event
+// Hizmetler - Özel Hizmetler Extra Section Ekleme
 document.getElementById('custom-services-section-select').addEventListener('change', function() {
     const selectedService = this.options[this.selectedIndex].text;
     updateCustomServicesPreview(selectedService);
 });
-
-// Section düzenleme
+// Hizmetler - Özel Hizmetler Extra Section Ekleme
 function editCustomSection(serviceName, sectionId) {
     const customServicesData = JSON.parse(localStorage.getItem('customServicesData'));
     const section = customServicesData[serviceName].find(s => s.id === sectionId);
@@ -1347,8 +1003,7 @@ function editCustomSection(serviceName, sectionId) {
         form.querySelector('button[type="submit"]').textContent = 'Değişiklikleri Kaydet';
     }
 }
-
-// Section silme
+// Hizmetler - Özel Hizmetler Extra Section Ekleme
 function deleteCustomSection(serviceName, sectionId) {
     if (confirm('Bu section\'ı silmek istediğinizden emin misiniz?')) {
         const customServicesData = JSON.parse(localStorage.getItem('customServicesData'));
@@ -1363,8 +1018,7 @@ function deleteCustomSection(serviceName, sectionId) {
         updateCustomServicesPreview(serviceName);
     }
 }
-
-// Section sırasını değiştirme
+// Hizmetler - Özel Hizmetler Extra Section Ekleme
 function moveCustomSection(serviceName, sectionId, direction) {
     const customServicesData = JSON.parse(localStorage.getItem('customServicesData'));
     const sections = customServicesData[serviceName];
@@ -1382,7 +1036,10 @@ function moveCustomSection(serviceName, sectionId, direction) {
     updateCustomServicesPreview(serviceName);
 }
 
-// Custom services select'i doldur
+
+// Hizmetler - Özel Hizmet Resimleri
+let customServicesImagesData = JSON.parse(localStorage.getItem('customServicesImagesData')) || {};
+// Hizmetler - Özel Hizmet Resimleri
 function populateCustomServicesSelect() {
     const customServicesSelect = document.getElementById('custom-services-section-select');
     const mainServicesData = JSON.parse(localStorage.getItem('mainServicesData')) || [];
@@ -1398,51 +1055,7 @@ function populateCustomServicesSelect() {
         customServicesSelect.appendChild(option);
     });
 }
-
-// Steps form submit
-document.getElementById('stepsForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const stepIndex = document.getElementById('stepSelect').value - 1;
-    
-    // Form verilerini al
-    stepsData.steps[stepIndex] = {
-        number: String(stepIndex + 1).padStart(2, '0'),
-        title: document.getElementById('stepTitle').value,
-        description: document.getElementById('stepDescription').value,
-        image: document.getElementById('stepImage').value
-    };
-    
-    // LocalStorage'ı güncelle
-    localStorage.setItem('stepsData', JSON.stringify(stepsData));
-    
-    // Önizlemeyi güncelle
-    updateStepsPreview();
-    
-    alert('Adım başarıyla güncellendi!');
-});
-
-// Steps önizlemesini güncelle
-function updateStepsPreview() {
-    const previewContainer = document.getElementById('stepsPreview');
-    
-    previewContainer.innerHTML = `
-        <div class="service-steps">
-            ${stepsData.steps.map(step => `
-                <div class="step-item">
-                    <div class="step-circle">
-                        <span class="step-number">${step.number}</span>
-                        <img src="images/steps/${step.image}" alt="${step.title}" class="step-image">
-                    </div>
-                    <h3 class="step-title">${step.title}</h3>
-                    <p class="step-description">${step.description}</p>
-                </div>
-            `).join('')}
-        </div>
-    `;
-}
-
-// Custom services images select'i doldur
+// Hizmetler - Özel Hizmet Resimleri
 function populateCustomServicesImagesSelect() {
     const customServicesImagesSelect = document.getElementById('custom-services-images-section-select');
     const mainServicesData = JSON.parse(localStorage.getItem('mainServicesData')) || [];
@@ -1460,8 +1073,7 @@ function populateCustomServicesImagesSelect() {
 
     updateCustomServicesImagesPreview(mainServicesData[0].name);
 }
-
-// Custom Services Images form submit
+// Hizmetler - Özel Hizmet Resimleri
 document.getElementById('custom-services-images-section-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -1497,8 +1109,7 @@ document.getElementById('custom-services-images-section-form').addEventListener(
     this.reset();
     alert('Resim başarıyla eklendi!');
 });
-
-// Resim sil
+// Hizmetler - Özel Hizmet Resimleri
 function deleteCustomServiceImage(serviceName, imageId) {
     if (confirm('Bu resmi silmek istediğinizden emin misiniz?')) {
         customServicesImagesData[serviceName] = customServicesImagesData[serviceName].filter(img => img.id !== imageId);
@@ -1506,8 +1117,7 @@ function deleteCustomServiceImage(serviceName, imageId) {
         updateCustomServicesImagesPreview(serviceName);
     }
 }
-
-// Custom services images preview güncelleme
+// Hizmetler - Özel Hizmet Resimleri
 function updateCustomServicesImagesPreview(serviceName) {
     const previewContainer = document.getElementById('custom-services-images-section-preview');
     
@@ -1526,7 +1136,7 @@ function updateCustomServicesImagesPreview(serviceName) {
         <div class="fifth-grid">
             ${images.map(img => `
                 <div class="fifth-item">
-                    <img src="images/services/custom/${img.image}" alt="${serviceName}">
+                    <img src="images/${img.image}" alt="${serviceName}">
                     <div class="image-controls">
                         <button class="btn btn-sm btn-danger" onclick="deleteCustomServiceImage('${serviceName}', ${img.id})">
                             <i class="fas fa-trash"></i>
@@ -1542,7 +1152,321 @@ function updateCustomServicesImagesPreview(serviceName) {
 
 
 
+/* ********************** İletişim ********************** */
+// İletişim Bölümü FirstSection verilerini localStorage'da saklayacağız
+let contactsFirstSectionData = JSON.parse(localStorage.getItem('contactsFirstSectionData')) || {
+    text: 'İLETİŞİM',
+    backgroundImage: 'a1.jpg'
+};
+// İletişim Bölümü - First Section
+document.getElementById('contacts-first-section-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Form verilerini al - parseInt kaldırıldı çünkü string değerler almalıyız
+    contactsFirstSectionData = {
+        text: document.getElementById('contacts-first-section-text').value,
+        backgroundImage: document.getElementById('contacts-first-section-image').value
+    };
+    
+    // LocalStorage'ı güncelle
+    localStorage.setItem('contactsFirstSectionData', JSON.stringify(contactsFirstSectionData));
+    
+    // Önizlemeyi güncelle
+    updateContactsFirstSectionPreview();
+    
+    alert('İletişim Bölümü FirstSection başarıyla güncellendi!');
+});
+// İletişim Bölümü - First Section
+function updateContactsFirstSectionPreview() {
+    const previewContainer = document.getElementById('contacts-first-section-preview');
+    previewContainer.innerHTML = `
+        <div class="first-section" style="background-image: url('images/${contactsFirstSectionData.backgroundImage}')">
+            <div class="first-section-content">
+                <h2>${contactsFirstSectionData.text}</h2>
+                <div class="breadcrumb-container">
+                    <a class="breadcrumb-item">Ana Sayfa</a>
+                    <span class="breadcrumb-separator">&gt;</span>
+                    <span class="breadcrumb-item active">İletişim</span>
+                </div>
+            </div>
+        </div>
+    `;
+}
 
 
 
 
+
+/* ********************** Ortak Bileşenler ********************** */
+
+// ortak bileşenler - istatistikler
+let statisticsData = JSON.parse(localStorage.getItem('statisticsData')) || {
+    experienceYears: 30,
+    satisfaction: 100,
+    teamSize: 20,
+    completedProjects: 1000,
+    icons: {
+        experience: 'experience.svg',
+        satisfaction: 'satisfaction.svg',
+        team: 'team.svg',
+        projects: 'projects.svg'
+    }
+};
+// ortak bileşenler - istatistikler
+document.getElementById('statisticsForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Form verilerini al
+    statisticsData = {
+        experienceYears: parseInt(document.getElementById('experienceYears').value),
+        satisfaction: parseInt(document.getElementById('satisfaction').value),
+        teamSize: parseInt(document.getElementById('teamSize').value),
+        completedProjects: parseInt(document.getElementById('completedProjects').value),
+        icons: {
+            experience: document.getElementById('experienceIcon').value,
+            satisfaction: document.getElementById('satisfactionIcon').value,
+            team: document.getElementById('teamIcon').value,
+            projects: document.getElementById('projectsIcon').value
+        }
+    };
+    
+    // LocalStorage'ı güncelle
+    localStorage.setItem('statisticsData', JSON.stringify(statisticsData));
+    
+    // İstatistik önizlemesini güncelle
+    updateStatisticsPreview();
+    
+    alert('İstatistikler başarıyla güncellendi!');
+});
+// ortak bileşenler - istatistikler
+function updateStatisticsPreview() {
+    const previewContainer = document.getElementById('statisticsPreview');
+    previewContainer.innerHTML = `
+        <div class="sixth-section">
+            <div class="sixth-container">
+                <div class="sixth-item">
+                    <div class="sixth-icon">
+                        <img src="images/${statisticsData.icons.experience}" alt="Tecrübe İkonu">
+                    </div>
+                    <div class="sixth-number">${statisticsData.experienceYears}+</div>
+                    <div class="sixth-text">Yıllık Tecrübe</div>
+                </div>
+
+                <div class="sixth-item">
+                    <div class="sixth-icon">
+                        <img src="images/${statisticsData.icons.satisfaction}" alt="Memnuniyet İkonu">
+                    </div>
+                    <div class="sixth-number">${statisticsData.satisfaction}%</div>
+                    <div class="sixth-text">Müşteri Memnuniyeti</div>
+                </div>
+
+                <div class="sixth-item">
+                    <div class="sixth-icon">
+                        <img src="images/${statisticsData.icons.team}" alt="Ekip İkonu">
+                    </div>
+                    <div class="sixth-number">${statisticsData.teamSize}</div>
+                    <div class="sixth-text">Profesyonel Ekip</div>
+                </div>
+
+                <div class="sixth-item">
+                    <div class="sixth-icon">
+                        <img src="images/${statisticsData.icons.projects}" alt="Proje İkonu">
+                    </div>
+                    <div class="sixth-number">${statisticsData.completedProjects}</div>
+                    <div class="sixth-text">Tamamlanmış Proje</div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// ortak bileşenler - iletişim bilgileri
+let contactData = JSON.parse(localStorage.getItem('contactData')) || {
+    address: 'Zafer, Madalyon Sk no:4/B, 34197 Bahçelievler/İstanbul',
+    phone1: '0532 447 89 85',
+    phone2: '0 212 503 64 59',
+    email: 'bilgi@etasdesign.com',
+    workingDays: 'Pzt - Cts.',
+    workingHours: '09:00 - 19:00'
+};
+// ortak bileşenler - iletişim bilgileri
+document.getElementById('contactInfoForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Form verilerini al
+    contactData = {
+        address: document.getElementById('contactAddress').value,
+        phone1: document.getElementById('contactPhone1').value,
+        phone2: document.getElementById('contactPhone2').value,
+        email: document.getElementById('contactEmail').value,
+        workingDays: document.getElementById('workingDays').value,
+        workingHours: document.getElementById('workingHours').value
+    };
+    
+    // LocalStorage'ı güncelle
+    localStorage.setItem('contactData', JSON.stringify(contactData));
+    
+    // İletişim bilgileri önizlemesini güncelle
+    updateContactPreview();
+    
+    alert('İletişim bilgileri başarıyla güncellendi!');
+});
+// ortak bileşenler - iletişim bilgileri
+function updateContactPreview() {
+    const previewContainer = document.getElementById('contactPreview');
+    previewContainer.innerHTML = `
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="info-content">
+                        <h3>Adres</h3>
+                        <p>${contactData.address}</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <div class="info-content">
+                        <h3>Telefon</h3>
+                        <p>${contactData.phone1}</p>
+                        ${contactData.phone2 ? `<p>${contactData.phone2}</p>` : ''}
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div class="info-content">
+                        <h3>E-posta</h3>
+                        <p>${contactData.email}</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="far fa-clock"></i>
+                    <div class="info-content">
+                        <h3>Çalışma Saatleri</h3>
+                        <p>${contactData.workingDays} / ${contactData.workingHours}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Steps verilerini tutan değişken
+let stepsData = JSON.parse(localStorage.getItem('stepsData')) || {
+    steps: [
+        {
+            number: "01",
+            title: "Tasarım",
+            description: "Hayalinizdeki tasarımı bize anlatın\nya da ölçüleri bizimle paylaşın.\nSizin için üretelim.",
+            image: "deneme (1).jpg"
+        },
+        {
+            number: "02",
+            title: "Üretim",
+            description: "2000 m²'lik üretim merkezimizde\nsıfır hata payı ile\nmobilyalarınızı üretiyoruz.",
+            image: "deneme (2).jpg"
+        },
+        {
+            number: "03",
+            title: "Proje Uygulama",
+            description: "Söz verilen tarihte mobilyalarınızın\nuygulamasını ve montajını\ngerçekleştiriyoruz.",
+            image: "deneme (3).jpg"
+        }
+    ]
+};
+// ortak bileşenler - service steps
+document.getElementById('stepsForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const stepIndex = document.getElementById('stepSelect').value - 1;
+    
+    // Form verilerini al
+    stepsData.steps[stepIndex] = {
+        number: String(stepIndex + 1).padStart(2, '0'),
+        title: document.getElementById('stepTitle').value,
+        description: document.getElementById('stepDescription').value,
+        image: document.getElementById('stepImage').value
+    };
+    
+    // LocalStorage'ı güncelle
+    localStorage.setItem('stepsData', JSON.stringify(stepsData));
+    
+    // Önizlemeyi güncelle
+    updateStepsPreview();
+    
+    alert('Adım başarıyla güncellendi!');
+});
+// ortak bileşenler - service steps
+function updateStepsPreview() {
+    const previewContainer = document.getElementById('stepsPreview');
+    
+    previewContainer.innerHTML = `
+        <div class="service-steps">
+            ${stepsData.steps.map(step => `
+                <div class="step-item">
+                    <div class="step-circle">
+                        <span class="step-number">${step.number}</span>
+                        <img src="images/${step.image}" 
+                             alt="${step.title}" 
+                             class="step-image"
+                             style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); transition: box-shadow 0.3s ease;">
+                             
+                    </div>
+                    <h3 class="step-title">${step.title}</h3>
+                    <p class="step-description">${step.description}</p>
+                </div>
+            `).join('')}
+        </div>
+    `;
+
+            
+}
+
+
+
+/*
+// what we do
+document.getElementById('serviceItemForm')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const newService = document.getElementById('serviceItemText').value;
+    
+    // Yeni hizmeti listeye ekle
+    whatWeDoData.services.push(newService);
+    
+    // LocalStorage'ı güncelle
+    localStorage.setItem('whatWeDoData', JSON.stringify(whatWeDoData));
+    
+    // Formu temizle
+    this.reset();
+    
+    // İçerik önizlemesini güncelle
+    updateWhatWeDoPreview();
+    
+    alert('Hizmet başarıyla eklendi!');
+});
+
+// what we do
+function deleteService(index) {
+    if (confirm('Bu hizmeti silmek istediğinizden emin misiniz?')) {
+        whatWeDoData.services.splice(index, 1);
+        localStorage.setItem('whatWeDoData', JSON.stringify(whatWeDoData));
+        updateWhatWeDoPreview();
+    }
+}
+
+// what we do
+function moveService(index, direction) {
+    if (direction === 'up' && index > 0) {
+        [whatWeDoData.services[index], whatWeDoData.services[index - 1]] = 
+        [whatWeDoData.services[index - 1], whatWeDoData.services[index]];
+    } else if (direction === 'down' && index < whatWeDoData.services.length - 1) {
+        [whatWeDoData.services[index], whatWeDoData.services[index + 1]] = 
+        [whatWeDoData.services[index + 1], whatWeDoData.services[index]];
+    }
+    
+    localStorage.setItem('whatWeDoData', JSON.stringify(whatWeDoData));
+    updateWhatWeDoPreview();
+}
+
+*/

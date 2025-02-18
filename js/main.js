@@ -50,8 +50,50 @@ $(document).ready(function() {
 // Aktif menü öğesini belirle
 function setActiveMenuItem() {
     const currentPage = window.location.pathname.split('/').pop() || 'mainPage.html';
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentService = urlParams.get('service');
+    
     $('.nav-list a').removeClass('active');
-    $(`.nav-list a[href="${currentPage}"]`).addClass('active');
+    
+    // Aktif sayfanın linkini bul ve işaretle
+    const activeLink = $(`.nav-list a[href="${currentPage}"]`);
+    activeLink.addClass('active');
+    
+    // Normal sayfalarda (hizmetler hariç) aktif linki tıklanamaz yap
+    if (!activeLink.parent().hasClass('dropdown')) {
+        activeLink.css('pointer-events', 'none');
+    }
+    
+    // Hizmetler ana sayfasındaysak
+    if (currentPage === 'services.html') {
+        const servicesLink = $('.nav-list .dropdown > a');
+        servicesLink.css('pointer-events', 'none');
+        // Dropdown menünün çalışması için parent elementi tıklanabilir bırak
+        servicesLink.parent().css('pointer-events', 'auto');
+    }
+    
+    // Özel hizmet sayfasındaysak (custom_service.html)
+    if (currentPage === 'custom_service.html') {
+        const servicesLink = $('.nav-list .dropdown > a');
+        servicesLink.addClass('active');
+        
+        // Dropdown menüyü aktif ve tıklanabilir tut
+        servicesLink.parent().css('pointer-events', 'auto');
+        
+        // Mevcut hizmetin linkini bul ve tıklanamaz yap
+        if (currentService) {
+            // Header yüklendikten sonra işlem yap
+            setTimeout(() => {
+                const dropdownLinks = document.querySelectorAll('#services-dropdown a');
+                dropdownLinks.forEach(link => {
+                    if (link.href.includes(`service=${currentService}`)) {
+                        link.style.pointerEvents = 'none';
+                        link.classList.add('active');
+                    }
+                });
+            }, 100); // Header'ın yüklenmesi için kısa bir süre bekle
+        }
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -79,29 +121,29 @@ function initializeStats() {
         teamSize: 20,
         completedProjects: 1000,
         icons: {
-            experience: 'experience.svg',
-            satisfaction: 'satisfaction.svg',
-            team: 'team.svg',
-            projects: 'projects.svg'
+            experience: 'experience.jpg',
+            satisfaction: 'satisfaction.jpg',
+            team: 'team.jpg',
+            projects: 'projects.jpg'
         }
     };
 
     // Ana sayfadaki ikonları güncelle (sixth-section)
     const sixthIcons = document.querySelectorAll('.sixth-icon img');
     if (sixthIcons.length === 4) {
-        sixthIcons[0].src = `images/icons/${statisticsData.icons.experience}`;
-        sixthIcons[1].src = `images/icons/${statisticsData.icons.satisfaction}`;
-        sixthIcons[2].src = `images/icons/${statisticsData.icons.team}`;
-        sixthIcons[3].src = `images/icons/${statisticsData.icons.projects}`;
+        sixthIcons[0].src = `images/${statisticsData.icons.experience}`;
+        sixthIcons[1].src = `images/${statisticsData.icons.satisfaction}`;
+        sixthIcons[2].src = `images/${statisticsData.icons.team}`;
+        sixthIcons[3].src = `images/${statisticsData.icons.projects}`;
     }
 
     // Hakkımızda sayfasındaki ikonları güncelle (stats-section)
-    const statsIcons = document.querySelectorAll('.stat-icon');
+    const statsIcons = document.querySelectorAll('.stat-icon img');
     if (statsIcons.length === 4) {
-        statsIcons[0].innerHTML = `<img src="images/icons/${statisticsData.icons.experience}" alt="Tecrübe İkonu">`;
-        statsIcons[1].innerHTML = `<img src="images/icons/${statisticsData.icons.satisfaction}" alt="Memnuniyet İkonu">`;
-        statsIcons[2].innerHTML = `<img src="images/icons/${statisticsData.icons.team}" alt="Ekip İkonu">`;
-        statsIcons[3].innerHTML = `<img src="images/icons/${statisticsData.icons.projects}" alt="Proje İkonu">`;
+        statsIcons[0].src = `images/${statisticsData.icons.experience}`;
+        statsIcons[1].src = `images/${statisticsData.icons.satisfaction}`;
+        statsIcons[2].src = `images/${statisticsData.icons.team}`;
+        statsIcons[3].src = `images/${statisticsData.icons.projects}`;
     }
 
     const observer = new IntersectionObserver((entries) => {
@@ -420,17 +462,17 @@ function loadProjects() {
     // Örnek proje verileri
     const projects = [
         // Mimari Projeler
-        { image: 'images/projects/mimari_projeler/proje1.jpg', category: 'mimari' },
-        { image: 'images/projects/mimari_projeler/proje2.jpg', category: 'mimari' },
-        { image: 'images/projects/mimari_projeler/proje3.jpg', category: 'mimari' },
+        { image: 'images/1.jpg', category: 'mimari' },
+        { image: 'images/2.jpg', category: 'mimari' },
+        { image: 'images/3.jpg', category: 'mimari' },
         
         // Ticari Projeler
-        { image: 'images/projects/ticari_projeler/proje1.jpg', category: 'ticari' },
-        { image: 'images/projects/ticari_projeler/proje2.jpg', category: 'ticari' },
+        { image: 'images/4.jpg', category: 'ticari' },
+        { image: 'images/5.jpg', category: 'ticari' },
         
         // Yaşam Alanı Projeleri
-        { image: 'images/projects/yasam_alani/proje1.jpg', category: 'yasam' },
-        { image: 'images/projects/yasam_alani/proje2.jpg', category: 'yasam' }
+        { image: 'images/6.jpg', category: 'yasam' },
+        { image: 'images/7.jpg', category: 'yasam' }
     ];
     
     if (!projects || projects.length === 0) {
@@ -516,7 +558,7 @@ function loadMainContent() {
     // Üçüncü bölüm içeriği
     const thirdSectionData = JSON.parse(localStorage.getItem('thirdSectionData')) || {
         text: 'Mobilyayı Sanat Eserine Dönüştürüyoruz.',
-        backgroundImage: 'images/background/third-bg.jpg'
+        backgroundImage: 'images/a1.jpg'
     };
 
     // Referanslar
@@ -658,7 +700,7 @@ function initializeFirstSection() {
         firstSectionTitle.textContent = firstSectionData.text;
 
         // Arkaplan resmini güncelle
-        firstSection.style.backgroundImage = `url('images/info/first_section/${firstSectionData.backgroundImage}')`;
+        firstSection.style.backgroundImage = `url('images/${firstSectionData.backgroundImage}')`;
         
         // Overlay ekle
         firstSection.style.position = 'relative';
@@ -731,7 +773,7 @@ function initializeServicesFirstSection() {
         firstSectionTitle.textContent = firstSectionData.text;
 
         // Arkaplan resmini güncelle
-        firstSection.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/services/first_section/${firstSectionData.backgroundImage}')`;
+        firstSection.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/${firstSectionData.backgroundImage}')`;
         
         // Overlay ekle
         firstSection.style.position = 'relative';
@@ -776,7 +818,7 @@ function initializeContactsFirstSection() {
         firstSectionTitle.textContent = firstSectionData.text;
 
         // Arkaplan resmini güncelle
-        firstSection.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/contacts/first_section/${firstSectionData.backgroundImage}')`;
+        firstSection.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/${firstSectionData.backgroundImage}')`;
         
         // Overlay ekle
         firstSection.style.position = 'relative';
@@ -866,11 +908,10 @@ function initializeFourthSection() {
         setTimeout(() => {
             const cardsHTML = willShowServices.map(serviceData => {
                 if (!serviceData) return '';
-                const selectedService = mainServicesData[serviceData.index];
                 return `
                     <div class="fourth-card">
                         <div class="card-image">
-                            <img src="images/services/mainPage/${serviceData.image}" alt="${serviceData.name}">
+                            <img src="images/${serviceData.image}" alt="${serviceData.name}">
                             <div class="plus-icon"></div>
                             <div class="card-content">
                                 <h3>${serviceData.name}</h3>
@@ -970,8 +1011,7 @@ function initializeCustomService() {
 
         // Arkaplan resmini güncelle
         if (service.image) {
-            const backgroundImageUrl = `images/services/first_section/${service.image}`;
-            console.log('Background image URL:', backgroundImageUrl);
+            const backgroundImageUrl = `images/${service.image}`;
             customServiceSection.style.backgroundImage = 
                 `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('${backgroundImageUrl}')`;
         } else {
@@ -984,3 +1024,8 @@ function initializeCustomService() {
         customServiceSection.style.backgroundPosition = 'center';
     }
 }
+
+
+
+
+

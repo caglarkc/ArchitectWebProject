@@ -55,7 +55,7 @@ function loadCustomSections(serviceName) {
         }
 
         const sectionsHTML = sections.map((section, index) => {
-            const imageUrl = `images/services/custom/${section.image}`;
+            const imageUrl = `images/${section.image}`;
             if (index % 2 == 0 ) {
                 return `
                 <div class="special-service-section , special-primary">
@@ -105,7 +105,7 @@ function loadServiceImages(serviceName) {
 
     gridContainer.innerHTML = serviceImages.map(img => `
         <div class="fifth-item">
-            <img src="images/services/custom/${img.image}" alt="${serviceName}">
+            <img src="images/${img.image}" alt="${serviceName}">
             <div class="fifth-overlay">
                 <div class="fifth-plus">
                     <span></span>
@@ -144,8 +144,43 @@ function observeSections() {
     });
 }
 
+// Steps verilerini yükle ve göster
+function loadSteps() {
+    const stepsData = JSON.parse(localStorage.getItem('stepsData')) || {};
+    const stepsContainer = document.getElementById('service-steps-container');
+
+    console.log(stepsData);
+    
+    if (!stepsData.steps || stepsData.steps.length === 0) {
+        console.error('Steps verisi bulunamadı');
+        return;
+    }
+
+    const stepsHTML = `
+        <div class="service-steps">
+            ${stepsData.steps.map(step => `
+                <div class="step-item">
+                    <div class="step-circle" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/${step.image}')">
+                        <span class="step-number">${step.number}</span>
+                    </div>
+                    <h3 class="step-title">${step.title}</h3>
+                    <p class="step-description">${step.description}</p>
+                </div>
+            `).join('')}
+        </div>
+    `;
+
+    stepsContainer.innerHTML = stepsHTML;
+}
+
 // Sayfa yüklendiğinde başlat
-document.addEventListener('DOMContentLoaded', initializeCustomServicePage);
+document.addEventListener('DOMContentLoaded', function() {
+    initializeCustomServicePage();
+    loadSteps(); // Steps'leri yükle
+});
 
 let customServicesImagesData = JSON.parse(localStorage.getItem('customServicesImagesData')) || {};
-console.log(customServicesImagesData);
+
+let stepsData = JSON.parse(localStorage.getItem('stepsData')) || {};
+
+
