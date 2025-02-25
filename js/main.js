@@ -289,36 +289,7 @@ function initializeSlider() {
     const section = document.querySelector('.first-section');
     const slider = document.querySelector('.slider');
     
-    // LocalStorage'dan slider verilerini al
-    const sliderData = JSON.parse(localStorage.getItem('sliderData')) || [];
-    
-    if (sliderData.length === 0) {
-        section.style.display = 'none';
-        return;
-    }
-    
-    // Slider içeriğini oluştur
-    slider.innerHTML = sliderData.map((slide, index) => `
-        <div class="slide ${index === 0 ? 'active' : ''}" style="background-image: url('${slide.image}')">
-            <div class="first-content">
-                <h1>${slide.title}</h1>
-                <h2>${slide.subtitle} <span>${slide.span}</span></h2>
-                <p>${slide.description}</p>
-                <div class="first-buttons">
-                    <a href="${slide.firstButton.link}" class="first-btn first-btn-primary">${slide.firstButton.text}</a>
-                    <a href="${slide.secondButton.link}" class="first-btn first-btn-secondary">${slide.secondButton.text}</a>
-                </div>
-            </div>
-        </div>
-    `).join('');
-    
-    // Dots'ları güncelle
-    const dotsContainer = document.querySelector('.slider-dots');
-    dotsContainer.innerHTML = sliderData.map((_, index) => `
-        <button class="slider-dot ${index === 0 ? 'active' : ''}" data-slide="${index}"></button>
-    `).join('');
-    
-    // Slider değişkenlerini güncelle
+    // Slider değişkenlerini tanımla
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.slider-dot');
     const prevButton = document.querySelector('.slider-button.prev');
@@ -546,6 +517,7 @@ function createProjectElement(project, index) {
     return element;
 }
 
+
 // Ana sayfa içeriğini yükle
 function loadMainContent() {
     // İkinci bölüm içeriği
@@ -560,7 +532,6 @@ function loadMainContent() {
         text: 'Mobilyayı Sanat Eserine Dönüştürüyoruz.',
         backgroundImage: 'images/a1.jpg'
     };
-
     // Referanslar
     const referencesData = JSON.parse(localStorage.getItem('referencesData')) || [];
 
@@ -596,6 +567,7 @@ function loadMainContent() {
     // Projeleri yükle
     loadProjects();
 }
+    
 
 // İletişim bilgilerini yükle
 function loadContactInfo() {
@@ -830,26 +802,32 @@ function initializeContactsFirstSection() {
 
 // Dropdown menüyü doldur
 function populateServicesDropdown() {
-    const services = [];
-    const mainServicesData = JSON.parse(localStorage.getItem('mainServicesData')) || [];
-    mainServicesData.forEach(service => {
-        const urlFriendlyName = service.name
-            .toLowerCase()
-            .replace(/\s+/g, '-')
-            .replace(/[ğ]/g, 'g')
-            .replace(/[ü]/g, 'u')
-            .replace(/[ş]/g, 's')
-            .replace(/[ı]/g, 'i')
-            .replace(/[ö]/g, 'o')
-            .replace(/[ç]/g, 'c')
-            .replace(/[^a-z0-9-]/g, '');
-
-        services.push({ 
-            title: service.name, 
-            link: `/custom_service.html?service=${urlFriendlyName}`,
-            id: service.id
-        });
-    });
+    const service = {
+        title: "Mimari Proje Uygulamaları",
+        link: "/custom_service.html?service=mimari-proje-uygulamalari",
+        id: 0
+    }
+    const service2 = {
+        title: "Ev Tadilatı ve Dekorasyonu",
+        link: "/custom_service.html?service=ev-tadilati-ve-dekorasyonu",
+        id: 1
+    }
+    const service3 = {
+        title: "Zemin Uygulamaları",
+        link: "/custom_service.html?service=zemin-uygulamalari",
+        id: 2
+    }
+    const service4 = {
+        title: "Ofis-İşyeri Tadilatı ve Dekorasyonu",
+        link: "/custom_service.html?service=ofis-isyeri-tadilati-ve-dekorasyonu",
+        id: 3
+    }
+    const service5 = {
+        title: "İzolasyon Uygulamaları",
+        link: "/custom_service.html?service=izolasyon-uygulamalari",
+        id: 4
+    }
+    const services = [service, service2, service3, service4, service5];
     
     const dropdown = document.getElementById('services-dropdown');
     if (dropdown) {
@@ -873,87 +851,51 @@ function initializeFourthSection() {
     const fourthNavigation = document.querySelector('.fourth-navigation');
     if (!fourthCards || !fourthNavigation) return;
 
-    // Key ismini mainPageServicesData olarak değiştirdik
-    const mainPageServicesData = JSON.parse(localStorage.getItem('mainPageServicesData')) || [];
-    console.log(mainPageServicesData);
-    const mainServicesData = JSON.parse(localStorage.getItem('mainServicesData')) || [];
-
-    if (mainPageServicesData.length === 0) return;
-
-    const dotVal = Math.ceil(mainPageServicesData.length / 3);
-    let currentPage = 1;
-
-    // Dot'ları oluştur
-    fourthNavigation.innerHTML = Array.from({ length: dotVal }, (_, i) => `
-        <button class="fourth-dot ${i + 1 === currentPage ? 'active' : ''}" data-slide="${i + 1}"></button>
-    `).join('');
-
+    const cards = document.querySelectorAll('.fourth-card');
+    const dots = document.querySelectorAll('.fourth-dot');
     let currentPageIndex = 0;
+    const cardsPerPage = 3;
 
     function updateCards() {
-        const startIndex = currentPageIndex * 3;
-        const firstService = mainPageServicesData[startIndex];
-        const secondService = mainPageServicesData[startIndex + 1];
-        const thirdService = mainPageServicesData[startIndex + 2];
-        const willShowServices = [firstService, secondService, thirdService];
-
-        // Önce mevcut kartları gizle
-        const currentCards = fourthCards.querySelectorAll('.fourth-card');
-        currentCards.forEach(card => {
+        // Önce tüm kartları gizle
+        cards.forEach(card => {
+            card.style.visibility = 'hidden';
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
+            card.classList.remove('active');
         });
 
-        // Kısa bir gecikme sonra yeni kartları göster
-        setTimeout(() => {
-            const cardsHTML = willShowServices.map(serviceData => {
-                if (!serviceData) return '';
-                return `
-                    <div class="fourth-card">
-                        <div class="card-image">
-                            <img src="images/${serviceData.image}" alt="${serviceData.name}">
-                            <div class="plus-icon"></div>
-                            <div class="card-content">
-                                <h3>${serviceData.name}</h3>
-                                <p>${serviceData.description}</p>
-                                <a href="/services.html" class="fourth-btn">Daha Fazlası</a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
+        // Geçerli sayfadaki kartları göster
+        const startIndex = currentPageIndex * cardsPerPage;
+        const endIndex = startIndex + cardsPerPage;
 
-            fourthCards.innerHTML = cardsHTML;
+        cards.forEach((card, index) => {
+            if (index >= startIndex && index < endIndex) {
+                card.style.visibility = 'visible';
+                card.classList.add('active');
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 * (index - startIndex));
+            }
+        });
 
-        }, 300); // Kartların silinmesi ve yenilerinin eklenmesi arasındaki gecikme
-    }    
+        // Dots'ları güncelle
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentPageIndex);
+        });
+    }
 
-    // İlk kartları göster
+    // İlk yüklemede kartları göster
     updateCards();
 
-    // İlk yüklemede kartları animasyonla göster
-    const initialCards = fourthCards.querySelectorAll('.fourth-card');
-    initialCards.forEach((card, index) => {
-        setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-        }, index * 100);
-    });
-
     // Dot'lara tıklama olayını ekle
-    const dots = document.querySelectorAll('.fourth-dot');
     dots.forEach(dot => {
         dot.addEventListener('click', function() {
-            const newPage = parseInt(this.dataset.slide);
-            if (newPage === currentPageIndex + 1) return;
+            const newPage = parseInt(this.dataset.slide) - 1;
+            if (newPage === currentPageIndex) return;
 
-            currentPageIndex = newPage - 1;
-            
-            // Dot'ları güncelle
-            dots.forEach(d => d.classList.remove('active'));
-            this.classList.add('active');
-
-            // Kartları güncelle
+            currentPageIndex = newPage;
             updateCards();
         });
     });
@@ -1029,3 +971,28 @@ function initializeCustomService() {
 
 
 
+
+
+/*
+ <!-- Projeler Bölümü -->
+    <section class="fifth-section">
+        <div class="container">
+            <div class="fifth-header">
+                <h6>PROJELER</h6>
+                <h2>Özel Tasarım Mobilya Üreticisi</h2>
+            </div>
+
+            <div class="fifth-buttons">
+                <button class="fifth-btn active" data-filter="all">Hepsi</button>
+                <button class="fifth-btn" data-filter="mimari">Mimari Proje Uygulamaları</button>
+                <button class="fifth-btn" data-filter="ticari">Ticari Projeler</button>
+                <button class="fifth-btn" data-filter="yasam">Yaşam Alanı</button>
+            </div>
+
+            <div class="fifth-grid">
+                <!-- Projeler JavaScript ile dinamik olarak buraya eklenecek -->
+            </div>
+        </div>
+    </section>
+
+    */

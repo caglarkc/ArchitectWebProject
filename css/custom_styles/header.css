@@ -1,4 +1,23 @@
+/* Google Translate Araç Çubuğunu Gizle - En üste ekleyin */
+.goog-te-banner-frame,
+.skiptranslate,
+.goog-te-gadget-simple {
+    display: none !important;
+}
 
+.goog-tooltip {
+    display: none !important;
+}
+
+.goog-tooltip:hover {
+    display: none !important;
+}
+
+.goog-text-highlight {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
 
 /* Ana Header Stilleri */
 .main-header {
@@ -271,3 +290,9 @@
         padding: 20px 0;
     }
 } 
+
+/* Mevcut body stilini güncelle */
+body {
+    top: 0 !important;
+    position: static !important;
+}

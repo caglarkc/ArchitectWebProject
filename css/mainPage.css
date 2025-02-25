@@ -90,3 +90,79 @@
 }
 
 
+/* WhatsApp Butonu */
+.whatsapp-button {
+    position: fixed;
+    bottom: 90px; /* Instagram butonu için yukarıda yer aç */
+    left: 20px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+.whatsapp-button:hover {
+    transform: scale(1.1);
+}
+
+/* Instagram Butonu */
+.instagram-button {
+    position: fixed;
+    bottom: 20px; /* Sayfanın en altında, WhatsApp butonunun altında */
+    left: 20px;
+    background-color: #E4405F;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+.instagram-button:hover {
+    transform: scale(1.1);
+}
+
+
+/* Yukarı Butonu */
+.scroll-top-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+    transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-top-button.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-top-button:hover {
+    transform: scale(1.1);
+    background-color: #555;
+}

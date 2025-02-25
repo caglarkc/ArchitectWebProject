@@ -2,41 +2,19 @@
 function initializeCustomServicePage() {
     const urlParams = new URLSearchParams(window.location.search);
     const serviceName = urlParams.get('service');
+    console.log(serviceName);
         
     if (!serviceName) {
         console.error('Hizmet adı bulunamadı');
         return;
     }
 
-    const mainServicesData = JSON.parse(localStorage.getItem('mainServicesData')) || [];
-    
-    const service = mainServicesData.find(s => {
-        const urlFriendlyName = s.name
-            .toLowerCase()
-            .replace(/\s+/g, '-')
-            .replace(/[ğ]/g, 'g')
-            .replace(/[ü]/g, 'u')
-            .replace(/[ş]/g, 's')
-            .replace(/[ı]/g, 'i')
-            .replace(/[ö]/g, 'o')
-            .replace(/[ç]/g, 'c')
-            .replace(/[^a-z0-9-]/g, '');
-        return urlFriendlyName === serviceName;
-    });
+    loadCustomService(serviceName);
+}
 
-    if (!service) {
-        console.error('Hizmet bulunamadı');
-        return;
-    }
+function loadCustomService(serviceName) {
 
-    // Custom sectionları yükle
-    loadCustomSections(service.name);
     
-    // Başlığı güncelle
-    document.getElementById('sample-images-title').textContent = service.name.substring(0,1).toUpperCase() + service.name.substring(2);
-    
-    // Örnek resimleri yükle
-    loadServiceImages(service.name);
 }
 
 // Custom sectionları yükle

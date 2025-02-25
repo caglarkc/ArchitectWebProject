@@ -1,5 +1,37 @@
 <!-- Ortak Header -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- Google Translate Araç Çubuğunu Gizleyen CSS -->
+<style>
+    /* Google Translate Araç Çubuğunu ve İframe'ini Gizle */
+    .goog-te-banner-frame {
+        display: none !important;
+    }
+
+    body {
+        top: 0px !important;
+        position: static !important;
+    }
+
+    /* Google Araç Çubuğu Üst Boşluğu Engelle */
+    .goog-te-combo {
+        display: none !important;
+    }
+</style>
+
+<!-- Google Translate Widget (Gizli) -->
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'tr',
+            includedLanguages: 'tr,en,de,ar',
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 <header class="main-header">
     <div class="header-container">
         <a href="mainPage.html" class="logo">
@@ -12,23 +44,79 @@
                 <li class="dropdown">
                     <a href="services.html">HİZMETLERİMİZ <img src="images/dropdown-arrow.svg" alt="dropdown" class="dropdown-arrow"></a>
                     <ul class="dropdown-menu" id="services-dropdown">
-                        <!-- Dropdown items will be added by JavaScript -->
+                        <li><a href="custom1.html">Mimari Proje Uygulamaları</a></li>
+                        <li><a href="custom2.html">Ev Tadilatı ve Dekorasyonu</a></li>
+                        <li><a href="custom3.html">Zemin Uygulamaları</a></li>
+                        <li><a href="custom4.html">Ofis-İşyeri Tadilatı ve Dekorasyonu</a></li>
+                        <li><a href="custom5.html">İzolasyon Uygulamaları</a></li>
                     </ul>
                 </li>
                 <li><a href="blog.html">BLOG</a></li>
                 <li><a href="contacts.html">İLETİŞİM</a></li>
             </ul>
         </nav>
+
+        <!-- Sağ Üstte Telefon ve Dil Seçimi -->
         <div class="header-right">
-            <a href="tel:0 212 503 64 59" class="phone-number"><i class="fas fa-phone"></i> 0 212 503 64 59</a>
+            <a href="tel:0544 482 58 65" class="phone-number"><i class="fas fa-phone"></i> 0544 482 58 65</a>
             <div class="language-flags">
-                <a href="#" class="flag-item"><img src="images/flags/arabic_flag.jpg" alt="Arabic"></a>
-                <a href="#" class="flag-item"><img src="images/flags/germany_flag.jpg" alt="German"></a>
-                <a href="#" class="flag-item"><img src="images/flags/iran_flag.jpg" alt="Iran"></a>
-                <a href="#" class="flag-item"><img src="images/flags/russia_flag.jpg" alt="Russian"></a>
-                <a href="#" class="flag-item"><img src="images/flags/turkey_flag.jpg" alt="Turkish"></a>
-                <a href="#" class="flag-item"><img src="images/flags/usa_flag.jpg" alt="English"></a>
+                <a href="#" class="flag-item" onclick="changeLanguage('tr')"><img src="images/flags/turkey_flag.jpg" alt="Turkish"></a>
+                <a href="#" class="flag-item" onclick="changeLanguage('en')"><img src="images/flags/usa_flag.jpg" alt="English"></a>
+                <a href="#" class="flag-item" onclick="changeLanguage('de')"><img src="images/flags/germany_flag.jpg" alt="German"></a>
+                <a href="#" class="flag-item" onclick="changeLanguage('ar')"><img src="images/flags/arabic_flag.jpg" alt="Arabic"></a>
             </div>
         </div>
     </div>
-</header> 
+</header>
+
+<!-- Google Translate Dil Değiştirme Fonksiyonu -->
+<script>
+    function changeLanguage(lang) {
+        const frame = document.querySelector('.goog-te-banner-frame');
+        if (frame) {
+            frame.style.visibility = 'hidden';
+            frame.style.display = 'none';
+        }
+        
+        const translateElement = document.querySelector('#google_translate_element select');
+        if (translateElement) {
+            for (let option of translateElement.options) {
+                if (option.value.includes(lang)) {
+                    option.selected = true;
+                    translateElement.dispatchEvent(new Event('change'));
+                    break;
+                }
+            }
+        }
+        
+        // Toolbar'ı ve diğer gereksiz elementleri gizle
+        document.cookie = `googtrans=/auto/${lang}`;
+        document.body.style.top = '0px';
+        
+        // Tüm iframe'leri kontrol et ve gizle
+        const iframes = document.getElementsByTagName('iframe');
+        for (let i = 0; i < iframes.length; i++) {
+            if (iframes[i].className.includes('goog-te')) {
+                iframes[i].style.visibility = 'hidden';
+                iframes[i].style.display = 'none';
+            }
+        }
+    }
+
+    // Sayfa yüklendiğinde ve her 100ms'de bir toolbar'ı gizle
+    function hideTranslateElements() {
+        const elements = document.querySelectorAll('.goog-te-banner-frame, .skiptranslate');
+        elements.forEach(el => {
+            el.style.visibility = 'hidden';
+            el.style.display = 'none';
+        });
+        document.body.style.top = '0px';
+    }
+
+    // Sayfa yüklendiğinde çalıştır
+    window.addEventListener('load', function() {
+        hideTranslateElements();
+        // Periyodik olarak kontrol et
+        setInterval(hideTranslateElements, 100);
+    });
+</script>
