@@ -289,10 +289,17 @@
         align-items: center;
         padding: 20px 0;
     }
-} 
+}
 
 /* Mevcut body stilini güncelle */
 body {
     top: 0 !important;
     position: static !important;
+}
+
+/* Mevcut medya sorgularına ekle */
+@media (max-width: 600px) {
+    .main-header {
+        display: none; /* Ana header'ı mobil görünümde gizle */
+    }
 }

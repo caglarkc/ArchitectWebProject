@@ -1,51 +1,132 @@
-// Header'ı yükle
+// Header yönetimi
 $(document).ready(function() {
-    $("#header-container").load("header.html", function() {
-        // Header yüklendikten sonra aktif sayfayı belirle
-        setActiveMenuItem();
+    // Header container'ları
+    const headerContainer = $("#header-container");
+    const mobileHeaderContainer = $("#mobile-header-container");
+    const topHeader = $(".top-header");
+    const footerContainer = $("#footer-container");
 
+    // Footer yükleme fonksiyonu
+    function loadFooter() {
+        if (!footerContainer.length) {
+            console.error("Footer container not found");
+            return;
+        }
+
+        console.log("Attempting to load footer");
+        footerContainer.load("footer.html", function(response, status, xhr) {
+            if (status === "error") {
+                console.error("Error loading footer:", xhr.status, xhr.statusText);
+            } else {
+                console.log("Footer loaded successfully");
+                // Footer yüklendikten sonra iletişim bilgilerini güncelle
+                loadContactInfo();
+            }
+        });
+    }
+
+    // İlk yükleme kontrolü ve header yükleme
+    function loadAppropriateHeader() {
+        const windowWidth = $(window).width();
+        console.log("Current window width:", windowWidth);
     
-        // Header yüklendikten sonra dropdown menü işlevselliğini ekle
-        $('.dropdown-toggle').on('click', function(e) {
-            e.preventDefault();
-            $(this).parent().toggleClass('show');
-        });
+        if (windowWidth <= 600) {
+            console.log("Attempting to load mobile header");
+            headerContainer.empty();
+            topHeader.hide();
+            mobileHeaderContainer.load("mobile_header.html", function(response, status, xhr) {
+                if (status === "error") {
+                    console.error("Error loading mobile header:", xhr.status, xhr.statusText);
+                } else {
+                    console.log("Mobile header loaded successfully");
+                }
+            });
+        } else {
+            console.log("Attempting to load normal header");
+            mobileHeaderContainer.empty(); // Mobil header'ı temizle
+            topHeader.show(); // Top header'ı göster
+            headerContainer.load("header.html", function(response, status, xhr) {
+                if (status === "error") {
+                    console.error("Error loading header:", xhr.status, xhr.statusText);
+                } else {
+                    console.log("Normal header loaded successfully");
+                    setActiveMenuItem(); // Normal menü aktif öğesini ayarla
+                }
+            });
+        }
+    }
 
-        // Mobil menü toggle
-        $('.navbar-toggler').on('click', function() {
-            $('.navbar-collapse').toggleClass('show');
-        });
+    // İlk yükleme
+    loadAppropriateHeader();
+    loadFooter(); // Footer'ı yükle
+
+    // Ekran boyutu değiştiğinde kontrol et
+    let resizeTimer;
+    
+    // Resize olayını jQuery ile dinle
+    $(window).on('resize orientationchange', function() {
+        console.log("Window resize/orientation event triggered");
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            loadAppropriateHeader();
+        }, 250);
     });
 
-    // Footer'ı yükle ve yüklendikten sonra iletişim bilgilerini güncelle
-    $("#footer-container").load("footer.html", function() {
-        // Footer yüklendikten sonra iletişim bilgilerini güncelle
-        
+    // Mobil cihazlar için orientationchange olayını da dinle
+    window.addEventListener('orientationchange', function() {
+        setTimeout(loadAppropriateHeader, 100);
+    });
+
+    // Sayfa tamamen yüklendiğinde bir kez daha kontrol et
+    $(window).on('load', function() {
+        loadAppropriateHeader();
+        if (!footerContainer.children().length) {
+            loadFooter(); // Footer yüklenmemişse tekrar dene
+        }
     });
 
     // Ana sayfa içeriğini yükle
-    if (window.location.pathname.endsWith('mainPage.html') || window.location.pathname.endsWith('/')) {
-        // Slider fonksiyonalitesi
+    if (window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/')) {
         initializeSlider();
     }
 
     // İstatistikleri başlat
     initializeStats();
-
-    
-
-    // Özel hizmet sayfasını başlat
-    const currentPath = window.location.pathname;
-    const searchParams = window.location.search;
-    
-    if (currentPath.includes('custom_service.html') && searchParams.includes('?service=')) {
-        initializeCustomService();
-    }
 });
+
+// Mobil menü için aktif öğeyi belirle
+function setActiveMobileMenuItem() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentService = urlParams.get('service');
+    
+    $('.mobile-nav-list a').removeClass('active');
+    
+    // Aktif sayfanın linkini bul ve işaretle
+    const activeLink = $(`.mobile-nav-list a[href="${currentPage}"]`);
+    activeLink.addClass('active');
+    
+    // Hizmetler sayfası kontrolü
+    if (currentPage === 'services.html' || currentPage === 'custom_service.html') {
+        const servicesLink = $('.mobile-dropdown > a');
+        servicesLink.addClass('active');
+        
+        if (currentService) {
+            setTimeout(() => {
+                const dropdownLinks = document.querySelectorAll('#mobileServicesDropdown a');
+                dropdownLinks.forEach(link => {
+                    if (link.href.includes(`service=${currentService}`)) {
+                        link.classList.add('active');
+                    }
+                });
+            }, 100);
+        }
+    }
+}
 
 // Aktif menü öğesini belirle
 function setActiveMenuItem() {
-    const currentPage = window.location.pathname.split('/').pop() || 'mainPage.html';
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const urlParams = new URLSearchParams(window.location.search);
     const currentService = urlParams.get('service');
     
@@ -93,15 +174,21 @@ function setActiveMenuItem() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-
-
-
     initializeFourthSection();
 
     loadContactInfo();
 
-});
+    const contactForm = document.getElementById('contact-form');
+    const iletisimForm = document.getElementById('iletisim-form');
 
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleSubmit);
+    }
+
+    if (iletisimForm) {
+        iletisimForm.addEventListener('submit', handleSubmit);
+    }
+});
 
 function animateNumbers(statisticsData) {
     const stats = document.querySelectorAll('.sixth-number');
@@ -180,6 +267,7 @@ function initializeSlider() {
                 slide.classList.remove('active');
             }
         });
+
 
         // Dots'ları güncelle
         dots.forEach((dot, index) => {
@@ -292,16 +380,40 @@ function initializeFourthSection() {
     if (fourthCards.length === 0 || dots.length === 0) return;
 
     let currentPageIndex = 0;
-    const itemsPerPage = 3; // Her slaytta gösterilecek kart sayısı
+    const itemsPerPage = 3;
+    let isAnimating = false;
 
     function updateCards() {
-        fourthCards.forEach((card, index) => {
-            if (index >= currentPageIndex * itemsPerPage && index < (currentPageIndex + 1) * itemsPerPage) {
-                card.style.display = 'block'; // Görünür yap
-            } else {
-                card.style.display = 'none'; // Gizle
+        if (isAnimating) return;
+        isAnimating = true;
+
+        // Önce tüm kartları fade-out yap
+        fourthCards.forEach(card => {
+            if (card.style.display !== 'none') {
+                card.classList.add('fade-out');
+                card.classList.remove('fade-in');
             }
         });
+
+        // Kısa bir gecikme sonra yeni kartları göster
+        setTimeout(() => {
+            fourthCards.forEach((card, index) => {
+                if (index >= currentPageIndex * itemsPerPage && index < (currentPageIndex + 1) * itemsPerPage) {
+                    card.style.display = 'block';
+                    card.classList.remove('fade-out');
+                    requestAnimationFrame(() => {
+                        card.classList.add('fade-in');
+                    });
+                } else {
+                    card.style.display = 'none';
+                    card.classList.remove('fade-in', 'fade-out');
+                }
+            });
+
+            setTimeout(() => {
+                isAnimating = false;
+            }, 500);
+        }, 300);
     }
 
     function updateDots() {
@@ -312,7 +424,7 @@ function initializeFourthSection() {
 
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
-            if (index === currentPageIndex) return;
+            if (index === currentPageIndex || isAnimating) return;
             currentPageIndex = index;
             updateCards();
             updateDots();
@@ -474,52 +586,6 @@ function loadContactInfo() {
 }
 
 
-// Dropdown menüyü doldur
-function populateServicesDropdown() {
-    console.log("populateServicesDropdown");
-    const service = {
-        title: "Mimari Proje Uygulamaları",
-        link: "/custom_service.html?service=mimari-proje-uygulamalari",
-        id: 0
-    }
-    const service2 = {
-        title: "Ev Tadilatı ve Dekorasyonu",
-        link: "/custom_service.html?service=ev-tadilati-ve-dekorasyonu",
-        id: 1
-    }
-    const service3 = {
-        title: "Zemin Uygulamaları",
-        link: "/custom_service.html?service=zemin-uygulamalari",
-        id: 2
-    }
-    const service4 = {
-        title: "Ofis-İşyeri Tadilatı ve Dekorasyonu",
-        link: "/custom_service.html?service=ofis-isyeri-tadilati-ve-dekorasyonu",
-        id: 3
-    }
-    const service5 = {
-        title: "İzolasyon Uygulamaları",
-        link: "/custom_service.html?service=izolasyon-uygulamalari",
-        id: 4
-    }
-    const services = [service, service2, service3, service4, service5];
-    
-    const dropdown = document.getElementById('services-dropdown');
-    if (dropdown) {
-        dropdown.innerHTML = '';
-        services.forEach(service => {
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = service.link;
-            a.textContent = service.title;
-            // ID'yi data attribute olarak ekle
-            a.dataset.serviceId = service.id;
-            li.appendChild(a);
-            dropdown.appendChild(li);
-        });
-    }
-}
-
 // Sayfa kaydırıldığında butonu göster/gizle
 window.onscroll = function() {
     const scrollTopBtn = document.getElementById("scrollTopBtn");
@@ -536,4 +602,61 @@ function scrollToTop() {
         top: 0,
         behavior: 'smooth'
     });
+}
+
+function handleSubmit(event) {
+    event.preventDefault(); // Formun varsayılan gönderme işlemini engelle
+
+    // Form alanlarını al
+    const form = event.target;
+    const name = form.name.value.trim();
+    const phone = form.phone.value.trim();
+    const email = form.email.value.trim();
+    const subject = form.subject.value.trim();
+    const message = form.message.value.trim();
+
+    const errors = [];
+
+    // 🔍 Ad Soyad Kontrolü
+    if (!name) {
+        errors.push("Adınız Soyadınız alanı boş olamaz.");
+    }
+
+    // 📱 Telefon Numarası Kontrolü (Sadece rakam ve 10 haneli)
+    const phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(phone)) {
+        errors.push("Telefon numaranız 10 haneli ve sadece rakamlardan oluşmalıdır.");
+    }
+
+    // 📧 E-posta Adresi Kontrolü
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        errors.push("Geçerli bir e-posta adresi giriniz.");
+    }
+
+    // ✉️ Mesaj Kontrolü
+    if (!message) {
+        errors.push("Mesaj alanı boş olamaz.");
+    }
+
+    // ❌ Eğer hata varsa kullanıcıya göster
+    if (errors.length > 0) {
+        alert("Form Hataları:\n" + errors.join("\n"));
+        return;
+    }
+
+    // ✅ Form Verilerini JSON Olarak Topla
+    const formData = {
+        name,
+        phone,
+        email,
+        subject,
+        message
+    };
+
+    console.log("Form Verileri:", formData);
+    alert("Form başarıyla gönderildi!");
+
+    // Formu Sıfırla
+    form.reset();
 }

@@ -1,0 +1,188 @@
+/* Google Translate Araç Çubuğunu Gizle */
+.goog-te-banner-frame,
+.skiptranslate,
+.goog-te-gadget-simple {
+    display: none !important;
+}
+
+.goog-tooltip,
+.goog-tooltip:hover {
+    display: none !important;
+}
+
+.goog-text-highlight {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Mobil Header Ana Stilleri */
+.mobile-header {
+    display: none; /* Varsayılan olarak gizli */
+    background-color: var(--background-color);
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px var(--overlay-10);
+}
+
+.mobile-header-container {
+    display: flex;
+    justify-content: center; /* Logo'yu ortala */
+    align-items: center;
+    height: 100%;
+    padding: 0 15px;
+    position: relative; /* Hamburger menü için */
+}
+
+/* Hamburger Menü Butonu */
+.hamburger-menu {
+    position: absolute; /* Container içinde konumlandır */
+    left: 15px;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    transition: color 0.3s ease;
+}
+
+.hamburger-menu:hover {
+    color: var(--gold-color);
+}
+
+/* Logo */
+.mobile-logo {
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.mobile-logo img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Dil Seçimi Butonu */
+.language-button {
+    display: none; /* Dil seçimi butonunu gizle */
+}
+
+/* Mobil Menü */
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: var(--background-color);
+    border-top: 1px solid var(--gold-color);
+    box-shadow: 0 2px 5px var(--overlay-10);
+}
+
+.mobile-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 20px 0;
+}
+
+.mobile-nav-list li {
+    padding: 0 20px;
+}
+
+.mobile-nav-list li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--overlay-10);
+    transition: color 0.3s ease;
+}
+
+.mobile-nav-list li:last-child a {
+    border-bottom: none;
+}
+
+.mobile-nav-list li a:hover {
+    color: var(--gold-color);
+}
+
+/* Mobil Dropdown Menü */
+.mobile-dropdown > a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mobile-dropdown-menu {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: var(--overlay-10);
+}
+
+.mobile-dropdown-menu li a {
+    padding-left: 20px;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Telefon Numarası */
+.mobile-phone a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gold-color) !important;
+    font-weight: 600 !important;
+}
+
+.mobile-phone i {
+    font-size: 18px;
+}
+
+/* Animasyonlar */
+@keyframes slideDown {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.mobile-nav.active {
+    animation: slideDown 0.3s ease forwards;
+}
+
+/* Body Padding */
+body {
+    padding-top: 60px; /* Header yüksekliği kadar padding */
+}
+
+/* Medya Sorguları */
+@media (max-width: 600px) {
+    .mobile-header {
+        display: block; /* 600px ve altında göster */
+    }
+}
+
+@media (max-width: 360px) {
+    .mobile-logo img {
+        height: 40px;
+    }
+    
+    .hamburger-menu {
+        font-size: 20px;
+        padding: 8px;
+    }
+} 

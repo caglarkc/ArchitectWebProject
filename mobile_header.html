@@ -1,0 +1,64 @@
+<!-- Mobil Header -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/custom_styles/mobile_header.css">
+<link rel="stylesheet" href="css/custom_styles/values.css">
+
+
+<header class="mobile-header">
+    <div class="mobile-header-container">
+        <!-- Hamburger Menü Butonu -->
+        <button class="hamburger-menu" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Logo -->
+        <a href="mainPage.html" class="mobile-logo">
+            <img src="images/logo.jpg" alt="ETAŞ Design Logo">
+        </a>
+
+        <!-- Dil Seçimi Butonu -->
+        <button class="language-button" onclick="toggleLanguageMenu()">
+            <i class="fas fa-globe"></i>
+        </button>
+
+        <!-- Mobil Menü (Varsayılan olarak gizli) -->
+        <nav class="mobile-nav" id="mobileNav">
+            <ul class="mobile-nav-list">
+                <li><a href="mainPage.html">ANASAYFA</a></li>
+                <li><a href="info.html">HAKKIMIZDA</a></li>
+                <li class="mobile-dropdown">
+                    <a href="javascript:void(0)" onclick="toggleServicesMenu()">
+                        HİZMETLERİMİZ <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <ul class="mobile-dropdown-menu" id="mobileServicesDropdown">
+                        <li><a href="custom1.html">Mimari Proje Uygulamaları</a></li>
+                        <li><a href="custom2.html">Ev Tadilatı ve Dekorasyonu</a></li>
+                        <li><a href="custom3.html">Zemin Uygulamaları</a></li>
+                        <li><a href="custom4.html">Ofis-İşyeri Tadilatı ve Dekorasyonu</a></li>
+                        <li><a href="custom5.html">İzolasyon Uygulamaları</a></li>
+                    </ul>
+                </li>
+                <li><a href="blog.html">BLOG</a></li>
+                <li><a href="contacts.html">İLETİŞİM</a></li>
+                <li class="mobile-phone">
+                    <a href="tel:0544 482 58 65"><i class="fas fa-phone"></i> 0544 482 58 65</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Google Translate Dil Değiştirme Fonksiyonu -->
+<script>
+
+    // Mobil menü toggle fonksiyonları
+    function toggleMobileMenu() {
+        const mobileNav = document.getElementById('mobileNav');
+        mobileNav.style.display = mobileNav.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function toggleServicesMenu() {
+        const servicesDropdown = document.getElementById('mobileServicesDropdown');
+        servicesDropdown.style.display = servicesDropdown.style.display === 'block' ? 'none' : 'block';
+    }
+</script> 
