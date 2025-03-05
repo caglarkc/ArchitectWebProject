@@ -1,26 +1,29 @@
 const blogPosts = [
     {
-        image: "images/adım1.jpeg",
+        image: "images/custom_blog1.jpg",
         category: "İç Mekan",
-        title: "Modern İç Mekan Tasarım Trendleri",
-        date: "15 Mart 2024",
-        author: "Admin",
-        excerpt: "2024 yılının en çok tercih edilen iç mekan tasarım trendlerini ve öne çıkan dekorasyon fikirlerini sizler için derledik."
+        title: "Sağlam Zeminlerin Sırrı",
+        date: "5 Mart 2025",
+        author: "Çağatay Çalışkan",
+        excerpt: "Zeminler, bir yapının temel taşıdır — peki gerçekten ne kadar önemlidir? Yanlış bir zemin seçimi, yıllar içinde çatlaklara, aşınmalara hatta yapısal sorunlara yol açabilir. İstanbul gibi yoğun nüfuslu ...",
+        href: "blog1.html"
     },
     {
-        image: "images/adım1.jpeg",
-        category: "Ofis",
-        title: "Verimli Ofis Tasarımının İpuçları",
-        date: "10 Mart 2024",
-        author: "Admin",
-        excerpt: "Çalışan verimliliğini artıran ve modern iş yaşamına uygun ofis tasarım önerilerini keşfedin."
+        image: "images/custom_blog2.jpg",
+        category: "İç Mekans",
+        title: "Ev Yenilerken Nelere Dikkat Edilmeli?",
+        date: "27 Şubat 2025",
+        author: "Çağatay Çalışkan",
+        excerpt: "Ev yenilemek, büyük bir heyecan olduğu kadar doğru planlanmazsa stresli bir süreç de olabilir. Peki, bu süreci nasıl daha sorunsuz hale getirebilirsiniz? Hangi aşamalardan geçeceğinizi, bütçenizi nasıl ...",
+        href: "blog2.html"
     },
     {
-        image: "images/adım1.jpeg",
-        category: "Mimari",
-        title: "Sürdürülebilir Mimari Yaklaşımlar",
-        date: "5 Mart 2024",
-        author: "Admin",
-        excerpt: "Çevre dostu ve sürdürülebilir mimari tasarımların önemi ve uygulama örnekleri."
+        image: "images/custom_blog3.jpg",
+        category: "Tasarım",
+        title: "Mekanlarda Renk Seçimi Nasıl Yapılır?",
+        date: "13 Şubat 2025",
+        author: "Çağatay Çalışkan",
+        excerpt: "Renkler, yaşam alanlarımızda düşündüğümüzden çok daha büyük bir rol oynar. Bazen farkında bile olmadan ruh halimizi, enerjimizi ve hatta odada geçirdiğimiz zamanı etkileyebilirler. Peki, renklerin ...",
+        href: "blog3.html"
     }
 ]; 

@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="blog-excerpt">
                                 ${post.excerpt}
                             </p>
-                            <a href="#" class="read-more">Devamını Oku</a>
+                            <a href="${post.href}" class="read-more">Devamını Oku</a>
                         </div>
                     </div>
                 </div>
