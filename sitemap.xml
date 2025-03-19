@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Anasayfa -->
+  <url>
+    <loc>https://www.clmimarlik.com/</loc>
+    <lastmod>2025-03-06</lastmod>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Hakkımızda (info.html'den yönlendirilmiş) -->
+  <url>
+    <loc>https://www.clmimarlik.com/hakkimizda</loc>
+    <lastmod>2025-03-06</lastmod>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Hizmetlerimiz (services.html'den yönlendirilmiş) -->
+  <url>
+    <loc>https://www.clmimarlik.com/hizmetlerimiz</loc>
+    <lastmod>2025-03-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Mimari Proje Uygulamaları (custom1.html'den yönlendirilmiş) -->
+  <url>
+    <loc>https://www.clmimarlik.com/mimari-proje-uygulamalari</loc>
+    <lastmod>2025-03-06</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Ev Tadilatı ve Dekorasyonu (custom2.html'den yönlendirilmiş) -->
+  <url>
+    <loc>https://www.clmimarlik.com/ev-tadilati-ve-dekorsayonu</loc>
+    <lastmod>2025-03-06</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Zemin Uygulamaları (custom3.html'den yönlendirilmiş) -->
+  <url>
+    <loc>https://www.clmimarlik.com/zemin-uygulamalari</loc>
+    <lastmod>2025-03-06</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Ofis/İş Yeri Tadilatı ve Dekorasyonu (custom4.html'den yönlendirilmiş) -->
+  <url>
+    <loc>https://www.clmimarlik.com/ofis-is-yeri-tadilati-dekorasyonu</loc>
+    <lastmod>2025-03-06</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- İzolasyon Uygulamaları (custom5.html'den yönlendirilmiş) -->
+  <url>
+    <loc>https://www.clmimarlik.com/izolasyon-uygulamalari</loc>
+    <lastmod>2025-03-06</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog (blog.html'den yönlendirilmiş) -->
+  <url>
+    <loc>https://www.clmimarlik.com/blog</loc>
+    <lastmod>2025-03-06</lastmod>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Sağlam Zeminlerin Sırrı (blog1.html'den yönlendirilmiş) -->
+  <url>
+    <loc>https://www.clmimarlik.com/saglam-zeminlerin-sirri</loc>
+    <lastmod>2025-03-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Ev Yenilenirken Nelere Dikkat Edilmeli (blog2.html'den yönlendirilmiş) -->
+  <url>
+    <loc>https://www.clmimarlik.com/ev-yenilenirken-nelere-dikkat-edilmeli</loc>
+    <lastmod>2025-03-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Mekanlarda Renk Seçimi Nasıl Yapılır (blog3.html'den yönlendirilmiş) -->
+  <url>
+    <loc>https://www.clmimarlik.com/mekanlarda-renk-secimi-nasil-yapilir</loc>
+    <lastmod>2025-03-06</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- İletişim (contacts.html'den yönlendirilmiş) -->
+  <url>
+    <loc>https://www.clmimarlik.com/iletisim</loc>
+    <lastmod>2025-03-06</lastmod>
+    <priority>0.9</priority>
+  </url>
+</urlset>
